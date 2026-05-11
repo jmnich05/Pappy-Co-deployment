@@ -92,6 +92,7 @@
     font-size: 22px; letter-spacing: 0.15em;
   }
   .keys-icon .amp { color: var(--cream); font-size: 18px; }
+  .keys-logo { height: 44px; width: auto; display: block; }
   .brand-text {
     font-family: var(--font-display); font-size: 14px;
     color: var(--cream); letter-spacing: 0.2em; line-height: 1;
@@ -506,6 +507,53 @@
     color: var(--mustard); letter-spacing: 0.08em;
   }
 
+  /* Optional / Advanced badges */
+  .optional-badge {
+    display: inline-block;
+    background: rgba(223, 115, 87, 0.15);
+    border: 1px solid var(--terracotta);
+    color: var(--terracotta);
+    padding: 3px 10px;
+    font-family: var(--font-display);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    border-radius: 2px;
+    margin-right: 12px;
+    vertical-align: middle;
+  }
+  .core-badge {
+    display: inline-block;
+    background: rgba(230, 177, 14, 0.12);
+    border: 1px solid var(--mustard);
+    color: var(--mustard);
+    padding: 3px 10px;
+    font-family: var(--font-display);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    border-radius: 2px;
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+  .optional-banner {
+    margin: 0 0 32px;
+    padding: 20px 24px;
+    background: rgba(223, 115, 87, 0.08);
+    border-left: 4px solid var(--terracotta);
+    border-radius: 2px;
+  }
+  .optional-banner .label {
+    font-family: var(--font-display);
+    letter-spacing: 0.22em;
+    font-size: 11px;
+    color: var(--terracotta);
+    margin-bottom: 6px;
+  }
+  .optional-banner p {
+    font-size: 15px;
+    color: var(--cream);
+    margin: 0;
+    line-height: 1.55;
+  }
   /* Phase Two preview banner */
   .phase-two-banner {
     margin-top: 32px; padding: 32px;
@@ -547,7 +595,7 @@
 <!-- ============== HEADER ============== -->
 <header class="site-header">
   <div class="brand-lockup">
-    <div class="keys-icon">P <span class="amp">&amp;</span> Co</div>
+    <img src="assets/pappy-keys-logo.png" alt="Pappy &amp; Company" class="keys-logo" onerror="this.onerror=null;this.src='assets/pappy-keys-logo.svg';" />
     <div class="brand-text">
       AI INTEGRATION
       <span class="small">LOUISVILLE, KY · INTERNAL ROADMAP</span>
@@ -575,7 +623,7 @@
 <section class="hero">
   <div class="eyebrow">PAPPY &amp; COMPANY · INTERNAL ROADMAP</div>
   <h1>FROM AI-NOVICE<br><span class="gold">TO AI-NATIVE.</span></h1>
-  <p class="deck">Our 60-day plan to integrate AI across e-commerce, marketing, ops, and product. A working intelligence layer Pappy &amp; Co. owns — built by an operator, measured honestly.</p>
+  <p class="deck">Our 60-day plan to integrate AI across e-commerce, marketing, ops, and product.</p>
   <div class="meta-row">
     <span><strong>BUILD</strong> · 8 weeks</span>
     <span><strong>START</strong> · May 11, 2026</span>
@@ -588,7 +636,7 @@
 <section class="block" id="layer">
   <div class="section-eyebrow">WHAT WE'RE BUILDING</div>
   <h2 class="section-head">THE INTELLIGENCE LAYER</h2>
-  <p class="section-deck">A portable intelligence layer for Pappy &amp; Co.: skills as markdown, prompts as plain text, MCP connectors for live data, agnostic auth, an eval harness, and a back-end ROI dashboard. Anthropic-first. Never Anthropic-locked.</p>
+  <p class="section-deck">The main goal: a portable intelligence layer Pappy &amp; Co. owns — enterprise model access, a knowledge layer with RAG, and data connectors across the stack. Agent orchestration is an optional advanced rollout layered on top later.</p>
 
   <table class="layer-table">
     <thead>
@@ -596,24 +644,28 @@
     </thead>
     <tbody>
       <tr>
-        <td class="layer-name">Enterprise model driver</td>
+        <td class="layer-name"><span class="core-badge">CORE</span>Enterprise model driver</td>
         <td><strong>Claude Teams</strong> — Sonnet/Opus across the operating team (Louise, Carrie, Jonathan, Christy, Kelcie, Kaitlyn, Brittany, Willy) with SSO, shared skills library, and centralized billing.</td>
       </tr>
       <tr>
-        <td class="layer-name">Creative &amp; imaging stack</td>
+        <td class="layer-name"><span class="core-badge">CORE</span>Knowledge layer + RAG</td>
+        <td><strong>Pappy Brain</strong> — retrieval-augmented generation over SOPs, marketing playbooks, vendor history, brand standards, product specs, and historical campaign data. The team queries one trusted knowledge source instead of digging through Drive folders.</td>
+      </tr>
+      <tr>
+        <td class="layer-name"><span class="core-badge">CORE</span>Data + workflow connectors</td>
+        <td>MCP servers for Shopify Plus (retail + wholesale), Cin7 Core, Klaviyo, Attentive, Gorgias, GA4, Google Workspace. Live data, not stale exports.</td>
+      </tr>
+      <tr>
+        <td class="layer-name"><span class="core-badge">CORE</span>Creative &amp; imaging stack</td>
         <td><strong>Adobe Photoshop + Illustrator + Adobe Firefly</strong> for AI-assisted product imaging, gift box mockups, social creative, and bourbon-cultural visual language — on-brand, no AI slop. 3 seats: Brittany, Kelcie, Kaitlyn.</td>
       </tr>
       <tr>
-        <td class="layer-name">Data + workflow connectors</td>
-        <td>MCP servers for Shopify Plus (retail + wholesale), Cin7 Core, Klaviyo, Attentive, Gorgias, GA4, Google Workspace, Recharge.</td>
-      </tr>
-      <tr>
-        <td class="layer-name">Voice + brand encoding</td>
+        <td class="layer-name"><span class="core-badge">CORE</span>Voice + brand encoding</td>
         <td>Pappy &amp; Co. brand kit (Louisville / Van Winkle heritage, bourbon vernacular), tone profiles per channel, skill library — separate voice profiles for retail email, wholesale outreach, customer service, internal ops.</td>
       </tr>
       <tr>
-        <td class="layer-name">Phase Two — agent orchestration</td>
-        <td><strong>Claude Agent SDK</strong> <em>or</em> <strong>Claude Managed Agents</strong> (Skills, subagents, Cowork) — head-of-staff agent + 5+ specialized agents per business function.</td>
+        <td class="layer-name"><span class="optional-badge">OPTIONAL</span>Agent orchestration</td>
+        <td><strong>Advanced · Phase 2.</strong> <strong>Claude Agent SDK</strong> <em>or</em> <strong>Claude Managed Agents</strong> (Skills, subagents, Cowork) — head-of-staff agent + 5 specialized agents per business function. Layered on top of the core stack only when the team is ready and Phase 1 is delivering clear ROI.</td>
       </tr>
     </tbody>
   </table>
@@ -622,9 +674,9 @@
 <!-- ============== PHASE ONE ============== -->
 <section class="block alt" id="phase-one">
   <div class="inner">
-    <div class="section-eyebrow">PHASE ONE · FOUNDATION</div>
+    <div class="section-eyebrow"><span class="core-badge">MAIN GOAL</span>PHASE ONE · FOUNDATION</div>
     <h2 class="section-head">FOUR STEPS. ONE INTELLIGENCE LAYER.</h2>
-    <p class="section-deck">A working, documented, vendor-portable AI layer — built for the Pappy team.</p>
+    <p class="section-deck">The core build: enterprise model access, Pappy Brain RAG, data connectors, brand voice. This is the main goal — everything else layers on top.</p>
 
     <div class="phase-grid">
 
@@ -658,11 +710,12 @@
         <div class="phase-label">03 · BUILD</div>
         <h3>ARCHITECTURE</h3>
         <div class="days">Weeks 5–7</div>
-        <p>The intelligence layer itself — deployed, validated, training delivered.</p>
+        <p>The core intelligence layer — deployed, validated, training delivered.</p>
         <ul>
           <li>Claude Teams rollout with role-based skills</li>
-          <li>MCP connectors built &amp; validated (Shopify retail + wholesale, Cin7, Klaviyo, Attentive, Gorgias, GA4, Recharge)</li>
-          <li>Skills library authored as markdown — wholesale bundles, Cerity reports, Gorgias macros, Klaviyo flows, product copy, cigar-sub playbook</li>
+          <li><strong>Pappy Brain RAG</strong> — knowledge layer indexed over SOPs, marketing playbooks, vendor history, brand kit</li>
+          <li>MCP connectors built &amp; validated (Shopify retail + wholesale, Cin7, Klaviyo, Attentive, Gorgias, GA4)</li>
+          <li>Skills library authored as markdown — wholesale bundles, Cerity reports, Gorgias macros, Klaviyo flows, product copy</li>
           <li>Adobe Firefly + Photoshop/Illustrator workflows configured</li>
           <li>Eval harness running on critical workflows</li>
           <li>Team training: day-to-day operation for each role</li>
@@ -720,9 +773,15 @@
 <!-- ============== PHASE TWO ============== -->
 <section class="block alt" id="phase-two">
   <div class="inner">
-    <div class="section-eyebrow">PHASE TWO · AGENT STACK</div>
+    <div class="section-eyebrow"><span class="optional-badge">OPTIONAL · ADVANCED</span>PHASE TWO · AGENT STACK</div>
     <h2 class="section-head">A WORKFORCE OF AGENTS.</h2>
-    <p class="section-deck">When we're ready to go further. A specialized agent workforce wired into Pappy's workflows. Built on Claude Agent SDK <em>or</em> Claude Managed Agents — decision based on operational preference at the time of build.</p>
+
+    <div class="optional-banner">
+      <div class="label">OPTIONAL · ADVANCED ROLLOUT</div>
+      <p><strong>Phase 2 is the next-level build — not required for success.</strong> The main goal is Phase 1: enterprise model access (Claude Teams), the Pappy Brain knowledge layer + RAG, data connectors, and brand-voice encoding. Phase 2 only gets layered on top after Phase 1 is producing clear ROI and the team is ready for agent-driven automation. Teams can opt into the agents that fit them and skip the ones that don't.</p>
+    </div>
+
+    <p class="section-deck">When we're ready to go further: a specialized agent workforce wired into Pappy's workflows. Built on Claude Agent SDK <em>or</em> Claude Managed Agents — decision based on operational preference at the time of build.</p>
 
     <table class="agents-table">
       <thead>
@@ -758,17 +817,12 @@
           <td>Brief generation, copy variants, Firefly imagery prompts, asset routing</td>
           <td class="agent-systems">Adobe CC + Firefly, Google Drive, Shopify</td>
         </tr>
-        <tr>
-          <td class="agent-name">CIGAR SUB</td>
-          <td>2026 cigar-sub launch playbook, churn drafts, member comms</td>
-          <td class="agent-systems">Recharge, Klaviyo, Shopify</td>
-        </tr>
       </tbody>
     </table>
 
     <div class="phase-two-banner">
-      <h3>HEAD-OF-STAFF AGENT</h3>
-      <div class="trigger">Trigger: Phase One ROI clears bar — suggested 200+ hrs/quarter saved + 1.5× wholesale reply rate.</div>
+      <h3><span class="optional-badge">OPTIONAL · PHASE 2</span>HEAD-OF-STAFF AGENT</h3>
+      <div class="trigger">Trigger: Phase 1 ROI clears bar — suggested 200+ hrs/quarter saved + 1.5× wholesale reply rate.</div>
       <p>A head-of-staff / chief-of-staff agent routes tasks across the workforce, manages context, and hands off between specialists. Agent-level logging and oversight — who did what, when, on which order, customer, or flow.</p>
       <p>ROI dashboard per agent function: hours saved, revenue influenced, error rate, escalations.</p>
     </div>
@@ -1080,7 +1134,8 @@
       <p>Firefly Pro integrated via Zapier to pull, edit, and push images across our stack — no manual download/upload cycle.</p>
       <ul>
         <li>Pull source images from Google Drive or Shopify product library</li>
-        <li>User edits in Firefly with Image 2 or preferred LLM prompt</li>
+        <li>Inside Firefly: toggle between ChatGPT Image 2 or preferred LLM image model</li>
+        <li>Edit, prompt, and regenerate in one workspace</li>
         <li>Push refined image back to Drive folder and/or Shopify product variant</li>
         <li>Brand-aware presets so output matches the Pappy palette out of the gate</li>
       </ul>
@@ -1123,40 +1178,25 @@
 <!-- ============== ROI TOOLS ============== -->
 <section class="block alt" id="metrics">
   <div class="inner">
-    <div class="section-eyebrow">HOW WE MEASURE</div>
+    <div class="section-eyebrow">MEASURING IMPACT</div>
     <h2 class="section-head">ROI TOOLS</h2>
-    <p class="section-deck">The dashboards and tools we'll use to measure AI impact and usage across the company. Real numbers, not vibes.</p>
+    <p class="section-deck">How we'll measure the return on these AI tools and agents themselves — what they produce and how much time they give back to the team.</p>
 
     <div class="metrics-grid">
       <div class="metric-card">
-        <div class="metric-num">USAGE</div>
-        <div class="metric-label">CLAUDE TEAMS ADMIN CONSOLE</div>
-        <div class="metric-detail">Active users, workflow adoption, token spend per function, model utilization across the team.</div>
-      </div>
-      <div class="metric-card">
-        <div class="metric-num">QUALITY</div>
-        <div class="metric-label">EVAL HARNESS</div>
-        <div class="metric-detail">Pass/fail benchmarks on CX response quality, copy on-brand-ness, wholesale reply rates.</div>
-      </div>
-      <div class="metric-card">
-        <div class="metric-num">REVENUE</div>
-        <div class="metric-label">GA4 + SHOPIFY ATTRIBUTION</div>
-        <div class="metric-detail">Server-side tagging tracks revenue from AI-touched Klaviyo, Attentive, and checkout flows.</div>
-      </div>
-      <div class="metric-card">
-        <div class="metric-num">CX</div>
-        <div class="metric-label">GORGIAS DASHBOARDS</div>
-        <div class="metric-detail">First response time, deflection rate, agent-assisted close time, CSAT trends.</div>
-      </div>
-      <div class="metric-card">
-        <div class="metric-num">FLOWS</div>
-        <div class="metric-label">KLAVIYO + ATTENTIVE REPORTS</div>
-        <div class="metric-detail">Revenue per send, reply rates, and uplift on agent-drafted flows vs. baselines.</div>
+        <div class="metric-num">OUTPUT</div>
+        <div class="metric-label">WHAT THE AI PRODUCES</div>
+        <div class="metric-detail">Volume and quality of work generated by AI tools and agents across functions.</div>
       </div>
       <div class="metric-card">
         <div class="metric-num">TIME</div>
-        <div class="metric-label">TIME-SAVED LOG</div>
-        <div class="metric-detail">Lightweight Google Sheet per team tracking manual baseline vs. AI-assisted time per task.</div>
+        <div class="metric-label">TIME SAVED</div>
+        <div class="metric-detail">Hours given back to the team — work that used to take days, now compressed.</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-num">ROI</div>
+        <div class="metric-label">RETURN ON SPEND</div>
+        <div class="metric-detail">Overall return on tool spend and operator time invested in the AI layer.</div>
       </div>
     </div>
   </div>
@@ -1188,7 +1228,6 @@
 
     <div class="stack-row">
       <span class="stack-pill">SHOPIFY PLUS</span>
-      <span class="stack-pill">RECHARGE</span>
       <span class="stack-pill">KLAVIYO</span>
       <span class="stack-pill">ATTENTIVE</span>
       <span class="stack-pill">CIN7 CORE</span>
@@ -1222,7 +1261,7 @@
 <script>
   /* =========== CONFIG =========== */
   // Replace with your actual Google OAuth Client ID from console.cloud.google.com
-  const GOOGLE_CLIENT_ID = '546240169489-smvcnclp09hti04cu9o0c66d5l1anffh.apps.googleusercontent.com';
+  const GOOGLE_CLIENT_ID = 'YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com';
   const ALLOWED_DOMAIN = 'pappyco.com';
 
   /* =========== GOOGLE SSO =========== */
