@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ánimo · AI Deployment — From AI-novice to AI-native.</title>
+<meta name="description" content="Ánimo is an enterprise AI deployment firm for companies of 5–50 employees. We design, deploy, and measure a portable intelligence layer your team actually owns — then help you track the ROI on the back end. No internal dev team required." />
+
+<!-- Canonical -->
+<link rel="canonical" href="https://ai.animoplatform.net/" />
+<meta name="robots" content="index, follow" />
+
+<!-- Open Graph -->
+<meta property="og:type"        content="website" />
+<meta property="og:url"         content="https://ai.animoplatform.net/" />
+<meta property="og:site_name"   content="Ánimo AI Consulting" />
+<meta property="og:title"       content="Ánimo · AI Consulting — Build YOUR intelligence layer." />
+<meta property="og:description" content="Fractional AI integration for 5–50 employee companies. We design, deploy, and document a portable intelligence layer your team can actually own — no dev team required." />
+<meta property="og:image"       content="https://ai.animoplatform.net/assets/animo-horizontal.svg" />
+<meta property="og:image:alt"   content="ánimo AI Consulting — Build · Deploy · Sustain" />
+
+<!-- Twitter / X card -->
+<meta name="twitter:card"        content="summary_large_image" />
+<meta name="twitter:title"       content="Ánimo · AI Consulting — Build YOUR intelligence layer." />
+<meta name="twitter:description" content="Fractional AI integration for 5–50 employee companies. Portable, documented, yours." />
+<meta name="twitter:image"       content="https://ai.animoplatform.net/assets/animo-horizontal.svg" />
+
+<style>
+/* ============================================================
+   ÁNIMO BRAND KIT — single source of truth
+   ============================================================ */
+:root {
+  /* Primary palette */
+  --animo-sage:        #7A8C5D;
+  --animo-deep-sage:   #4A5D3A;
+  --animo-cream:       #F5EBD8;
+  --animo-coral:       #E8826B;
+  --animo-marigold:    #F5A623;
+  --animo-deep-coral:  #C85A3D;
+  --animo-charcoal:    #2F2F2C;
+
+  /* Dark theme */
+  --animo-bg-dark:     #161311;
+  --animo-surface:     #231F1D;
+  --animo-on-dark:     #EAE1DD;
+  --animo-gold:        #F3BE55;
+
+  /* Type stacks (per brand kit) */
+  --font-display:  Georgia, "Times New Roman", "Romana Roman", serif;     /* italic */
+  --font-eyebrow:  Impact, "Ferry Black", "Arial Black", sans-serif;       /* ALL CAPS, 0.32em tracking */
+  --font-body:     Georgia, "Lyon Text", "Times New Roman", serif;
+  --font-mono:     "SF Mono", Menlo, Consolas, monospace;
+
+  --line: rgba(74,93,58,0.18);
+  --container: 1180px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-body);
+  color: var(--animo-charcoal);
+  background: var(--animo-cream);
+  line-height: 1.6;
+  font-size: 17px;
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+em, .italic { font-style: italic; }
+
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+/* ===== TYPOGRAPHY ===== */
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-style: italic;
+  color: var(--animo-charcoal);
+  line-height: 1.05;
+  font-weight: normal;
+}
+h1 { font-size: clamp(2.6rem, 6vw, 4.6rem); }
+h2 { font-size: clamp(1.9rem, 3.6vw, 2.8rem); }
+h3 { font-size: 1.4rem; }
+h4 { font-size: 1.1rem; }
+p { color: var(--animo-charcoal); }
+.accent-marigold { color: var(--animo-marigold); }
+.accent-sage { color: var(--animo-sage); }
+.accent-coral { color: var(--animo-coral); }
+
+.eyebrow {
+  font-family: var(--font-eyebrow);
+  text-transform: uppercase;
+  letter-spacing: 0.32em;
+  font-size: 0.7rem;
+  color: var(--animo-deep-sage);
+  font-weight: normal;
+}
+.eyebrow.on-dark { color: var(--animo-marigold); }
+
+.rule {
+  border: 0;
+  border-top: 2px solid var(--animo-sage);
+  width: 56px;
+  margin: 14px 0 28px;
+}
+.rule.on-dark { border-color: var(--animo-marigold); }
+
+/* ===== NAV ===== */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  backdrop-filter: blur(14px);
+  background: rgba(245,235,216,0.92);
+  border-bottom: 1px solid var(--line);
+}
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 32px;
+  max-width: var(--container);
+  margin: 0 auto;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.brand-mark {
+  width: 38px; height: 38px;
+  display: grid; place-items: center;
+}
+.brand-mark img { width: 38px; height: 38px; }
+.brand-mark .fallback {
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  background: var(--animo-deep-sage);
+  color: var(--animo-cream);
+  display: grid; place-items: center;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.3rem;
+}
+.brand-text {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.5rem;
+  color: var(--animo-charcoal);
+}
+.brand-sub {
+  font-family: var(--font-eyebrow);
+  text-transform: uppercase;
+  letter-spacing: 0.28em;
+  font-size: 0.6rem;
+  color: var(--animo-deep-sage);
+  margin-top: 2px;
+  display: block;
+}
+.nav-links {
+  display: flex;
+  gap: 32px;
+  align-items: center;
+}
+.nav-links a {
+  font-family: var(--font-eyebrow);
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  font-size: 0.72rem;
+  color: var(--animo-deep-sage);
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--animo-coral); }
+.nav-cta {
+  background: var(--animo-deep-sage);
+  color: var(--animo-cream) !important;
+  padding: 12px 22px;
+  transition: background 0.2s;
+}
+.nav-cta:hover { background: var(--animo-deep-coral); }
+
+@media (max-width: 760px) {
+  .nav-links a:not(.nav-cta) { display: none; }
+}
+
+/* ===== HERO ===== */
+.hero {
+  position: relative;
+  background: var(--animo-deep-sage);
+  color: var(--animo-cream);
+  overflow: hidden;
+  padding: 96px 0 110px;
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  top: -20%; left: -10%; width: 60%; height: 80%;
+  background: radial-gradient(ellipse at center, rgba(122,140,93,0.55), transparent 60%);
+}
+.hero::after {
+  content: "";
+  position: absolute;
+  bottom: -15%; right: -10%; width: 55%; height: 65%;
+  background: radial-gradient(ellipse at center, rgba(232,130,107,0.28), transparent 65%);
+}
+.hero .container { position: relative; z-index: 1; }
+.hero .eyebrow { color: var(--animo-marigold); }
+.hero h1 {
+  color: var(--animo-cream);
+  margin: 18px 0 28px;
+  max-width: 920px;
+}
+.hero h1 .accent { color: var(--animo-marigold); font-style: italic; }
+.hero-lede {
+  font-size: 1.2rem;
+  color: rgba(245,235,216,0.88);
+  max-width: 660px;
+  margin-bottom: 14px;
+}
+.hero-tag {
+  font-style: italic;
+  color: rgba(245,235,216,0.72);
+  font-size: 1.05rem;
+  border-left: 3px solid var(--animo-marigold);
+  padding-left: 16px;
+  max-width: 620px;
+  margin: 26px 0 40px;
+}
+.hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 28px;
+  font-family: var(--font-eyebrow);
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  font-size: 0.78rem;
+  cursor: pointer;
+  border: none;
+  transition: transform 0.15s, background 0.2s, color 0.2s;
+}
+.btn-primary {
+  background: var(--animo-marigold);
+  color: var(--animo-charcoal);
+}
+.btn-primary:hover { background: var(--animo-cream); transform: translateY(-2px); }
+.btn-ghost {
+  background: transparent;
+  color: var(--animo-cream);
+  border: 1.5px solid var(--animo-cream);
+}
+.btn-ghost:hover { background: var(--animo-cream); color: var(--animo-deep-sage); }
+.btn-dark {
+  background: var(--animo-deep-sage);
+  color: var(--animo-cream);
+}
+.btn-dark:hover { background: var(--animo-deep-coral); }
+
+/* ===== STAT STRIP ===== */
+.stats {
+  background: var(--animo-cream);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 40px 0;
+}
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+}
+@media (max-width: 720px) { .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; } }
+.stat .num {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 2.6rem;
+  color: var(--animo-deep-sage);
+  line-height: 1;
+}
+.stat .label {
+  font-family: var(--font-eyebrow);
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  font-size: 0.68rem;
+  color: var(--animo-charcoal);
+  margin-top: 10px;
+}
+
+/* ===== SECTION SHELL ===== */
+section.block {
+  padding: 100px 0;
+}
+.section-head { max-width: 760px; margin-bottom: 52px; }
+.section-head p {
+  font-size: 1.1rem;
+  margin-top: 16px;
+  color: var(--animo-charcoal);
+}
+
+/* ===== PROBLEM ===== */
+.problem-card {
+  background: var(--animo-charcoal);
+  color: var(--animo-cream);
+  padding: 80px 56px;
+  position: relative;
+  overflow: hidden;
+}
+.problem-card::after {
+  content: "";
+  position: absolute;
+  top: -30%; right: -10%;
+  width: 50%; height: 120%;
+  background: radial-gradient(ellipse at center, rgba(245,166,35,0.2), transparent 70%);
+}
+.problem-card > * { position: relative; }
+.problem-card .eyebrow { color: var(--animo-marigold); }
+.problem-card h2 { color: var(--animo-cream); max-width: 720px; }
+.problem-card p {
+  color: rgba(245,235,216,0.82);
+  max-width: 720px;
+  margin-top: 20px;
+  font-size: 1.1rem;
+}
+
+/* ===== SERVICES ===== */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0;
+  border-top: 2px solid var(--animo-deep-sage);
+}
+@media (max-width: 820px) { .services-grid { grid-template-columns: 1fr; } }
+.service-card {
+  padding: 40px 36px 44px;
+  border-bottom: 1px solid var(--line);
+  border-right: 1px solid var(--line);
+  background: transparent;
+  position: relative;
+  transition: background 0.25s;
+}
+@media (min-width: 821px) {
+  .service-card:nth-child(2n) { border-right: none; }
+  .service-card:nth-last-child(-n+2) { border-bottom: none; }
+}
+.service-card:hover { background: rgba(122,140,93,0.07); }
+.service-num {
+  font-family: var(--font-eyebrow);
+  text-transform: uppercase;
+  letter-spacing: 0.28em;
+  font-size: 0.7rem;
+  color: var(--animo-coral);
+  margin-bottom: 18px;
+}
+.service-card h3 { margin-bottom: 14px; }
+.service-card p { font-size: 1rem; color: var(--animo-charcoal); }
+.service-card ul {
+  margin-top: 22px;
+  padding-left: 0;
+  list-style: none;
+}
+.service-card ul li {
+  padding-left: 20px;
+  position: relative;
+  margin-bottom: 8px;
+  font-size: 0.95rem;
+  color: var(--animo-charcoal);
+  line-height: 1.5;
+}
+.service-card ul li::before {
+  content: "✦";
+  position: absolute; left: 0;
+  color: var(--animo-marigold);
+  font-size: 0.78rem;
+  top: 4px;
+}
+
+/* ===== APPROACH ===== */
+.approach {
+  background: var(--animo-cream); /* brand spec: cream, never white */
+  border: 1px solid var(--line);
+  padding: 64px 56px;
+}
+.approach-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+@media (max-width: 820px) { .approach-grid { grid-template-columns: 1fr; gap: 40px; } }
+.vendor-stack {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+.vendor-pill {
+  background: var(--animo-cream);
+  border: 1px solid var(--line);
+  padding: 14px 8px;
+  text-align: center;
+  font-family: var(--font-eyebrow);
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--animo-deep-sage);
+}
+.vendor-pill.featured {
+  background: var(--animo-deep-sage);
+  color: var(--animo-marigold);
+  border-color: var(--animo-deep-sage);
+}
+.vendor-caption {
+  margin-top: 18px;
+  font-size: 0.88rem;
+  color: var(--animo-deep-sage);
+  font-style: italic;
+  text-align: center;
+}
+
+/* ===== PROCESS / TIMELINE ===== */
+.timeline {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+}
+@media (max-width: 820px) { .timeline { grid-template-columns: 1fr; gap: 24px; } }
+.tl-step {
+  padding: 32px 24px 32px 0;
+  border-top: 2px solid var(--animo-sage);
+  position: relative;
+}
+.tl-step::before {
+  content: "";
+  position: absolute;
+  top: -8px; left: 0;
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  background: var(--animo-marigold);
+  box-shadow: 0 0 0 4px var(--animo-cream);
+}
+.tl-week {
+  font-family: var(--font-eyebrow);
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  font-size: 0.68rem;
+  color: var(--animo-coral);
+  margin-bottom: 10px;
+}
+.tl-step h4 { margin-bottom: 8px; font-size: 1.2rem; }
+.tl-step p { font-size: 0.92rem; color: var(--animo-charcoal); }
+
+/* ===== ENGAGEMENTS ===== */
+.tiers {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+@media (max-width: 820px) { .tiers { grid-template-columns: 1fr; } }
+.tier {
+  background: white;
+  border: 1px solid var(--line);
+  padding: 36px 32px;
+  position: relative;
+}
+.tier.feat {
+  background: var(--animo-deep-sage);
+  color: var(--animo-cream);
+  border-color: var(--animo-deep-sage);
+}
+.tier.feat::before {
+  content: "MOST POPULAR";
+  position: absolute;
+  top: -12px; left: 32px;
+  background: var(--animo-marigold);
+  color: var(--animo-charcoal);
+  font-family: var(--font-eyebrow);
+  font-size: 0.65rem;
+  padding: 5px 12px;
+  letter-spacing: 0.22em;
+}
+.tier-name {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.7rem;
+  margin-bottom: 6px;
+  color: var(--animo-charcoal);
+}
+.tier.feat .tier-name { color: var(--animo-cream); }
+.tier-tag {
+  font-style: italic;
+  color: var(--animo-deep-sage);
+  font-size: 0.95rem;
+  margin-bottom: 24px;
+}
+.tier.feat .tier-tag { color: rgba(245,235,216,0.75); }
+.tier-price {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 2.6rem;
+  color: var(--animo-deep-sage);
+  line-height: 1;
+}
+.tier.feat .tier-price { color: var(--animo-marigold); }
+.tier-price-note {
+  font-family: var(--font-eyebrow);
+  font-size: 0.68rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--animo-charcoal);
+  margin: 8px 0 28px;
+}
+.tier.feat .tier-price-note { color: rgba(245,235,216,0.7); }
+.tier ul { list-style: none; padding: 0; }
+.tier ul li {
+  padding: 12px 0 12px 24px;
+  position: relative;
+  font-size: 0.95rem;
+  color: var(--animo-charcoal);
+  border-bottom: 1px solid rgba(74,93,58,0.12);
+}
+.tier.feat ul li {
+  color: var(--animo-cream);
+  border-bottom-color: rgba(245,235,216,0.15);
+}
+.tier ul li:last-child { border-bottom: none; }
+.tier ul li::before {
+  content: "✦";
+  position: absolute;
+  left: 0;
+  color: var(--animo-marigold);
+  top: 14px;
+  font-size: 0.78rem;
+}
+
+/* ===== CTA BAND ===== */
+.cta-band {
+  background: var(--animo-deep-sage);
+  color: var(--animo-cream);
+  padding: 80px 56px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.cta-band::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, rgba(245,166,35,0.18), transparent 60%);
+}
+.cta-band > * { position: relative; }
+.cta-band .eyebrow { color: var(--animo-marigold); }
+.cta-band h2 { color: var(--animo-cream); max-width: 700px; margin: 14px auto 18px; }
+.cta-band p { color: rgba(245,235,216,0.82); max-width: 580px; margin: 0 auto 32px; font-size: 1.1rem; }
+
+/* ===== FOOTER ===== */
+footer {
+  background: var(--animo-bg-dark);
+  color: var(--animo-on-dark);
+  padding: 72px 0 32px;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 48px;
+  margin-bottom: 48px;
+}
+@media (max-width: 820px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
+.footer-brand p {
+  color: rgba(234,225,221,0.62);
+  font-size: 0.95rem;
+  margin-top: 16px;
+  max-width: 320px;
+  font-style: italic;
+}
+footer h5 {
+  font-family: var(--font-eyebrow);
+  font-size: 0.7rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--animo-marigold);
+  margin-bottom: 16px;
+}
+footer ul { list-style: none; }
+footer ul li { margin-bottom: 10px; }
+footer ul a { color: rgba(234,225,221,0.7); font-size: 0.92rem; }
+footer ul a:hover { color: var(--animo-marigold); }
+.footer-base {
+  border-top: 1px solid rgba(234,225,221,0.12);
+  padding-top: 24px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  font-family: var(--font-eyebrow);
+  font-size: 0.65rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(234,225,221,0.5);
+}
+.footer-base .acc { color: var(--animo-marigold); }
+</style>
+</head>
+<body>
+
+<!-- ============== NAV ============== -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#top" class="brand">
+      <span class="brand-mark">
+        <!-- Drop your animo-mark.svg into ./assets/ and it'll appear here.
+             Falls back to a sage circle wordmark if file is missing. -->
+        <img src="assets/animo-mark.svg" alt="ánimo" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"/>
+        <span class="fallback" style="display:none;"><em>á</em></span>
+      </span>
+      <span>
+        <span class="brand-text"><em>ánimo</em></span>
+        <span class="brand-sub">AI Deployment</span>
+      </span>
+    </a>
+    <div class="nav-links">
+      <a href="#services">Services</a>
+      <a href="#approach">Approach</a>
+      <a href="#process">Process</a>
+      <a href="#discovery">Discovery call</a>
+      <a href="https://calendar.app.google/axoDDDcpxvVbbHH99" target="_blank" rel="noopener" class="nav-cta">Book a call</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============== HERO ============== -->
+<header class="hero" id="top">
+  <div class="container">
+    <span class="eyebrow">Build · Deploy · Sustain</span>
+    <h1>From <em class="accent">AI-novice</em> to <em class="accent">AI-native</em> — a complete intelligence layer your team actually owns.</h1>
+    <p class="hero-lede">Ánimo is an enterprise AI deployment firm for companies of 5–50 employees. We design, deploy, and document a portable intelligence layer — then instrument it so you can measure what it's actually worth. No internal dev team required.</p>
+    <p class="hero-tag">"We don't just ship and walk away — we measure ROI on the back end so you know exactly what your intelligence layer is delivering."</p>
+    <div class="hero-actions">
+      <a href="https://calendar.app.google/axoDDDcpxvVbbHH99" target="_blank" rel="noopener" class="btn btn-primary">Book a discovery call →</a>
+      <a href="#services" class="btn btn-ghost">See how it works</a>
+    </div>
+  </div>
+</header>
+
+<!-- ============== STAT STRIP ============== -->
+<section class="stats">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat">
+        <div class="num">5–50</div>
+        <div class="label">Employees · our sweet spot</div>
+      </div>
+      <div class="stat">
+        <div class="num">60</div>
+        <div class="label">Days to deployment</div>
+      </div>
+      <div class="stat">
+        <div class="num">12<span style="font-size:1.4rem;"> mo</span></div>
+        <div class="label">Support included</div>
+      </div>
+      <div class="stat">
+        <div class="num">100%</div>
+        <div class="label">Vendor-portable</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== PROBLEM ============== -->
+<section class="block" style="padding-top: 80px;">
+  <div class="container">
+    <div class="problem-card">
+      <span class="eyebrow on-dark">The gap we fill</span>
+      <hr class="rule on-dark"/>
+      <h2>You know AI is going to change your business. You don't have a dev team to make it happen.</h2>
+      <p>Most consultancies sell tools you can't maintain, or build solutions locked to a single vendor. Ánimo is an enterprise AI deployment firm — focused only on the intelligence layer — that designs your stack to be portable, documented, and operable by your real team. Whether you start on Anthropic, Gemini, or OpenAI, your architecture moves with you. And when it's live, we instrument it: usage metrics, quality evals, and a back-end ROI report so you know what the investment actually returned. <em>Specific beats generic, every time.</em></p>
+    </div>
+  </div>
+</section>
+
+<!-- ============== AI NOVICE → AI NATIVE BRIDGE ============== -->
+<section style="background: var(--animo-deep-sage); padding: 56px 0; overflow: hidden; position: relative;">
+  <div style="position: absolute; inset: 0; background: radial-gradient(ellipse at 30% 50%, rgba(122,140,93,0.35), transparent 65%);"></div>
+  <div class="container" style="position: relative; z-index: 1; text-align: center;">
+    <span class="eyebrow" style="color: var(--animo-marigold);">The transformation</span>
+    <h2 style="color: var(--animo-cream); margin: 16px auto 20px; max-width: 800px;">From <em style="color: var(--animo-marigold);">AI-novice</em> to <em style="color: var(--animo-marigold);">AI-native</em> — without needing a dev team to get there.</h2>
+    <p style="color: rgba(245,235,216,0.82); max-width: 620px; margin: 0 auto; font-size: 1.05rem;">Most small businesses are sitting on workflows that AI could transform. What's missing isn't the technology — it's someone to deploy it right, document it completely, and measure whether it's actually working.</p>
+  </div>
+</section>
+
+<!-- ============== SERVICES ============== -->
+<section class="block" id="services">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">What we do</span>
+      <hr class="rule"/>
+      <h2>Two paths forward. <em class="accent-sage">One firm that sees them both.</em></h2>
+      <p>Every engagement starts with the same foundation. Where you go after that depends on how far you want to take it.</p>
+    </div>
+
+    <!-- Phase One header -->
+    <div style="margin-bottom: 4px;">
+      <span class="eyebrow" style="color: var(--animo-coral);">Phase One · Foundation</span>
+      <p style="font-size: 0.95rem; color: var(--animo-charcoal); font-style: italic; margin-top: 8px; max-width: 680px;">The right starting point for most companies. You get a working, documented, vendor-portable AI layer — built for your team, not for a demo.</p>
+    </div>
+
+    <div class="services-grid" style="border-top: 2px solid var(--animo-deep-sage); margin-bottom: 56px;">
+      <div class="service-card">
+        <div class="service-num">01 · Discover</div>
+        <h3>Onboarding & discovery.</h3>
+        <p>Workflow audit, data inventory, security posture, and a prioritized use-case backlog. We find where AI creates real value before writing a line of code.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-num">02 · Customize</div>
+        <h3>Brand kit & voice profile.</h3>
+        <p>Your AI sounds like your company. We encode your voice, org context, and communication patterns into a portable system prompt and skill library.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-num">03 · Build</div>
+        <h3>Architecture & deployment.</h3>
+        <p>The intelligence layer itself: skills, MCP data connectors, identity controls, and multi-device rollout. Vendor-portable from day one.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-num">04 · Sustain</div>
+        <h3>Ongoing health & ROI tracking.</h3>
+        <p>Eval harness, data freshness monitoring, quarterly intelligence reviews, and a back-end ROI report — so you can see exactly what your investment returned. 12-month support included.</p>
+      </div>
+    </div>
+
+    <!-- Phase Two header -->
+    <div style="margin-bottom: 4px;">
+      <span class="eyebrow" style="color: var(--animo-coral);">Phase Two · Agent Stack</span>
+      <p style="font-size: 0.95rem; color: var(--animo-charcoal); font-style: italic; margin-top: 8px; max-width: 680px;">For companies ready to go further: a fully customized agent workforce wired into your workflows — the same kind of system we run internally.</p>
+    </div>
+
+    <div class="services-grid" style="border-top: 2px solid var(--animo-deep-sage);">
+      <div class="service-card">
+        <div class="service-num">Agent Workforce</div>
+        <h3>5+ agents, working in sync.</h3>
+        <p>We design and deploy a team of specialized AI agents — each scoped to a specific function — working synchronously across your tasks and data. Sales, ops, research, communications: the work runs in parallel, not in a queue.</p>
+        <ul>
+          <li>Custom agents per business function</li>
+          <li>Synchronous multi-agent orchestration</li>
+          <li>Connected to your real data via MCP</li>
+          <li>Portable architecture — yours to keep</li>
+        </ul>
+      </div>
+
+      <div class="service-card">
+        <div class="service-num">Agent Console</div>
+        <h3>A head of staff for your agent workforce.</h3>
+        <p>Every agent workforce needs a coordinator. We build a complete agent console — including a head-of-staff layer that routes tasks, manages context, and keeps the team working together. You get a single point of control over the whole system.</p>
+        <ul>
+          <li>Head-of-staff / chief-of-staff agent</li>
+          <li>Task routing and context handoff</li>
+          <li>Agent-level logging and oversight</li>
+          <li>ROI dashboard per agent function</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== APPROACH ============== -->
+<section class="block" id="approach">
+  <div class="container">
+    <div class="approach">
+      <div class="approach-grid">
+        <div>
+          <span class="eyebrow">Vendor-portable by design</span>
+          <hr class="rule"/>
+          <h2>Anthropic-first. <em class="accent-coral">Never Anthropic-locked.</em></h2>
+          <p style="font-size:1.05rem; margin-top: 22px;">We prefer Claude — it's the best model for the kinds of structured, agentic work most businesses need. But we build every architecture as a headless intelligence layer: skills as markdown, prompts as plain text, MCP for data, agnostic auth. If you ever need to move to Gemini or OpenAI, the artifacts come with you.</p>
+          <p style="margin-top: 18px; color: var(--animo-deep-sage); font-style: italic;">Your investment is in <em>your</em> intelligence — not someone else's API.</p>
+        </div>
+        <div>
+          <div class="vendor-stack">
+            <div class="vendor-pill featured">Claude</div>
+            <div class="vendor-pill">Gemini</div>
+            <div class="vendor-pill">OpenAI</div>
+            <div class="vendor-pill">MCP</div>
+            <div class="vendor-pill">Skills.md</div>
+            <div class="vendor-pill">Agents</div>
+            <div class="vendor-pill">SSO</div>
+            <div class="vendor-pill">RAG</div>
+            <div class="vendor-pill">Evals</div>
+          </div>
+          <p class="vendor-caption">Your stack, portable.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== PROCESS / TIMELINE ============== -->
+<section class="block" id="process">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">The first 60 days</span>
+      <hr class="rule"/>
+      <h2>A predictable cadence — <em class="accent-sage">not a black box.</em></h2>
+      <p>You always know what's happening this week, what's happening next, and what success looks like.</p>
+    </div>
+
+    <div class="timeline">
+      <div class="tl-step">
+        <div class="tl-week">Week 1–2</div>
+        <h4>Discover.</h4>
+        <p>Stakeholder interviews, data audit, security review, and prioritized use-case backlog.</p>
+      </div>
+      <div class="tl-step">
+        <div class="tl-week">Week 3–4</div>
+        <h4>Design.</h4>
+        <p>Architecture diagram, brand kit, skill library outline, and signed scope for build.</p>
+      </div>
+      <div class="tl-step">
+        <div class="tl-week">Week 5–7</div>
+        <h4>Build & Train.</h4>
+        <p>Connectors built, skills authored, evals running, team trained on day-to-day operation.</p>
+      </div>
+      <div class="tl-step">
+        <div class="tl-week">Week 8</div>
+        <h4>Deploy & Handoff.</h4>
+        <p>Production rollout, welcome guide for end users, and the 12-month support clock starts.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== WHAT TO EXPECT ============== -->
+<section class="block" id="discovery">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">The discovery call</span>
+      <hr class="rule"/>
+      <h2>30 minutes. <em class="accent-coral">Conversation first.</em></h2>
+      <p>The first call starts with you, not us. We want to understand your culture, your data, and the work that's quietly eating your team's hours. Once we have that picture, we'll follow up with a tailored proposal — and a pitch that's actually about your business.</p>
+    </div>
+
+    <div class="services-grid" style="border-top: 2px solid var(--animo-deep-sage);">
+      <div class="service-card">
+        <div class="service-num">What we'll cover</div>
+        <h3>Where AI fits your business.</h3>
+        <ul>
+          <li>The 1–3 workflows where AI creates the most leverage</li>
+          <li>Your current tooling, data, and team capacity</li>
+          <li>What "done" looks like and how we'd measure it</li>
+          <li>Realistic timeline and what we'd build first</li>
+        </ul>
+      </div>
+
+      <div class="service-card">
+        <div class="service-num">What you'll leave with</div>
+        <h3>A clear next step.</h3>
+        <ul>
+          <li>A point of view on whether AI is the right move now</li>
+          <li>An honest read on which engagement model fits</li>
+          <li>If we're a fit: a tailored scope and proposal</li>
+          <li>If we're not: a recommendation on who is</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== CTA ============== -->
+<section class="block" id="contact" style="padding-bottom: 110px;">
+  <div class="container">
+    <div class="cta-band">
+      <span class="eyebrow on-dark">Start a conversation</span>
+      <hr class="rule on-dark" style="margin: 16px auto 24px;"/>
+      <h2>Let's build <em class="accent-marigold">YOUR intelligence</em> together.</h2>
+      <p>30-minute discovery call. We start by listening — your culture, your data, the things eating your team's time. The pitch comes after we understand what you actually need.</p>
+
+      <!-- ============================================================
+           SCHEDULER — Google Appointment Scheduler on jon@pappyco.com
+           Direct link: https://calendar.app.google/axoDDDcpxvVbbHH99
+           ============================================================ -->
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 16px; margin-top: 8px;">
+        <a href="https://calendar.app.google/axoDDDcpxvVbbHH99" target="_blank" rel="noopener" class="btn btn-primary" style="font-size: 0.9rem; padding: 18px 32px;">
+          Book a 30-minute discovery call →
+        </a>
+        <p style="font-size: 0.88rem; color: rgba(245,235,216,0.7); font-style: italic; margin: 0;">
+          or email <a href="mailto:letsconnect@animoplatform.net?subject=Ánimo%20discovery%20call" style="color: var(--animo-marigold); text-decoration: underline;">letsconnect@animoplatform.net</a>
+        </p>
+      </div>
+
+      <p style="margin-top: 36px; font-size: 0.88rem; color: rgba(245,235,216,0.6); font-style: italic;">All inquiries reach Jonathan Nichols, CEO & Founder.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============== FOOTER ============== -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="brand">
+          <span class="brand-mark">
+            <img src="assets/animo-mark.svg" alt="ánimo" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"/>
+            <span class="fallback" style="display:none; background: var(--animo-marigold); color: var(--animo-bg-dark);"><em>á</em></span>
+          </span>
+          <span>
+            <span class="brand-text" style="color: var(--animo-on-dark);"><em>ánimo</em></span>
+            <span class="brand-sub" style="color: var(--animo-marigold);">AI Deployment</span>
+          </span>
+        </div>
+        <p>Enterprise AI deployment for companies of 5–50 employees. We design, deploy, and measure your intelligence layer — and help you own it long after we're done. A practice of Ánimo, LLC.</p>
+        <p style="margin-top: 10px; font-size: 0.85rem; color: var(--animo-marigold); font-style: italic;">Founded by Jonathan Nichols, CEO.</p>
+      </div>
+      <div>
+        <h5>Services</h5>
+        <ul>
+          <li><a href="#services">Phase One · Foundation</a></li>
+          <li><a href="#services">Phase Two · Agent Stack</a></li>
+          <li><a href="#approach">Approach</a></li>
+          <li><a href="#process">Process</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Company</h5>
+        <ul>
+          <li><a href="#approach">Approach</a></li>
+          <li><a href="#process">Process</a></li>
+          <li><a href="#discovery">Discovery call</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Get in touch</h5>
+        <ul>
+          <li><a href="mailto:letsconnect@animoplatform.net">letsconnect@animoplatform.net</a></li>
+          <li><a href="https://calendar.app.google/axoDDDcpxvVbbHH99" target="_blank" rel="noopener">Book a discovery call</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-base">
+      <div>© 2026 Ánimo, LLC <span class="acc">·</span> All rights reserved</div>
+      <div>Built portable <span class="acc">·</span> Built to last</div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

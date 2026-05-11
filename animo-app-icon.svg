@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img" aria-label="Ánimo app icon">
+  <title>Ánimo — iOS app icon</title>
+  
+  <rect x="0" y="0" width="1024" height="1024" rx="229" ry="229" fill="#7A8C5D"></rect>
+
+  
+  <g transform="translate(72, 72) scale(4.4)">
+    
+    <path d="M 58 166 C 48 158, 50 146, 58 142 C 66 138, 72 144, 72 152 C 78 136, 86 120, 100 106" stroke="#F5EBD8" stroke-width="6" stroke-linecap="round" fill="none"></path>
+    <circle cx="58" cy="134" r="8.5" fill="#F5EBD8"></circle>
+    
+    <path d="M 142 166 C 152 158, 150 146, 142 142 C 134 138, 128 144, 128 152 C 122 136, 114 120, 100 106" stroke="#F5EBD8" stroke-width="6" stroke-linecap="round" fill="none"></path>
+    <circle cx="142" cy="134" r="8.5" fill="#F5EBD8"></circle>
+    
+    <path d="M 100 106 L 100 86" stroke="#F5EBD8" stroke-width="5.5" stroke-linecap="round" fill="none"></path>
+    <path d="M 100 90 C 85 86, 76 73, 78 58 C 91 60, 100 71, 100 86 Z" fill="#E8826B"></path>
+    <path d="M 100 90 C 115 86, 124 73, 122 58 C 109 60, 100 71, 100 86 Z" fill="#F5A623"></path>
+    <circle cx="100" cy="50" r="4" fill="#C85A3D"></circle>
+  </g>
+</svg>
