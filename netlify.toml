@@ -1,0 +1,3 @@
+[build]
+  publish = "."
+  command = "sed -i \"s|YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com|$GOOGLE_CLIENT_ID|g\" index.html"
