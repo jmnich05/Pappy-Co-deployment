@@ -507,6 +507,141 @@
     color: var(--mustard); letter-spacing: 0.08em;
   }
 
+  /* ============== STATUS DASHBOARD ============== */
+  section.status-dashboard {
+    padding: 56px 32px;
+    max-width: 1200px;
+    margin: 0 auto;
+    border-bottom: 1px solid rgba(246, 235, 216, 0.08);
+  }
+  .dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 28px;
+  }
+  .dashboard-header .section-eyebrow { margin-bottom: 8px; }
+  .dashboard-title {
+    font-family: var(--font-display);
+    font-size: clamp(28px, 3.4vw, 40px);
+    color: var(--cream);
+    letter-spacing: 0.05em;
+    line-height: 1.05;
+  }
+  .last-updated {
+    font-family: var(--font-serif-head);
+    font-style: italic;
+    color: var(--sage);
+    font-size: 14px;
+  }
+  .dashboard-stats {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 12px;
+    margin-bottom: 28px;
+  }
+  @media (max-width: 880px) {
+    .dashboard-stats { grid-template-columns: repeat(3, 1fr); }
+  }
+  @media (max-width: 480px) {
+    .dashboard-stats { grid-template-columns: repeat(2, 1fr); }
+  }
+  .stat {
+    background: rgba(246, 235, 216, 0.04);
+    border: 1px solid rgba(246, 235, 216, 0.1);
+    padding: 22px 14px;
+    text-align: center;
+    border-radius: 2px;
+  }
+  .stat-num {
+    font-family: var(--font-display);
+    font-size: 38px;
+    color: var(--mustard);
+    line-height: 1;
+    margin-bottom: 6px;
+    letter-spacing: 0.02em;
+  }
+  .stat-label {
+    font-family: var(--font-display);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--sage);
+  }
+  .stat.done .stat-num { color: var(--olive); }
+  .stat.in-progress .stat-num { color: var(--mustard); }
+  .stat.blocked .stat-num { color: var(--terracotta); }
+  .stat.not-started .stat-num { color: var(--charcoal); }
+  .stat.not-started .stat-num,
+  .stat.not-started .stat-label { color: var(--sage); }
+  .stat.pct .stat-num { color: var(--terracotta); }
+
+  .dashboard-now {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+  }
+  @media (max-width: 760px) {
+    .dashboard-now { grid-template-columns: 1fr; }
+  }
+  .now-section {
+    background: rgba(246, 235, 216, 0.04);
+    border: 1px solid rgba(246, 235, 216, 0.1);
+    padding: 22px;
+    border-radius: 2px;
+  }
+  .now-section.in-progress { border-left: 4px solid var(--mustard); }
+  .now-section.recently-done { border-left: 4px solid var(--olive); }
+  .now-label {
+    font-family: var(--font-display);
+    letter-spacing: 0.2em;
+    font-size: 11px;
+    color: var(--mustard);
+    margin-bottom: 14px;
+  }
+  .now-section.recently-done .now-label { color: var(--olive); }
+  .now-section ul { list-style: none; padding: 0; margin: 0; }
+  .now-section ul li {
+    padding: 9px 0;
+    border-bottom: 1px solid rgba(246, 235, 216, 0.08);
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+  }
+  .now-section ul li:last-child { border-bottom: none; }
+  .now-section ul li .task {
+    color: var(--cream);
+    font-size: 15px;
+    flex: 1;
+  }
+  .now-section ul li .owner {
+    font-family: var(--font-display);
+    letter-spacing: 0.15em;
+    font-size: 10px;
+    color: var(--sage);
+    white-space: nowrap;
+  }
+  .now-section ul li.empty {
+    color: var(--olive);
+    font-style: italic;
+    justify-content: center;
+    font-size: 14px;
+  }
+  .jump-link {
+    display: inline-block;
+    margin-top: 20px;
+    font-family: var(--font-display);
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    color: var(--mustard);
+    text-decoration: none;
+    border-bottom: 1px solid var(--mustard);
+    padding-bottom: 2px;
+  }
+  .jump-link:hover { color: var(--cream); border-color: var(--cream); }
+
   /* Optional / Advanced badges */
   .optional-badge {
     display: inline-block;
@@ -602,6 +737,7 @@
     </div>
   </div>
   <nav class="site-nav">
+    <a href="#status">Status</a>
     <a href="#layer">Layer</a>
     <a href="#phase-one">Phase 1</a>
     <a href="#cadence">Cadence</a>
@@ -609,8 +745,7 @@
     <a href="#tracker">Tracker</a>
     <a href="#team">Team</a>
     <a href="#creative">Creative</a>
-    <a href="#metrics">Metrics</a>
-    <a href="#portability">Portability</a>
+    <a href="#metrics">ROI</a>
   </nav>
   <div class="user-pill">
     <span id="user-email">—</span>
@@ -630,6 +765,57 @@
     <span><strong>HANDOFF</strong> · July 10, 2026</span>
     <span><strong>SUSTAIN</strong> · Ongoing</span>
   </div>
+</section>
+
+<!-- ============== STATUS DASHBOARD ============== -->
+<section class="status-dashboard" id="status">
+  <div class="dashboard-header">
+    <div>
+      <div class="section-eyebrow">PROJECT STATUS · LIVE</div>
+      <h2 class="dashboard-title">WHERE WE ARE.</h2>
+    </div>
+    <p class="last-updated">Last updated: <span id="last-updated-date">—</span></p>
+  </div>
+
+  <div class="dashboard-stats">
+    <div class="stat total">
+      <div class="stat-num" id="stat-total">0</div>
+      <div class="stat-label">TOTAL</div>
+    </div>
+    <div class="stat done">
+      <div class="stat-num" id="stat-done">0</div>
+      <div class="stat-label">DONE</div>
+    </div>
+    <div class="stat in-progress">
+      <div class="stat-num" id="stat-in-progress">0</div>
+      <div class="stat-label">IN PROGRESS</div>
+    </div>
+    <div class="stat blocked">
+      <div class="stat-num" id="stat-blocked">0</div>
+      <div class="stat-label">BLOCKED</div>
+    </div>
+    <div class="stat not-started">
+      <div class="stat-num" id="stat-todo">0</div>
+      <div class="stat-label">NOT STARTED</div>
+    </div>
+    <div class="stat pct">
+      <div class="stat-num" id="stat-pct">0%</div>
+      <div class="stat-label">COMPLETE</div>
+    </div>
+  </div>
+
+  <div class="dashboard-now">
+    <div class="now-section in-progress">
+      <div class="now-label">IN PROGRESS NOW</div>
+      <ul id="now-list"></ul>
+    </div>
+    <div class="now-section recently-done">
+      <div class="now-label">RECENTLY DONE</div>
+      <ul id="done-list"></ul>
+    </div>
+  </div>
+
+  <a href="#tracker" class="jump-link">View full tracker →</a>
 </section>
 
 <!-- ============== LAYER ============== -->
@@ -687,7 +873,7 @@
         <p>Workflow audit across e-commerce, ops, marketing, wholesale, and CX.</p>
         <ul>
           <li>Stakeholder interviews (Louise, Carrie, Jonathan, Christy, Kelcie, Kaitlyn, Brittany, Willy)</li>
-          <li>Data inventory across Shopify, Cin7, Klaviyo, Attentive, Gorgias, GA4, Recharge</li>
+          <li>Data inventory across Shopify, Cin7, Klaviyo, Attentive, Gorgias, GA4</li>
           <li>Security posture review — Claude Teams SSO, MCP scopes, PII boundaries</li>
           <li>Prioritized use-case backlog by impact × build effort</li>
         </ul>
@@ -800,12 +986,12 @@
         <tr>
           <td class="agent-name">CX</td>
           <td>Gorgias triage, draft replies in Pappy voice, escalation routing</td>
-          <td class="agent-systems">Gorgias, Shopify, Recharge</td>
+          <td class="agent-systems">Gorgias, Shopify</td>
         </tr>
         <tr>
           <td class="agent-name">RETENTION</td>
           <td>Klaviyo + Attentive flow drafts, segment ideation, post-purchase journeys</td>
-          <td class="agent-systems">Klaviyo, Attentive, Shopify, Recharge</td>
+          <td class="agent-systems">Klaviyo, Attentive, Shopify</td>
         </tr>
         <tr>
           <td class="agent-name">OPS</td>
@@ -822,7 +1008,7 @@
 
     <div class="phase-two-banner">
       <h3><span class="optional-badge">OPTIONAL · PHASE 2</span>HEAD-OF-STAFF AGENT</h3>
-      <div class="trigger">Trigger: Phase 1 ROI clears bar — suggested 200+ hrs/quarter saved + 1.5× wholesale reply rate.</div>
+      <div class="trigger">Trigger: Phase 1 ROI clears bar — suggested 200+ hrs/quarter saved across the team.</div>
       <p>A head-of-staff / chief-of-staff agent routes tasks across the workforce, manages context, and hands off between specialists. Agent-level logging and oversight — who did what, when, on which order, customer, or flow.</p>
       <p>ROI dashboard per agent function: hours saved, revenue influenced, error rate, escalations.</p>
     </div>
@@ -873,7 +1059,7 @@
       <tr>
         <td class="task-week">1–2</td>
         <td class="task-name">Data &amp; Connector Audit</td>
-        <td class="task-desc">Shopify (retail + wholesale), Cin7, Klaviyo, Attentive, Gorgias, GA4, Recharge, Google Workspace</td>
+        <td class="task-desc">Shopify (retail + wholesale), Cin7, Klaviyo, Attentive, Gorgias, GA4, Google Workspace</td>
         <td class="task-owner">JONATHAN</td>
         <td class="task-status"><button class="status-pill status-not-started" data-id="t02">NOT STARTED</button></td>
       </tr>
@@ -933,7 +1119,7 @@
       <tr>
         <td class="task-week">5–7</td>
         <td class="task-name">MCP Connectors — Tier 2</td>
-        <td class="task-desc">Attentive, GA4, Recharge, Google Workspace</td>
+        <td class="task-desc">Attentive, GA4, Google Workspace</td>
         <td class="task-owner">JONATHAN</td>
         <td class="task-status"><button class="status-pill status-not-started" data-id="t10">NOT STARTED</button></td>
       </tr>
@@ -1005,7 +1191,7 @@
       <tr>
         <td class="task-week">8</td>
         <td class="task-name">Phase Two Trigger Defined</td>
-        <td class="task-desc">Suggested: 200+ hrs/qtr saved + 1.5× wholesale reply rate</td>
+        <td class="task-desc">Suggested: 200+ hrs/qtr saved across the team</td>
         <td class="task-owner">JONATHAN</td>
         <td class="task-status"><button class="status-pill status-not-started" data-id="t20">NOT STARTED</button></td>
       </tr>
@@ -1041,7 +1227,7 @@
       </div>
       <div class="team-card">
         <div class="name">JONATHAN</div>
-        <div class="role">Builder / Operator (you)</div>
+        <div class="role">Builder / Operator</div>
         <ul>
           <li>Architecture &amp; agent build</li>
           <li>MCP infrastructure</li>
@@ -1253,7 +1439,7 @@
 <footer>
   <p class="quote">"We make fine bourbon, at a profit if we can, at a loss if we must, but always fine bourbon."</p>
   <p class="attribution">— Julian P. "Pappy" Van Winkle, Sr.</p>
-  <p class="built-by">Pappy &amp; Company AI Integration · Built by Jonathan</p>
+  <p class="built-by">Pappy &amp; Company AI Integration Project</p>
   <p class="meta">PAPPY &amp; COMPANY · LOUISVILLE, KY · 2026 AI INTEGRATION</p>
 </footer>
 
@@ -1261,7 +1447,7 @@
 <script>
   /* =========== CONFIG =========== */
   // Replace with your actual Google OAuth Client ID from console.cloud.google.com
-  const GOOGLE_CLIENT_ID = '546240169489-smvcnclp09hti04cu9o0c66d5l1anffh.apps.googleusercontent.com';
+  const GOOGLE_CLIENT_ID = 'YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com';
   const ALLOWED_DOMAIN = 'pappyco.com';
 
   /* =========== GOOGLE SSO =========== */
@@ -1331,9 +1517,37 @@
     { class: 'status-done',        label: 'DONE' }
   ];
 
+  // Bump STATUS_VERSION any time TASK_DEFAULTS changes so the team's view re-syncs.
+  const STATUS_VERSION = '2026-05-12-r1';
+  const STATUS_UPDATED = '2026-05-12';  // YYYY-MM-DD shown as "Last updated"
+
+  // Statuses pushed by the project lead. Keys are data-id values on the tracker pills.
+  // 0 = Not Started · 1 = In Progress · 2 = Blocked · 3 = Done
+  const TASK_DEFAULTS = {
+    t02: 1, // Data & Connector Audit
+    t03: 1, // Security Posture Review
+    t05: 3, // Architecture Diagram
+    t09: 3, // MCP Connectors — Tier 1
+    t10: 3, // MCP Connectors — Tier 2
+    t12: 3  // Adobe Business Account
+  };
+
   function loadTrackerState() {
-    try { return JSON.parse(localStorage.getItem('pappy_tracker') || '{}'); }
-    catch (e) { return {}; }
+    try {
+      const stored = JSON.parse(localStorage.getItem('pappy_tracker') || '{}');
+      const storedVersion = localStorage.getItem('pappy_tracker_version');
+      if (storedVersion !== STATUS_VERSION) {
+        // New version: project lead's defaults win for listed tasks; other user changes preserved
+        const merged = { ...stored, ...TASK_DEFAULTS };
+        localStorage.setItem('pappy_tracker', JSON.stringify(merged));
+        localStorage.setItem('pappy_tracker_version', STATUS_VERSION);
+        return merged;
+      }
+      // Same version: stored wins; defaults fill any gaps
+      return { ...TASK_DEFAULTS, ...stored };
+    } catch (e) {
+      return { ...TASK_DEFAULTS };
+    }
   }
   function saveTrackerState(state) {
     localStorage.setItem('pappy_tracker', JSON.stringify(state));
@@ -1351,8 +1565,57 @@
     let done = 0, total = pills.length;
     pills.forEach(p => { if (Number(p.dataset.statusIdx) === 3) done++; });
     const pct = total === 0 ? 0 : Math.round((done / total) * 100);
-    document.getElementById('progress-fill').style.width = pct + '%';
-    document.getElementById('progress-text').textContent = pct + '%';
+    const fill = document.getElementById('progress-fill');
+    const text = document.getElementById('progress-text');
+    if (fill) fill.style.width = pct + '%';
+    if (text) text.textContent = pct + '%';
+    updateDashboard();
+  }
+
+  function updateDashboard() {
+    const pills = document.querySelectorAll('.status-pill');
+    let done = 0, inProgress = 0, blocked = 0, notStarted = 0;
+    const inProgressTasks = [];
+    const doneTasks = [];
+    pills.forEach(p => {
+      const idx = Number(p.dataset.statusIdx);
+      const row = p.closest('tr');
+      const name = row?.querySelector('.task-name')?.textContent.trim() || '';
+      const owner = row?.querySelector('.task-owner')?.textContent.trim() || '';
+      if (idx === 0) notStarted++;
+      else if (idx === 1) { inProgress++; inProgressTasks.push({ name, owner }); }
+      else if (idx === 2) blocked++;
+      else if (idx === 3) { done++; doneTasks.push({ name, owner }); }
+    });
+    const total = pills.length;
+    const pct = total === 0 ? 0 : Math.round((done / total) * 100);
+
+    const setText = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val; };
+    setText('stat-total', total);
+    setText('stat-done', done);
+    setText('stat-in-progress', inProgress);
+    setText('stat-blocked', blocked);
+    setText('stat-todo', notStarted);
+    setText('stat-pct', pct + '%');
+
+    const nowList = document.getElementById('now-list');
+    if (nowList) {
+      nowList.innerHTML = inProgressTasks.length === 0
+        ? '<li class="empty">Nothing in flight</li>'
+        : inProgressTasks.map(t => `<li><span class="task">${t.name}</span><span class="owner">${t.owner}</span></li>`).join('');
+    }
+    const doneList = document.getElementById('done-list');
+    if (doneList) {
+      doneList.innerHTML = doneTasks.length === 0
+        ? '<li class="empty">Nothing finished yet</li>'
+        : doneTasks.slice(-6).reverse().map(t => `<li><span class="task">${t.name}</span><span class="owner">${t.owner}</span></li>`).join('');
+    }
+
+    const dateEl = document.getElementById('last-updated-date');
+    if (dateEl) {
+      const d = new Date(STATUS_UPDATED + 'T12:00:00');
+      dateEl.textContent = d.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' });
+    }
   }
 
   function initTracker() {
@@ -1374,10 +1637,10 @@
   }
 
   function resetTracker() {
-    if (!confirm('Reset all task statuses to Not Started?')) return;
+    if (!confirm('Reset all task statuses to the project lead\'s current defaults?')) return;
     localStorage.removeItem('pappy_tracker');
-    document.querySelectorAll('.status-pill').forEach(btn => applyStatus(btn, 0));
-    updateProgress();
+    localStorage.removeItem('pappy_tracker_version');
+    location.reload();
   }
 
   document.addEventListener('DOMContentLoaded', initTracker);
