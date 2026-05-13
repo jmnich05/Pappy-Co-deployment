@@ -3,1648 +3,500 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Pappy &amp; Co — AI Integration Roadmap</title>
-<meta name="description" content="Pappy & Company internal AI integration roadmap. From AI-novice to AI-native." />
+<title>AI Deployment Hub</title>
+<meta name="description" content="The deployment hub for your team's AI rollout — project status, what's due, the docs to sign off, and plain-language info on the rollout." />
+<link id="favicon" rel="icon" href="data:," />
 
-<!-- Google Identity Services -->
+<!-- Google Identity Services (used only by tenants with real SSO configured) -->
 <script src="https://accounts.google.com/gsi/client" async defer></script>
 
-<!-- Fonts: Anton ≈ Ferry Black (display caps), Playfair Display ≈ Romana, EB Garamond ≈ Lyon Text -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<!-- Structural styles (brand-agnostic). Brand theme is injected below. -->
+<link rel="stylesheet" href="shared/app.css" />
 
-<style>
-  :root {
-    --charcoal: #595955;
-    --charcoal-deep: #3a3a37;
-    --mustard: #E6B10E;
-    --mustard-deep: #c79a08;
-    --cream: #F6EBD8;
-    --cream-soft: #faf3e6;
-    --terracotta: #DF7357;
-    --peach: #FACCAD;
-    --sage: #CABE96;
-    --olive: #78754A;
-    --warm-orange: #E9A16F;
-    --olive-gold: #A29438;
+<!-- No-FOUC tenant theme loader. Must match resolveTenant() in app.js. -->
+<script>
+  (function () {
+    var slug;
+    try {
+      var u = new URL(location.href);
+      slug = u.searchParams.get('tenant');
+      if (slug) { try { localStorage.setItem('aop_tenant', slug); } catch (e) {} }
+      if (!slug) { try { slug = localStorage.getItem('aop_tenant'); } catch (e) {} }
+    } catch (e) {}
+    var HOSTMAP = { 'ai.pappyco.com': 'pappy-co' };
+    if (!slug) slug = HOSTMAP[location.hostname] || 'pappy-co';
+    document.write('<link rel="stylesheet" href="brands/' + slug.replace(/[^a-z0-9-]/gi, '') + '/theme.css">');
+  })();
+</script>
 
-    --font-display: 'Anton', 'Impact', 'Arial Black', sans-serif;
-    --font-serif-head: 'Playfair Display', 'Times New Roman', Georgia, serif;
-    --font-body: 'EB Garamond', Georgia, serif;
-  }
-
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
-
-  body {
-    font-family: var(--font-body);
-    font-size: 18px;
-    line-height: 1.6;
-    color: var(--cream);
-    background: var(--charcoal-deep);
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-
-  /* ============== LOGIN GATE ============== */
-  #login-gate {
-    position: fixed; inset: 0; background: var(--charcoal-deep);
-    z-index: 9999; display: flex; align-items: center; justify-content: center; padding: 24px;
-  }
-  .login-card {
-    max-width: 480px; width: 100%;
-    background: var(--cream); color: var(--charcoal);
-    padding: 48px 40px; border-radius: 4px; text-align: center;
-    border-top: 6px solid var(--mustard);
-  }
-  .login-card .keys-mark {
-    font-family: var(--font-display); font-size: 38px; letter-spacing: 0.18em;
-    color: var(--mustard); margin-bottom: 8px;
-  }
-  .login-card .keys-mark .amp { color: var(--charcoal); }
-  .login-card img.keys-mark-img { display: block; margin: 0 auto 16px; height: 96px; width: auto; }
-  .login-card h1 {
-    font-family: var(--font-serif-head); font-size: 24px; font-weight: 700;
-    margin-bottom: 8px; color: var(--charcoal-deep);
-  }
-  .login-card .subtitle { font-style: italic; color: var(--olive); margin-bottom: 28px; font-size: 16px; }
-  .login-card .gate-copy { font-size: 15px; color: var(--charcoal); margin-bottom: 24px; }
-  #g_id_signin { display: flex; justify-content: center; margin-top: 8px; }
-  .gate-error {
-    margin-top: 20px; padding: 12px 16px;
-    background: rgba(223, 115, 87, 0.15); border-left: 3px solid var(--terracotta);
-    color: var(--charcoal-deep); font-size: 14px; text-align: left; display: none;
-  }
-  .gate-error.show { display: block; }
-  .gate-footnote { margin-top: 24px; font-size: 12px; color: var(--olive); font-style: italic; }
-
-  /* ============== HEADER / NAV ============== */
-  header.site-header {
-    position: sticky; top: 0; z-index: 100;
-    background: var(--charcoal-deep);
-    border-bottom: 1px solid rgba(246, 235, 216, 0.1);
-    padding: 16px 32px;
-    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
-  }
-  .brand-lockup { display: flex; align-items: center; gap: 14px; }
-  .keys-icon {
-    font-family: var(--font-display); color: var(--mustard);
-    font-size: 22px; letter-spacing: 0.15em;
-  }
-  .keys-icon .amp { color: var(--cream); font-size: 18px; }
-  .keys-logo { height: 44px; width: auto; display: block; }
-  .brand-text {
-    font-family: var(--font-display); font-size: 14px;
-    color: var(--cream); letter-spacing: 0.2em; line-height: 1;
-  }
-  .brand-text .small {
-    display: block; font-size: 9px; color: var(--sage);
-    letter-spacing: 0.3em; margin-top: 4px;
-  }
-  nav.site-nav { display: flex; gap: 4px; flex-wrap: wrap; }
-  nav.site-nav a {
-    font-family: var(--font-display); color: var(--cream); text-decoration: none;
-    font-size: 12px; letter-spacing: 0.18em; padding: 8px 12px; transition: color 0.2s;
-  }
-  nav.site-nav a:hover { color: var(--mustard); }
-  .user-pill { display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--sage); }
-  .user-pill button {
-    background: transparent; border: 1px solid var(--olive);
-    color: var(--cream); padding: 6px 12px;
-    font-family: var(--font-body); font-size: 12px; cursor: pointer; border-radius: 2px;
-  }
-  .user-pill button:hover { border-color: var(--mustard); color: var(--mustard); }
-
-  /* ============== HERO ============== */
-  .hero {
-    padding: 80px 32px 64px; max-width: 1200px; margin: 0 auto;
-    text-align: center; border-bottom: 1px solid rgba(246, 235, 216, 0.08);
-  }
-  .hero .eyebrow {
-    font-family: var(--font-display); color: var(--mustard);
-    letter-spacing: 0.32em; font-size: 14px; margin-bottom: 24px;
-  }
-  .hero h1 {
-    font-family: var(--font-display);
-    font-size: clamp(40px, 6vw, 76px);
-    letter-spacing: 0.06em; color: var(--cream); line-height: 1; margin-bottom: 24px;
-  }
-  .hero h1 .gold { color: var(--mustard); }
-  .hero .deck {
-    font-family: var(--font-serif-head); font-style: italic;
-    font-size: clamp(20px, 2.4vw, 26px); color: var(--cream);
-    max-width: 780px; margin: 0 auto 32px; line-height: 1.4;
-  }
-  .hero .meta-row {
-    display: flex; justify-content: center; gap: 32px; flex-wrap: wrap;
-    margin-top: 24px; font-size: 14px; color: var(--sage);
-  }
-  .hero .meta-row span strong {
-    color: var(--mustard); font-family: var(--font-display); letter-spacing: 0.1em;
-  }
-  .animo-tag {
-    display: inline-block; margin-top: 24px; padding: 6px 14px;
-    border: 1px solid var(--mustard); color: var(--mustard);
-    font-family: var(--font-display); letter-spacing: 0.2em; font-size: 11px;
-  }
-  .pull-quote {
-    margin-top: 36px; padding: 24px; max-width: 700px; margin-left: auto; margin-right: auto;
-    border-top: 1px solid rgba(230, 177, 14, 0.4); border-bottom: 1px solid rgba(230, 177, 14, 0.4);
-    font-family: var(--font-serif-head); font-style: italic; font-size: 18px;
-    color: var(--cream); line-height: 1.5;
-  }
-
-  /* ============== SECTION SHELL ============== */
-  section.block { padding: 72px 32px; max-width: 1200px; margin: 0 auto; }
-  section.block.alt {
-    background: linear-gradient(180deg, var(--charcoal-deep) 0%, var(--charcoal) 100%);
-    max-width: none;
-    border-top: 1px solid rgba(246, 235, 216, 0.06);
-    border-bottom: 1px solid rgba(246, 235, 216, 0.06);
-  }
-  section.block.alt > .inner { max-width: 1200px; margin: 0 auto; }
-  .section-eyebrow {
-    font-family: var(--font-display); color: var(--mustard);
-    letter-spacing: 0.3em; font-size: 12px; margin-bottom: 12px;
-  }
-  .section-head {
-    font-family: var(--font-display);
-    font-size: clamp(32px, 4vw, 48px);
-    color: var(--cream); letter-spacing: 0.05em;
-    margin-bottom: 12px; line-height: 1.05;
-  }
-  .section-deck {
-    font-family: var(--font-serif-head); font-style: italic;
-    color: var(--sage); font-size: 19px; max-width: 720px; margin-bottom: 40px;
-  }
-
-  /* ============== LAYER TABLE ============== */
-  .layer-table {
-    width: 100%; border-collapse: collapse;
-    background: var(--cream); color: var(--charcoal-deep); border-radius: 2px; overflow: hidden;
-  }
-  .layer-table thead { background: var(--charcoal-deep); }
-  .layer-table thead th {
-    text-align: left; padding: 14px 18px;
-    font-family: var(--font-display); font-size: 11px; letter-spacing: 0.2em; color: var(--mustard);
-  }
-  .layer-table tbody tr { border-bottom: 1px solid rgba(89, 89, 85, 0.12); }
-  .layer-table tbody tr:last-child { border-bottom: none; }
-  .layer-table tbody td { padding: 18px; vertical-align: top; font-size: 15px; }
-  .layer-table tbody td.layer-name {
-    font-family: var(--font-display); font-size: 13px; letter-spacing: 0.15em;
-    color: var(--charcoal-deep); width: 32%; background: rgba(230, 177, 14, 0.08);
-  }
-
-  /* ============== PHASES / CADENCE ============== */
-  .phase-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 24px;
-  }
-  .phase-card {
-    background: var(--cream); color: var(--charcoal-deep);
-    padding: 32px; border-top: 6px solid var(--mustard); border-radius: 2px; position: relative;
-  }
-  .phase-card.discover { border-top-color: var(--mustard); }
-  .phase-card.customize { border-top-color: var(--terracotta); }
-  .phase-card.build { border-top-color: var(--olive); }
-  .phase-card.sustain { border-top-color: var(--warm-orange); }
-  .phase-card .phase-label {
-    font-family: var(--font-display); font-size: 11px;
-    letter-spacing: 0.3em; color: var(--olive); margin-bottom: 8px;
-  }
-  .phase-card h3 {
-    font-family: var(--font-display); font-size: 26px;
-    letter-spacing: 0.08em; color: var(--charcoal-deep); margin-bottom: 4px;
-  }
-  .phase-card .days {
-    font-family: var(--font-serif-head); font-style: italic;
-    color: var(--terracotta); font-size: 14px; margin-bottom: 16px;
-  }
-  .phase-card p {
-    font-size: 15px; color: var(--charcoal-deep); margin-bottom: 12px;
-  }
-  .phase-card ul { list-style: none; margin-top: 8px; }
-  .phase-card ul li {
-    padding: 6px 0 6px 24px;
-    border-bottom: 1px dotted rgba(89, 89, 85, 0.18);
-    position: relative; font-size: 14px; color: var(--charcoal-deep);
-  }
-  .phase-card ul li:last-child { border-bottom: none; }
-  .phase-card ul li::before {
-    content: "▸"; position: absolute; left: 4px; color: var(--mustard);
-  }
-
-  /* Weekly cadence stripe */
-  .cadence-stripe {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 0;
-    margin-top: 32px;
-    border: 1px solid rgba(230, 177, 14, 0.3);
-    border-radius: 2px;
-    overflow: hidden;
-  }
-  @media (max-width: 760px) { .cadence-stripe { grid-template-columns: 1fr; } }
-  .cadence-week {
-    padding: 24px 20px;
-    border-right: 1px solid rgba(230, 177, 14, 0.2);
-  }
-  .cadence-week:last-child { border-right: none; }
-  .cadence-week .wk-num {
-    font-family: var(--font-display); font-size: 11px; letter-spacing: 0.25em;
-    color: var(--mustard); margin-bottom: 6px;
-  }
-  .cadence-week .wk-title {
-    font-family: var(--font-display); font-size: 20px; letter-spacing: 0.08em;
-    color: var(--cream); margin-bottom: 10px;
-  }
-  .cadence-week .wk-desc {
-    font-size: 13px; color: var(--sage); line-height: 1.5;
-  }
-
-  /* ============== AGENTS TABLE ============== */
-  .agents-table {
-    width: 100%; border-collapse: collapse;
-    background: var(--cream); color: var(--charcoal-deep); border-radius: 2px; overflow: hidden;
-    font-size: 14px;
-  }
-  .agents-table thead { background: var(--charcoal-deep); }
-  .agents-table thead th {
-    text-align: left; padding: 14px 16px;
-    font-family: var(--font-display); font-size: 11px; letter-spacing: 0.2em; color: var(--mustard);
-  }
-  .agents-table tbody tr { border-bottom: 1px solid rgba(89, 89, 85, 0.12); }
-  .agents-table tbody tr:last-child { border-bottom: none; }
-  .agents-table tbody td { padding: 14px 16px; vertical-align: top; }
-  .agents-table tbody td.agent-name {
-    font-family: var(--font-display); font-size: 13px; letter-spacing: 0.12em;
-    color: var(--charcoal-deep); width: 22%;
-  }
-  .agents-table tbody td.agent-systems {
-    font-family: var(--font-body); font-style: italic; color: var(--olive);
-    font-size: 13px; width: 30%;
-  }
-
-  /* ============== STATUS TRACKER ============== */
-  .tracker-toolbar {
-    display: flex; justify-content: space-between; align-items: center;
-    margin-bottom: 16px; flex-wrap: wrap; gap: 12px;
-  }
-  .tracker-toolbar .legend {
-    display: flex; gap: 12px; font-size: 12px; color: var(--sage); flex-wrap: wrap;
-  }
-  .tracker-toolbar .legend .dot {
-    display: inline-block; width: 10px; height: 10px; border-radius: 50%;
-    margin-right: 6px; vertical-align: middle;
-  }
-  .tracker-toolbar button.reset {
-    background: transparent; border: 1px solid var(--olive); color: var(--sage);
-    padding: 6px 12px; font-family: var(--font-body); font-size: 12px; cursor: pointer; border-radius: 2px;
-  }
-  .tracker-toolbar button.reset:hover { border-color: var(--terracotta); color: var(--terracotta); }
-
-  table.tracker {
-    width: 100%; border-collapse: collapse;
-    background: var(--cream); color: var(--charcoal-deep);
-    border-radius: 2px; overflow: hidden; font-size: 14px;
-  }
-  table.tracker thead { background: var(--charcoal-deep); }
-  table.tracker thead th {
-    text-align: left; padding: 14px 16px;
-    font-family: var(--font-display); font-size: 11px; letter-spacing: 0.2em; color: var(--mustard);
-  }
-  table.tracker tbody tr { border-bottom: 1px solid rgba(89, 89, 85, 0.12); }
-  table.tracker tbody tr:last-child { border-bottom: none; }
-  table.tracker tbody td { padding: 12px 16px; vertical-align: top; }
-  table.tracker tbody td.task-week {
-    font-family: var(--font-display); font-size: 10px; letter-spacing: 0.18em;
-    color: var(--olive); width: 8%;
-  }
-  table.tracker tbody td.task-name { font-weight: 600; width: 28%; font-size: 14px; }
-  table.tracker tbody td.task-desc { font-size: 13px; color: var(--olive); width: 30%; }
-  table.tracker tbody td.task-owner {
-    font-family: var(--font-display); font-size: 10px; letter-spacing: 0.18em;
-    color: var(--charcoal-deep); width: 12%;
-  }
-  table.tracker tbody td.task-status { width: 12%; }
-  .status-pill {
-    display: inline-block; padding: 4px 10px; border-radius: 2px;
-    font-family: var(--font-display); font-size: 10px; letter-spacing: 0.18em;
-    cursor: pointer; border: none; color: white; transition: opacity 0.2s;
-    min-width: 100px; text-align: center;
-  }
-  .status-pill:hover { opacity: 0.85; }
-  .status-not-started { background: var(--charcoal); }
-  .status-in-progress { background: var(--mustard); color: var(--charcoal-deep) !important; }
-  .status-blocked { background: var(--terracotta); }
-  .status-done { background: var(--olive); }
-
-  /* ============== TEAM ============== */
-  .team-grid {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px;
-  }
-  .team-card {
-    background: rgba(246, 235, 216, 0.04);
-    border: 1px solid rgba(246, 235, 216, 0.1);
-    padding: 24px; border-radius: 2px;
-  }
-  .team-card .name {
-    font-family: var(--font-display); font-size: 22px;
-    letter-spacing: 0.08em; color: var(--mustard); margin-bottom: 4px;
-  }
-  .team-card .role {
-    font-family: var(--font-serif-head); font-style: italic;
-    color: var(--sage); font-size: 14px; margin-bottom: 14px;
-  }
-  .team-card ul { list-style: none; padding-left: 0; }
-  .team-card ul li {
-    font-size: 14px; padding: 4px 0; color: var(--cream); line-height: 1.5;
-  }
-  .team-card ul li::before { content: "— "; color: var(--mustard); }
-
-  /* ============== CREATIVE ============== */
-  .creative-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-  @media (max-width: 760px) { .creative-grid { grid-template-columns: 1fr; } }
-  .creative-card {
-    background: var(--cream); color: var(--charcoal-deep);
-    padding: 32px; border-radius: 2px; border-left: 6px solid var(--terracotta);
-  }
-  .creative-card.firefly { border-left-color: var(--mustard); }
-  .creative-card.claude-design { border-left-color: var(--olive); }
-  .creative-card.adobe { border-left-color: var(--warm-orange); }
-  .creative-card h4 {
-    font-family: var(--font-display); font-size: 22px;
-    letter-spacing: 0.08em; margin-bottom: 6px; color: var(--charcoal-deep);
-  }
-  .creative-card .tagline {
-    font-family: var(--font-serif-head); font-style: italic;
-    color: var(--terracotta); font-size: 14px; margin-bottom: 16px;
-  }
-  .creative-card p { font-size: 15px; color: var(--charcoal-deep); margin-bottom: 12px; }
-  .creative-card ul { margin: 12px 0; padding-left: 20px; }
-  .creative-card ul li { font-size: 14px; padding: 4px 0; color: var(--charcoal-deep); }
-  .seat-row { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
-  .seat-chip {
-    background: var(--charcoal-deep); color: var(--cream);
-    padding: 6px 12px; font-family: var(--font-display);
-    font-size: 11px; letter-spacing: 0.15em; border-radius: 2px;
-  }
-  .workflow {
-    margin-top: 24px; padding: 24px; background: var(--cream-soft);
-    border: 1px dashed var(--olive); border-radius: 2px;
-  }
-  .workflow-title {
-    font-family: var(--font-display); font-size: 14px; letter-spacing: 0.2em;
-    color: var(--charcoal-deep); margin-bottom: 16px; text-align: center;
-  }
-  .workflow-row { display: flex; align-items: center; justify-content: center; gap: 8px; flex-wrap: wrap; }
-  .workflow-node {
-    background: white; border: 1px solid var(--charcoal);
-    padding: 10px 14px; font-family: var(--font-display);
-    font-size: 10px; letter-spacing: 0.16em; color: var(--charcoal-deep);
-    border-radius: 2px; text-align: center; min-width: 80px;
-  }
-  .workflow-node.mustard { background: var(--mustard); border-color: var(--mustard-deep); }
-  .workflow-arrow { color: var(--terracotta); font-family: var(--font-display); font-size: 18px; }
-
-  /* ============== METRICS ============== */
-  .metrics-grid {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px;
-  }
-  .metric-card {
-    background: var(--cream); color: var(--charcoal-deep);
-    padding: 28px 24px; border-radius: 2px; border-top: 4px solid var(--mustard);
-  }
-  .metric-card .metric-num {
-    font-family: var(--font-display); font-size: 42px;
-    letter-spacing: 0.04em; color: var(--terracotta); line-height: 1; margin-bottom: 8px;
-  }
-  .metric-card .metric-label {
-    font-family: var(--font-display); font-size: 11px;
-    letter-spacing: 0.2em; color: var(--olive); margin-bottom: 12px;
-  }
-  .metric-card .metric-detail { font-size: 14px; color: var(--charcoal-deep); line-height: 1.5; }
-
-  /* ============== PORTABILITY ============== */
-  .portability {
-    background: var(--mustard);
-    color: var(--charcoal-deep);
-    padding: 56px 48px;
-    border-radius: 2px;
-    margin: 0 auto;
-    max-width: 1100px;
-  }
-  .portability .eyebrow {
-    font-family: var(--font-display); letter-spacing: 0.3em; font-size: 12px;
-    color: var(--charcoal-deep); margin-bottom: 16px;
-  }
-  .portability h2 {
-    font-family: var(--font-display); font-size: clamp(32px, 4vw, 48px);
-    letter-spacing: 0.04em; color: var(--charcoal-deep); margin-bottom: 16px; line-height: 1.05;
-  }
-  .portability p {
-    font-size: 17px; color: var(--charcoal-deep); margin-bottom: 14px; max-width: 820px;
-  }
-  .portability ul { margin-top: 16px; max-width: 820px; padding-left: 22px; }
-  .portability ul li { font-size: 15px; padding: 4px 0; color: var(--charcoal-deep); }
-  .portability .footnote {
-    margin-top: 24px; font-style: italic;
-    font-family: var(--font-serif-head); font-size: 18px;
-    border-top: 1px solid var(--charcoal-deep); padding-top: 16px; max-width: 820px;
-  }
-
-  /* ============== TECH STACK ============== */
-  .stack-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
-  .stack-pill {
-    background: rgba(230, 177, 14, 0.1); border: 1px solid var(--mustard);
-    color: var(--mustard); padding: 8px 14px;
-    font-family: var(--font-display); font-size: 11px; letter-spacing: 0.18em; border-radius: 2px;
-  }
-
-  /* ============== FOOTER ============== */
-  footer {
-    background: var(--charcoal-deep);
-    border-top: 1px solid rgba(246, 235, 216, 0.08);
-    padding: 48px 32px; margin-top: 48px; text-align: center;
-  }
-  footer .quote {
-    font-family: var(--font-serif-head); font-style: italic;
-    color: var(--cream); font-size: 18px;
-    max-width: 680px; margin: 0 auto 16px; line-height: 1.5;
-  }
-  footer .attribution { color: var(--sage); font-size: 13px; margin-bottom: 8px; }
-  footer .built-by { color: var(--sage); font-size: 13px; font-style: italic; margin-bottom: 24px; }
-  footer .meta {
-    color: var(--olive); font-size: 12px;
-    font-family: var(--font-display); letter-spacing: 0.2em;
-  }
-
-  /* Hide content until signed in */
-  body.locked main, body.locked footer, body.locked header { display: none; }
-
-  /* Progress bar */
-  .overall-progress {
-    margin: 24px 0; padding: 20px 24px;
-    background: rgba(230, 177, 14, 0.08);
-    border-left: 4px solid var(--mustard);
-    display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
-  }
-  .overall-progress .label {
-    font-family: var(--font-display); letter-spacing: 0.18em;
-    font-size: 12px; color: var(--mustard);
-  }
-  .progress-bar {
-    flex: 1; min-width: 200px; height: 14px;
-    background: rgba(246, 235, 216, 0.1); border-radius: 2px; overflow: hidden;
-  }
-  .progress-fill {
-    height: 100%; background: var(--mustard); width: 0%; transition: width 0.5s ease;
-  }
-  .progress-text {
-    font-family: var(--font-display); font-size: 18px;
-    color: var(--mustard); letter-spacing: 0.08em;
-  }
-
-  /* ============== STATUS DASHBOARD ============== */
-  section.status-dashboard {
-    padding: 56px 32px;
-    max-width: 1200px;
-    margin: 0 auto;
-    border-bottom: 1px solid rgba(246, 235, 216, 0.08);
-  }
-  .dashboard-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    flex-wrap: wrap;
-    gap: 12px;
-    margin-bottom: 28px;
-  }
-  .dashboard-header .section-eyebrow { margin-bottom: 8px; }
-  .dashboard-title {
-    font-family: var(--font-display);
-    font-size: clamp(28px, 3.4vw, 40px);
-    color: var(--cream);
-    letter-spacing: 0.05em;
-    line-height: 1.05;
-  }
-  .last-updated {
-    font-family: var(--font-serif-head);
-    font-style: italic;
-    color: var(--sage);
-    font-size: 14px;
-  }
-  .dashboard-stats {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    gap: 12px;
-    margin-bottom: 28px;
-  }
-  @media (max-width: 880px) {
-    .dashboard-stats { grid-template-columns: repeat(3, 1fr); }
-  }
-  @media (max-width: 480px) {
-    .dashboard-stats { grid-template-columns: repeat(2, 1fr); }
-  }
-  .stat {
-    background: rgba(246, 235, 216, 0.04);
-    border: 1px solid rgba(246, 235, 216, 0.1);
-    padding: 22px 14px;
-    text-align: center;
-    border-radius: 2px;
-  }
-  .stat-num {
-    font-family: var(--font-display);
-    font-size: 38px;
-    color: var(--mustard);
-    line-height: 1;
-    margin-bottom: 6px;
-    letter-spacing: 0.02em;
-  }
-  .stat-label {
-    font-family: var(--font-display);
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    color: var(--sage);
-  }
-  .stat.done .stat-num { color: var(--olive); }
-  .stat.in-progress .stat-num { color: var(--mustard); }
-  .stat.blocked .stat-num { color: var(--terracotta); }
-  .stat.not-started .stat-num { color: var(--charcoal); }
-  .stat.not-started .stat-num,
-  .stat.not-started .stat-label { color: var(--sage); }
-  .stat.pct .stat-num { color: var(--terracotta); }
-
-  .dashboard-now {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 18px;
-  }
-  @media (max-width: 760px) {
-    .dashboard-now { grid-template-columns: 1fr; }
-  }
-  .now-section {
-    background: rgba(246, 235, 216, 0.04);
-    border: 1px solid rgba(246, 235, 216, 0.1);
-    padding: 22px;
-    border-radius: 2px;
-  }
-  .now-section.in-progress { border-left: 4px solid var(--mustard); }
-  .now-section.recently-done { border-left: 4px solid var(--olive); }
-  .now-label {
-    font-family: var(--font-display);
-    letter-spacing: 0.2em;
-    font-size: 11px;
-    color: var(--mustard);
-    margin-bottom: 14px;
-  }
-  .now-section.recently-done .now-label { color: var(--olive); }
-  .now-section ul { list-style: none; padding: 0; margin: 0; }
-  .now-section ul li {
-    padding: 9px 0;
-    border-bottom: 1px solid rgba(246, 235, 216, 0.08);
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    gap: 12px;
-  }
-  .now-section ul li:last-child { border-bottom: none; }
-  .now-section ul li .task {
-    color: var(--cream);
-    font-size: 15px;
-    flex: 1;
-  }
-  .now-section ul li .owner {
-    font-family: var(--font-display);
-    letter-spacing: 0.15em;
-    font-size: 10px;
-    color: var(--sage);
-    white-space: nowrap;
-  }
-  .now-section ul li.empty {
-    color: var(--olive);
-    font-style: italic;
-    justify-content: center;
-    font-size: 14px;
-  }
-  .jump-link {
-    display: inline-block;
-    margin-top: 20px;
-    font-family: var(--font-display);
-    font-size: 12px;
-    letter-spacing: 0.22em;
-    color: var(--mustard);
-    text-decoration: none;
-    border-bottom: 1px solid var(--mustard);
-    padding-bottom: 2px;
-  }
-  .jump-link:hover { color: var(--cream); border-color: var(--cream); }
-
-  /* Optional / Advanced badges */
-  .optional-badge {
-    display: inline-block;
-    background: rgba(223, 115, 87, 0.15);
-    border: 1px solid var(--terracotta);
-    color: var(--terracotta);
-    padding: 3px 10px;
-    font-family: var(--font-display);
-    font-size: 10px;
-    letter-spacing: 0.22em;
-    border-radius: 2px;
-    margin-right: 12px;
-    vertical-align: middle;
-  }
-  .core-badge {
-    display: inline-block;
-    background: rgba(230, 177, 14, 0.12);
-    border: 1px solid var(--mustard);
-    color: var(--mustard);
-    padding: 3px 10px;
-    font-family: var(--font-display);
-    font-size: 10px;
-    letter-spacing: 0.22em;
-    border-radius: 2px;
-    margin-right: 8px;
-    vertical-align: middle;
-  }
-  .optional-banner {
-    margin: 0 0 32px;
-    padding: 20px 24px;
-    background: rgba(223, 115, 87, 0.08);
-    border-left: 4px solid var(--terracotta);
-    border-radius: 2px;
-  }
-  .optional-banner .label {
-    font-family: var(--font-display);
-    letter-spacing: 0.22em;
-    font-size: 11px;
-    color: var(--terracotta);
-    margin-bottom: 6px;
-  }
-  .optional-banner p {
-    font-size: 15px;
-    color: var(--cream);
-    margin: 0;
-    line-height: 1.55;
-  }
-  /* Phase Two preview banner */
-  .phase-two-banner {
-    margin-top: 32px; padding: 32px;
-    background: rgba(120, 117, 74, 0.15);
-    border: 1px solid var(--olive); border-radius: 2px;
-  }
-  .phase-two-banner h3 {
-    font-family: var(--font-display); font-size: 24px;
-    letter-spacing: 0.08em; color: var(--mustard); margin-bottom: 8px;
-  }
-  .phase-two-banner .trigger {
-    font-family: var(--font-serif-head); font-style: italic;
-    color: var(--sage); margin-bottom: 14px;
-  }
-  .phase-two-banner p { font-size: 15px; color: var(--cream); margin-bottom: 12px; }
-</style>
+<script src="config/runtime.js"></script>
+<script src="shared/supabase.js" type="module"></script>
+<script src="shared/app.js" defer></script>
 </head>
 <body class="locked">
+
+<!-- ============== ICON SPRITE (used by the side rail) ============== -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-pulse" viewBox="0 0 24 24"><polyline points="3 12 8 12 11 4 15 20 18 12 21 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><polyline points="8 12 11 15 16 9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-list" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="9" y1="6" x2="21" y2="6"/><line x1="9" y1="12" x2="21" y2="12"/><line x1="9" y1="18" x2="21" y2="18"/></g><g fill="currentColor"><circle cx="4" cy="6" r="1.6"/><circle cx="4" cy="12" r="1.6"/><circle cx="4" cy="18" r="1.6"/></g></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-map" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21 3 6"/><line x1="9" y1="3" x2="9" y2="18"/><line x1="15" y1="6" x2="15" y2="21"/></g></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 2 4 5v6c0 5 3.5 8.6 8 10 4.5-1.4 8-5 8-10V5l-8-3z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></g></symbol>
+  <symbol id="i-tool" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></g></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="5" x2="19" y2="19"/><line x1="19" y1="5" x2="5" y2="19"/></g></symbol>
+</svg>
 
 <!-- ============== LOGIN GATE ============== -->
 <div id="login-gate">
   <div class="login-card">
-    <img src="assets/pappy-keys-logo.png" alt="Pappy &amp; Company" class="keys-mark-img" onerror="this.onerror=null;this.src='assets/pappy-keys-logo.svg';" />
-    <h1>AI Integration Roadmap</h1>
-    <div class="subtitle">Pappy &amp; Company · Internal Project · From AI-novice to AI-native</div>
-    <div class="gate-copy">
-      This roadmap is restricted to the Pappy &amp; Company team. Sign in with your <strong>@pappyco.com</strong> Google Workspace account to continue.
-    </div>
+    <img class="brand-mark-img" data-attr="src:brand._logoPath; alt:brand.name" alt="" />
+    <h1 data-bind="gate.heading">Your team's AI Deployment Hub</h1>
+    <div class="subtitle" data-bind="gate.subtitle">Where the rollout lives — plain language throughout</div>
+    <div class="gate-copy" data-html="gate.copyHtml">Sign in to continue.</div>
     <div id="g_id_signin"></div>
-    <div id="gate-error" class="gate-error">
-      That account isn't authorized. Use your @pappyco.com Workspace login.
+    <div id="gate-error" class="gate-error" data-bind="gate.errorText">That account isn't authorized.</div>
+    <div id="gate-demo" class="gate-demo" style="display:none">
+      Demo / preview mode.
+      <div><button id="demo-enter" style="display:none">Enter demo</button></div>
     </div>
-    <div class="gate-footnote">
-      Internal team only. Pappy &amp; Company AI Integration Roadmap.
-    </div>
+    <div class="gate-footnote" data-bind="gate.footnote">Authorized team members only.</div>
   </div>
 </div>
 
 <!-- ============== HEADER ============== -->
 <header class="site-header">
+  <button id="rail-toggle" aria-label="Open menu" aria-expanded="false"><svg aria-hidden="true"><use href="#i-menu"/></svg></button>
   <div class="brand-lockup">
-    <img src="assets/pappy-keys-logo.png" alt="Pappy &amp; Company" class="keys-logo" onerror="this.onerror=null;this.src='assets/pappy-keys-logo.svg';" />
+    <img class="brand-logo" data-attr="src:brand._logoPath; alt:brand.name" alt="" />
     <div class="brand-text">
-      AI INTEGRATION
-      <span class="small">LOUISVILLE, KY · INTERNAL ROADMAP</span>
+      <span data-bind="brand.headerLabel">AI DEPLOYMENT HUB</span>
+      <span class="small" data-bind="brand.headerSublabel">&amp; ACTION DASHBOARD</span>
     </div>
   </div>
-  <nav class="site-nav">
-    <a href="#status">Status</a>
-    <a href="#layer">Layer</a>
-    <a href="#phase-one">Phase 1</a>
-    <a href="#cadence">Cadence</a>
-    <a href="#phase-two">Phase 2</a>
-    <a href="#tracker">Tracker</a>
-    <a href="#team">Team</a>
-    <a href="#creative">Creative</a>
-    <a href="#metrics">ROI</a>
-  </nav>
   <div class="user-pill">
     <span id="user-email">—</span>
-    <button onclick="signOut()">Sign out</button>
+    <button onclick="aopSignOut()">Sign out</button>
   </div>
 </header>
 
-<main>
-<!-- ============== HERO ============== -->
-<section class="hero">
-  <div class="eyebrow">PAPPY &amp; COMPANY · INTERNAL ROADMAP</div>
-  <h1>FROM AI-NOVICE<br><span class="gold">TO AI-NATIVE.</span></h1>
-  <p class="deck">Our 60-day plan to integrate AI across e-commerce, marketing, ops, and product.</p>
-  <div class="meta-row">
-    <span><strong>BUILD</strong> · 8 weeks</span>
-    <span><strong>START</strong> · May 26, 2026</span>
-    <span><strong>HANDOFF</strong> · July 25, 2026</span>
-    <span><strong>SUSTAIN</strong> · Ongoing</span>
-  </div>
-</section>
+<!-- ============== APP LAYOUT: side rail + content ============== -->
+<div id="rail-backdrop" hidden></div>
+<div class="rail-layout">
 
-<!-- ============== STATUS DASHBOARD ============== -->
-<section class="status-dashboard" id="status">
-  <div class="dashboard-header">
-    <div>
-      <div class="section-eyebrow">PROJECT STATUS · LIVE</div>
-      <h2 class="dashboard-title">WHERE WE ARE.</h2>
+  <aside id="sidebar" class="rail" aria-label="Sections">
+    <div class="rail-head">
+      <span class="rail-head-label">SECTIONS</span>
+      <button class="rail-close" aria-label="Close menu"><svg aria-hidden="true"><use href="#i-close"/></svg></button>
     </div>
-    <p class="last-updated">Last updated: <span id="last-updated-date">—</span></p>
-  </div>
+    <nav class="rail-nav" data-list="sidebar">
+      <template>
+        <a class="rail-item" data-attr="href:href">
+          <svg class="rail-icon" aria-hidden="true"><use data-attr="href:icon"></use></svg>
+          <span class="rail-label" data-bind="label"></span>
+        </a>
+      </template>
+    </nav>
+  </aside>
 
-  <div class="dashboard-stats">
-    <div class="stat total">
-      <div class="stat-num" id="stat-total">0</div>
-      <div class="stat-label">TOTAL</div>
+  <div class="rail-content">
+  <main>
+  <!-- ============== HERO ============== -->
+  <section class="hero">
+    <h1 data-html="hero.headlineHtml">THE AI <span class="gold">DEPLOYMENT HUB</span></h1>
+    <div class="hero-cobrand">
+      <img class="hero-brand-logo" data-attr="src:brand._logoPath; alt:brand.name" alt="" />
     </div>
-    <div class="stat done">
-      <div class="stat-num" id="stat-done">0</div>
-      <div class="stat-label">DONE</div>
+    <p class="deck" data-bind="hero.deck">This is the hub for the rollout — the plan, where it stands, what's been read, what we need from you.</p>
+    <div class="meta-row" data-list="hero.meta">
+      <template><span><strong data-bind="k"></strong> · <span data-bind="v"></span></span></template>
     </div>
-    <div class="stat in-progress">
-      <div class="stat-num" id="stat-in-progress">0</div>
-      <div class="stat-label">IN PROGRESS</div>
-    </div>
-    <div class="stat blocked">
-      <div class="stat-num" id="stat-blocked">0</div>
-      <div class="stat-label">BLOCKED</div>
-    </div>
-    <div class="stat not-started">
-      <div class="stat-num" id="stat-todo">0</div>
-      <div class="stat-label">NOT STARTED</div>
-    </div>
-    <div class="stat pct">
-      <div class="stat-num" id="stat-pct">0%</div>
-      <div class="stat-label">COMPLETE</div>
-    </div>
+  </section>
+
+  <!-- ════════════════════ ZONE 1 — PROJECT UPDATE & WHAT'S DUE ════════════════════ -->
+  <div class="zone-divider" id="status">
+    <span class="zone-label">PROJECT UPDATE</span>
+    <span class="zone-sub">Where the rollout stands today — and what's due, by anyone. This is the part to check back on.</span>
   </div>
 
-  <div class="dashboard-now">
-    <div class="now-section in-progress">
-      <div class="now-label">IN PROGRESS NOW</div>
-      <ul id="now-list"></ul>
+  <!-- ============== STATUS DASHBOARD ============== -->
+  <section class="status-dashboard">
+    <div class="dashboard-header">
+      <div>
+        <div class="section-eyebrow">PROJECT UPDATE · LIVE</div>
+        <h2 class="dashboard-title" data-bind="dashboard.title">WHERE WE ARE RIGHT NOW.</h2>
+      </div>
+      <p class="last-updated">Last updated: <span id="last-updated-date">—</span></p>
     </div>
-    <div class="now-section recently-done">
-      <div class="now-label">RECENTLY DONE</div>
-      <ul id="done-list"></ul>
+    <div class="dashboard-stats">
+      <div class="stat total"><div class="stat-num" id="stat-total">0</div><div class="stat-label">TOTAL</div></div>
+      <div class="stat done"><div class="stat-num" id="stat-done">0</div><div class="stat-label">DONE</div></div>
+      <div class="stat in-progress"><div class="stat-num" id="stat-in-progress">0</div><div class="stat-label">IN PROGRESS</div></div>
+      <div class="stat blocked"><div class="stat-num" id="stat-blocked">0</div><div class="stat-label">WAITING</div></div>
+      <div class="stat not-started"><div class="stat-num" id="stat-todo">0</div><div class="stat-label">NOT STARTED</div></div>
+      <div class="stat pct"><div class="stat-num" id="stat-pct">0%</div><div class="stat-label">COMPLETE</div></div>
     </div>
+    <div class="dashboard-now">
+      <div class="now-section in-progress"><div class="now-label">HAPPENING NOW</div><ul id="now-list"></ul></div>
+      <div class="now-section outstanding"><div class="now-label">STILL TO DO · WHO OWNS IT</div><ul id="todo-list"></ul></div>
+      <div class="now-section recently-done"><div class="now-label">RECENTLY DONE</div><ul id="done-list"></ul></div>
+    </div>
+    <a href="#tracker" class="jump-link">Open the full plan →</a>
+  </section>
+
+  <!-- ============== THE FULL PLAN / TRACKER ============== -->
+  <section class="block alt" id="tracker">
+    <div class="inner">
+      <div class="section-eyebrow">THE FULL PLAN</div>
+      <h2 class="section-head">EVERYTHING ON THE LIST.</h2>
+      <p class="section-deck">Every task, who owns it, and where it stands. Click a status to cycle it — your view saves to this browser. (When everyone's signed in, the project lead's updates show here for the whole team.)</p>
+      <div class="overall-progress">
+        <div class="label">HOW FAR ALONG WE ARE</div>
+        <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+        <div class="progress-text" id="progress-text">0%</div>
+      </div>
+      <div class="tracker-toolbar">
+        <div class="legend">
+          <span><span class="dot" style="background:var(--color-status-todo)"></span>Not Started</span>
+          <span><span class="dot" style="background:var(--color-status-progress)"></span>In Progress</span>
+          <span><span class="dot" style="background:var(--color-status-blocked)"></span>Waiting on Something</span>
+          <span><span class="dot" style="background:var(--color-status-done)"></span>Done</span>
+        </div>
+        <button class="reset" onclick="aopResetTracker()">Reset</button>
+      </div>
+      <table class="tracker">
+        <thead><tr><th>Wk</th><th>Task</th><th>What it is</th><th>Owner</th><th>Status</th></tr></thead>
+        <tbody data-list="tracker.tasks">
+          <template>
+            <tr>
+              <td class="task-week" data-bind="week"></td>
+              <td class="task-name" data-bind="name"></td>
+              <td class="task-desc" data-bind="desc"></td>
+              <td class="task-owner" data-bind="owner"></td>
+              <td class="task-status"><button class="status-pill status-not-started" data-attr="data-id:id">NOT STARTED</button></td>
+            </tr>
+          </template>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ============== REQUIRED READING — DOCUMENT SIGN-OFFS ============== -->
+  <section class="block" id="reading">
+    <div class="section-eyebrow" data-bind="readingSection.eyebrow">DUE NOW · DOCUMENT SIGN-OFFS</div>
+    <h2 class="section-head" data-bind="readingSection.title">READ &amp; SIGN OFF.</h2>
+    <p class="section-deck" data-bind="readingSection.deck">Short, plain docs every team member reviews. Open each one, then mark it read — that's the sign-off, and it gives the project lead one clear record of who's up to speed.</p>
+    <div class="reading-grid" id="reading-grid"></div>
+    <div class="reading-connect-note" id="reading-connect-note" style="display:none">
+      Your "I've read this" is being recorded in this browser only right now. Once everyone's signed in, it's recorded against your name so we have one clear record.
+    </div>
+    <a class="reading-admin-link" id="reading-admin-link" href="#" style="display:none">See who has / hasn't signed off →</a>
+  </section>
+
+  <!-- ============== WHAT WE NEED FROM YOU (the asks) ============== -->
+  <section class="block alt" id="from-you">
+    <div class="inner">
+      <div class="section-eyebrow" data-bind="fromYou.eyebrow">WHAT WE NEED FROM YOU</div>
+      <h2 class="section-head" data-bind="fromYou.title">A FEW THINGS — IT'S NOT MUCH.</h2>
+      <p class="section-deck" data-bind="fromYou.deck">Over the 60 days we'll ask you for these. They all live in this hub, so you'll always know what's still outstanding.</p>
+      <div class="ask-grid" data-list="fromYou.asks">
+        <template>
+          <div class="ask-card">
+            <div class="ask-when" data-bind="when"></div>
+            <div class="ask-title" data-bind="title"></div>
+            <p data-html="bodyHtml"></p>
+          </div>
+        </template>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════ ZONE 2 — EDUCATION & INFO ════════════════════ -->
+  <div class="zone-divider">
+    <span class="zone-label">EDUCATION &amp; INFO</span>
+    <span class="zone-sub">What this is, what it means for you, and — for whoever wants it — how it actually works.</span>
   </div>
 
-  <a href="#tracker" class="jump-link">View full tracker →</a>
-</section>
-
-<!-- ============== LAYER ============== -->
-<section class="block" id="layer">
-  <div class="section-eyebrow">WHAT WE'RE BUILDING</div>
-  <h2 class="section-head">THE INTELLIGENCE LAYER</h2>
-  <p class="section-deck">The main goal: a portable intelligence layer Pappy &amp; Co. owns — enterprise model access, a knowledge layer with RAG, and data connectors across the stack. Agent orchestration is an optional advanced rollout layered on top later.</p>
-
-  <table class="layer-table">
-    <thead>
-      <tr><th>Layer</th><th>Pappy &amp; Co. Implementation</th></tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td class="layer-name"><span class="core-badge">CORE</span>Enterprise model driver</td>
-        <td><strong>Claude Teams</strong> — Sonnet/Opus across the operating team (Louise, Carrie, Jonathan, Christy, Kelcie, Kaitlyn, Brittany, Willy) with SSO, shared skills library, and centralized billing.</td>
-      </tr>
-      <tr>
-        <td class="layer-name"><span class="core-badge">CORE</span>Knowledge layer + RAG</td>
-        <td><strong>Pappy Brain</strong> — retrieval-augmented generation over SOPs, marketing playbooks, vendor history, brand standards, product specs, and historical campaign data. The team queries one trusted knowledge source instead of digging through Drive folders.</td>
-      </tr>
-      <tr>
-        <td class="layer-name"><span class="core-badge">CORE</span>Data + workflow connectors</td>
-        <td>MCP servers for Shopify Plus (retail + wholesale), Cin7 Core, Klaviyo, Attentive, Gorgias, GA4, Google Workspace. Live data, not stale exports.</td>
-      </tr>
-      <tr>
-        <td class="layer-name"><span class="core-badge">CORE</span>Creative &amp; imaging stack</td>
-        <td><strong>Adobe Photoshop + Illustrator + Adobe Firefly</strong> for AI-assisted product imaging, gift box mockups, social creative, and bourbon-cultural visual language — on-brand, no AI slop. 3 seats: Brittany, Kelcie, Kaitlyn.</td>
-      </tr>
-      <tr>
-        <td class="layer-name"><span class="core-badge">CORE</span>Voice + brand encoding</td>
-        <td>Pappy &amp; Co. brand kit (Louisville / Van Winkle heritage, bourbon vernacular), tone profiles per channel, skill library — separate voice profiles for retail email, wholesale outreach, customer service, internal ops.</td>
-      </tr>
-      <tr>
-        <td class="layer-name"><span class="optional-badge">OPTIONAL</span>Agent orchestration</td>
-        <td><strong>Advanced · Phase 2.</strong> <strong>Claude Agent SDK</strong> <em>or</em> <strong>Claude Managed Agents</strong> (Skills, subagents, Cowork) — head-of-staff agent + 5 specialized agents per business function. Layered on top of the core stack only when the team is ready and Phase 1 is delivering clear ROI.</td>
-      </tr>
-    </tbody>
-  </table>
-</section>
-
-<!-- ============== PHASE ONE ============== -->
-<section class="block alt" id="phase-one">
-  <div class="inner">
-    <div class="section-eyebrow"><span class="core-badge">MAIN GOAL</span>PHASE ONE · FOUNDATION</div>
-    <h2 class="section-head">FOUR STEPS. ONE INTELLIGENCE LAYER.</h2>
-    <p class="section-deck">The core build: enterprise model access, Pappy Brain RAG, data connectors, brand voice. This is the main goal — everything else layers on top.</p>
-
-    <div class="phase-grid">
-
-      <div class="phase-card discover">
-        <div class="phase-label">01 · DISCOVER</div>
-        <h3>ONBOARDING</h3>
-        <div class="days">Weeks 1–2</div>
-        <p>Workflow audit across e-commerce, ops, marketing, wholesale, and CX.</p>
-        <ul>
-          <li>Stakeholder interviews (Louise, Carrie, Jonathan, Christy, Kelcie, Kaitlyn, Brittany, Willy)</li>
-          <li>Data inventory across Shopify, Cin7, Klaviyo, Attentive, Gorgias, GA4</li>
-          <li>Security posture review — Claude Teams SSO, MCP scopes, PII boundaries</li>
-          <li>Prioritized use-case backlog by impact × build effort</li>
-        </ul>
-      </div>
-
-      <div class="phase-card customize">
-        <div class="phase-label">02 · CUSTOMIZE</div>
-        <h3>BRAND &amp; VOICE</h3>
-        <div class="days">Weeks 3–4</div>
-        <p>Encode Pappy's voice — Louisville, bourbon-cultural, Van Winkle heritage, premium-but-warm — into a portable system.</p>
-        <ul>
-          <li>Voice profiles per channel: retail email, wholesale outreach, CX, internal ops</li>
-          <li>Portable system prompt + skill library</li>
-          <li>Adobe Firefly trained against Pappy visual identity</li>
-          <li>Signed scope for build</li>
-        </ul>
-      </div>
-
-      <div class="phase-card build">
-        <div class="phase-label">03 · BUILD</div>
-        <h3>ARCHITECTURE</h3>
-        <div class="days">Weeks 5–7</div>
-        <p>The core intelligence layer — deployed, validated, training delivered.</p>
-        <ul>
-          <li>Claude Teams rollout with role-based skills</li>
-          <li><strong>Pappy Brain RAG</strong> — knowledge layer indexed over SOPs, marketing playbooks, vendor history, brand kit</li>
-          <li>MCP connectors built &amp; validated (Shopify retail + wholesale, Cin7, Klaviyo, Attentive, Gorgias, GA4)</li>
-          <li>Skills library authored as markdown — wholesale bundles, Cerity reports, Gorgias macros, Klaviyo flows, product copy</li>
-          <li>Adobe Firefly + Photoshop/Illustrator workflows configured</li>
-          <li>Eval harness running on critical workflows</li>
-          <li>Team training: day-to-day operation for each role</li>
-        </ul>
-      </div>
-
-      <div class="phase-card sustain">
-        <div class="phase-label">04 · SUSTAIN</div>
-        <h3>ONGOING HEALTH</h3>
-        <div class="days">Months 3–12 (included)</div>
-        <p>The intelligence layer is a living system. We instrument it and measure honestly.</p>
-        <ul>
-          <li>Eval harness on critical workflows (CX quality, copy on-brand-ness, wholesale reply rates)</li>
-          <li>Data freshness monitoring on MCP connectors</li>
-          <li>Quarterly intelligence reviews</li>
-          <li>Back-end ROI report — hours saved, revenue attributed, deflection rate, cycle time</li>
-        </ul>
-      </div>
-
+  <!-- ============== WHAT THIS MEANS FOR YOU ============== -->
+  <section class="block" id="for-you">
+    <div class="section-eyebrow" data-bind="forYou.eyebrow">FOR YOU</div>
+    <h2 class="section-head" data-bind="forYou.title">WHAT THIS MEANS FOR YOU.</h2>
+    <p class="section-deck" data-bind="forYou.deck">The short version: this is about taking the dull, repetitive parts off your plate — not replacing you.</p>
+    <div class="point-grid" data-list="forYou.points">
+      <template>
+        <div class="point-card">
+          <div class="point-title" data-bind="title"></div>
+          <p data-bind="body"></p>
+        </div>
+      </template>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ============== CADENCE ============== -->
-<section class="block" id="cadence">
-  <div class="section-eyebrow">THE FIRST 60 DAYS</div>
-  <h2 class="section-head">A PREDICTABLE CADENCE.</h2>
-  <p class="section-deck">A predictable cadence, not a black box. Eight weeks from kickoff to production handoff.</p>
-
-  <div class="cadence-stripe">
-    <div class="cadence-week">
-      <div class="wk-num">WEEKS 1–2</div>
-      <div class="wk-title">DISCOVER</div>
-      <div class="wk-desc">Stakeholder interviews, data audit, security review, use-case backlog ranked by impact × build effort.</div>
+  <!-- ============== WHAT WE'RE SETTING UP ============== -->
+  <section class="block alt" id="layer">
+    <div class="inner">
+      <div class="section-eyebrow" data-bind="layerSection.eyebrow">WHAT WE'RE SETTING UP</div>
+      <h2 class="section-head" data-bind="layerSection.title">THE PIECES WE'RE PUTTING IN PLACE.</h2>
+      <p class="section-deck" data-bind="layerSection.deck">A handful of things, in plain terms. Each one has a job.</p>
+      <table class="layer-table">
+        <thead><tr><th>The piece</th><th data-bind="layerSection.colHead">What it does</th></tr></thead>
+        <tbody data-list="layers">
+          <template>
+            <tr>
+              <td class="layer-name"><span data-bind="badgeLabel" data-attr="class:badgeClass"></span> <span data-bind="name"></span></td>
+              <td data-html="bodyHtml"></td>
+            </tr>
+          </template>
+        </tbody>
+      </table>
+      <details class="disclosure" data-show-if="layerSection.techNoteHtml">
+        <summary>The technical names for these, if you're curious</summary>
+        <div class="disclosure-body" data-html="layerSection.techNoteHtml"></div>
+      </details>
     </div>
-    <div class="cadence-week">
-      <div class="wk-num">WEEKS 3–4</div>
-      <div class="wk-title">DESIGN</div>
-      <div class="wk-desc">Architecture diagram, Pappy brand kit + voice profiles, skill library outline, signed build scope.</div>
+  </section>
+
+  <!-- ============== THE PLAN — four steps ============== -->
+  <section class="block" id="plan">
+    <div class="section-eyebrow" data-bind="planSection.eyebrow">THE PLAN</div>
+    <h2 class="section-head" data-bind="planSection.title">FOUR STEPS OVER ABOUT 60 DAYS.</h2>
+    <p class="section-deck" data-bind="planSection.deck">Predictable, not a black box. Here's the shape of it.</p>
+    <div class="phase-grid" data-list="phases">
+      <template>
+        <div class="phase-card" data-attr="data-accent:accent">
+          <div class="phase-label" data-bind="label"></div>
+          <h3 data-bind="title"></h3>
+          <div class="days" data-bind="days"></div>
+          <p data-bind="intro"></p>
+          <ul data-list="bullets"><template><li data-html="value"></li></template></ul>
+        </div>
+      </template>
     </div>
-    <div class="cadence-week">
-      <div class="wk-num">WEEKS 5–7</div>
-      <div class="wk-title">BUILD &amp; TRAIN</div>
-      <div class="wk-desc">MCP connectors live and validated, skills authored, Firefly workflows configured, evals running, team trained per role.</div>
-    </div>
-    <div class="cadence-week">
-      <div class="wk-num">WEEK 8</div>
-      <div class="wk-title">DEPLOY</div>
-      <div class="wk-desc">Production rollout across Claude Teams. Role-specific welcome guides. ROI dashboard live.</div>
-    </div>
-  </div>
-</section>
-
-<!-- ============== PHASE TWO ============== -->
-<section class="block alt" id="phase-two">
-  <div class="inner">
-    <div class="section-eyebrow"><span class="optional-badge">OPTIONAL · ADVANCED</span>PHASE TWO · AGENT STACK</div>
-    <h2 class="section-head">A WORKFORCE OF AGENTS.</h2>
-
-    <div class="optional-banner">
-      <div class="label">OPTIONAL · ADVANCED ROLLOUT</div>
-      <p><strong>Phase 2 is the next-level build — not required for success.</strong> The main goal is Phase 1: enterprise model access (Claude Teams), the Pappy Brain knowledge layer + RAG, data connectors, and brand-voice encoding. Phase 2 only gets layered on top after Phase 1 is producing clear ROI and the team is ready for agent-driven automation. Teams can opt into the agents that fit them and skip the ones that don't.</p>
-    </div>
-
-    <p class="section-deck">When we're ready to go further: a specialized agent workforce wired into Pappy's workflows. Built on Claude Agent SDK <em>or</em> Claude Managed Agents — decision based on operational preference at the time of build.</p>
-
-    <table class="agents-table">
-      <thead>
-        <tr>
-          <th>Agent</th>
-          <th>Primary Role</th>
-          <th>Connected Systems</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td class="agent-name">WHOLESALE</td>
-          <td>Outreach drafts, account research, follow-ups, sell-sheet generation</td>
-          <td class="agent-systems">Shopify Wholesale, Cin7, Google Workspace, Klaviyo</td>
-        </tr>
-        <tr>
-          <td class="agent-name">CX</td>
-          <td>Gorgias triage, draft replies in Pappy voice, escalation routing</td>
-          <td class="agent-systems">Gorgias, Shopify</td>
-        </tr>
-        <tr>
-          <td class="agent-name">RETENTION</td>
-          <td>Klaviyo + Attentive flow drafts, segment ideation, post-purchase journeys</td>
-          <td class="agent-systems">Klaviyo, Attentive, Shopify</td>
-        </tr>
-        <tr>
-          <td class="agent-name">OPS</td>
-          <td>Cin7 stock health, PO drafting, warehouse coordination, Cerity reporting</td>
-          <td class="agent-systems">Cin7 Core, Shopify, Gmail</td>
-        </tr>
-        <tr>
-          <td class="agent-name">CREATIVE</td>
-          <td>Brief generation, copy variants, Firefly imagery prompts, asset routing</td>
-          <td class="agent-systems">Adobe CC + Firefly, Google Drive, Shopify</td>
-        </tr>
-      </tbody>
-    </table>
-
-    <div class="phase-two-banner">
-      <h3><span class="optional-badge">OPTIONAL · PHASE 2</span>HEAD-OF-STAFF AGENT</h3>
-      <div class="trigger">Trigger: Phase 1 ROI clears bar — suggested 200+ hrs/quarter saved across the team.</div>
-      <p>A head-of-staff / chief-of-staff agent routes tasks across the workforce, manages context, and hands off between specialists. Agent-level logging and oversight — who did what, when, on which order, customer, or flow.</p>
-      <p>ROI dashboard per agent function: hours saved, revenue influenced, error rate, escalations.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ============== STATUS TRACKER ============== -->
-<section class="block" id="tracker">
-  <div class="section-eyebrow">PROJECT MANAGER VIEW</div>
-  <h2 class="section-head">STATUS TRACKER</h2>
-  <p class="section-deck">Click any status pill to cycle through stages. Your progress saves locally to this browser.</p>
-
-  <div class="overall-progress">
-    <div class="label">PHASE ONE COMPLETION</div>
-    <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
-    <div class="progress-text" id="progress-text">0%</div>
-  </div>
-
-  <div class="tracker-toolbar">
-    <div class="legend">
-      <span><span class="dot" style="background:var(--charcoal)"></span>Not Started</span>
-      <span><span class="dot" style="background:var(--mustard)"></span>In Progress</span>
-      <span><span class="dot" style="background:var(--terracotta)"></span>Blocked</span>
-      <span><span class="dot" style="background:var(--olive)"></span>Done</span>
-    </div>
-    <button class="reset" onclick="resetTracker()">Reset all</button>
-  </div>
-
-  <table class="tracker">
-    <thead>
-      <tr>
-        <th>Wk</th>
-        <th>Workstream</th>
-        <th>What ships</th>
-        <th>Owner</th>
-        <th>Status</th>
-      </tr>
-    </thead>
-    <tbody id="tracker-body">
-      <!-- Weeks 1-2 Discover -->
-      <tr>
-        <td class="task-week">1–2</td>
-        <td class="task-name">Stakeholder Interviews</td>
-        <td class="task-desc">Louise, Carrie, Jonathan, Christy, Kelcie, Kaitlyn, Brittany, Willy — workflow audit per role</td>
-        <td class="task-owner">JONATHAN</td>
-        <td class="task-status"><button class="status-pill status-not-started" data-id="t01">NOT STARTED</button></td>
-      </tr>
-      <tr>
-        <td class="task-week">1–2</td>
-        <td class="task-name">Data &amp; Connector Audit</td>
-        <td class="task-desc">Shopify (retail + wholesale), Cin7, Klaviyo, Attentive, Gorgias, GA4, Google Workspace</td>
-        <td class="task-owner">JONATHAN</td>
-        <td class="task-status"><button class="status-pill status-not-started" data-id="t02">NOT STARTED</button></td>
-      </tr>
-      <tr>
-        <td class="task-week">1–2</td>
-        <td class="task-name">Security Posture Review</td>
-        <td class="task-desc">Claude Teams SSO, MCP scopes, PII boundaries, wholesale data boundaries</td>
-        <td class="task-owner">JONATHAN</td>
-        <td class="task-status"><button class="status-pill status-not-started" data-id="t03">NOT STARTED</button></td>
-      </tr>
-      <tr>
-        <td class="task-week">1–2</td>
-        <td class="task-name">Use-Case Backlog</td>
-        <td class="task-desc">Prioritized by impact × build effort, ready for Louise sign-off</td>
-        <td class="task-owner">JONATHAN</td>
-        <td class="task-status"><button class="status-pill status-not-started" data-id="t04">NOT STARTED</button></td>
-      </tr>
-
-      <!-- Weeks 3-4 Design -->
-      <tr>
-        <td class="task-week">3–4</td>
-        <td class="task-name">Architecture Diagram</td>
-        <td class="task-desc">Claude Teams + MCP + Adobe Firefly + Phase Two agent stack roadmap</td>
-        <td class="task-owner">JONATHAN</td>
-        <td class="task-status"><button class="status-pill status-not-started" data-id="t05">NOT STARTED</button></td>
-      </tr>
-      <tr>
-        <td class="task-week">3–4</td>
-        <td class="task-name">Pappy Brand Kit + Voice Profiles</td>
-        <td class="task-desc">Voice profiles per channel — retail email, wholesale, CX, internal ops</td>
-        <td class="task-owner">CHRISTY</td>
-        <td class="task-status"><button class="status-pill status-not-started" data-id="t06">NOT STARTED</button></td>
-      </tr>
-      <tr>
-        <td class="task-week">3–4</td>
-        <td class="task-name">Skill Library Outline</td>
-        <td class="task-desc">Wholesale bundles, Cerity reports, Gorgias macros, Klaviyo flows, product copy, cigar-sub playbook</td>
-        <td class="task-owner">JONATHAN</td>
-        <td class="task-status"><button class="status-pill status-not-started" data-id="t07">NOT STARTED</button></td>
-      </tr>
-      <tr>
-        <td class="task-week">3–4</td>
-        <td class="task-name">Signed Build Scope</td>
-        <td class="task-desc">Walk through plan with Louise, alignment on Claude Teams seats + Adobe licensing</td>
-        <td class="task-owner">LOUISE</td>
-        <td class="task-status"><button class="status-pill status-not-started" data-id="t08">NOT STARTED</button></td>
-      </tr>
-
-      <!-- Weeks 5-7 Build -->
-      <tr>
-        <td class="task-week">5–7</td>
-        <td class="task-name">MCP Connectors — Tier 1</td>
-        <td class="task-desc">Shopify retail + wholesale, Cin7, Klaviyo, Gorgias built and validated</td>
-        <td class="task-owner">JONATHAN</td>
-        <td class="task-status"><button class="status-pill status-not-started" data-id="t09">NOT STARTED</button></td>
-      </tr>
-      <tr>
-        <td class="task-week">5–7</td>
-        <td class="task-name">MCP Connectors — Tier 2</td>
-        <td class="task-desc">Attentive, GA4, Google Workspace</td>
-        <td class="task-owner">JONATHAN</td>
-        <td class="task-status"><button class="status-pill status-not-started" data-id="t10">NOT STARTED</button></td>
-      </tr>
-      <tr>
-        <td class="task-week">5–7</td>
-        <td class="task-name">Skills Library Authored</td>
-        <td class="task-desc">Markdown skills shipped — portable from day one</td>
-        <td class="task-owner">JONATHAN</td>
-        <td class="task-status"><button class="status-pill status-not-started" data-id="t11">NOT STARTED</button></td>
-      </tr>
-      <tr>
-        <td class="task-week">5–7</td>
-        <td class="task-name">Adobe Business Account</td>
-        <td class="task-desc">3 seats — Brittany, Kelcie, Kaitlyn — Photoshop, Illustrator, Firefly Pro</td>
-        <td class="task-owner">BRITTANY</td>
-        <td class="task-status"><button class="status-pill status-not-started" data-id="t12">NOT STARTED</button></td>
-      </tr>
-      <tr>
-        <td class="task-week">5–7</td>
-        <td class="task-name">Firefly Workflows Configured</td>
-        <td class="task-desc">Trained against Pappy visual identity; Zapier bridges Drive ↔ Firefly ↔ Shopify</td>
-        <td class="task-owner">BRITTANY</td>
-        <td class="task-status"><button class="status-pill status-not-started" data-id="t13">NOT STARTED</button></td>
-      </tr>
-      <tr>
-        <td class="task-week">5–7</td>
-        <td class="task-name">Eval Harness Live</td>
-        <td class="task-desc">CX response quality, copy on-brand-ness, wholesale reply rates instrumented</td>
-        <td class="task-owner">JONATHAN</td>
-        <td class="task-status"><button class="status-pill status-not-started" data-id="t14">NOT STARTED</button></td>
-      </tr>
-      <tr>
-        <td class="task-week">5–7</td>
-        <td class="task-name">Team Training (Role-Specific)</td>
-        <td class="task-desc">Day-to-day operation per role — Louise, Carrie, Christy, Kelcie, Kaitlyn, Brittany, Willy</td>
-        <td class="task-owner">CHRISTY</td>
-        <td class="task-status"><button class="status-pill status-not-started" data-id="t15">NOT STARTED</button></td>
-      </tr>
-
-      <!-- Week 8 Deploy -->
-      <tr>
-        <td class="task-week">8</td>
-        <td class="task-name">Production Rollout</td>
-        <td class="task-desc">Claude Teams live across operating team with SSO + centralized billing</td>
-        <td class="task-owner">JONATHAN</td>
-        <td class="task-status"><button class="status-pill status-not-started" data-id="t16">NOT STARTED</button></td>
-      </tr>
-      <tr>
-        <td class="task-week">8</td>
-        <td class="task-name">Welcome Guides</td>
-        <td class="task-desc">Role-specific operator guides — each person knows their first 5 workflows</td>
-        <td class="task-owner">CHRISTY</td>
-        <td class="task-status"><button class="status-pill status-not-started" data-id="t17">NOT STARTED</button></td>
-      </tr>
-      <tr>
-        <td class="task-week">8</td>
-        <td class="task-name">ROI Dashboard Live</td>
-        <td class="task-desc">Hours saved, revenue influenced, deflection rate, cycle time</td>
-        <td class="task-owner">JONATHAN</td>
-        <td class="task-status"><button class="status-pill status-not-started" data-id="t18">NOT STARTED</button></td>
-      </tr>
-      <tr>
-        <td class="task-week">8</td>
-        <td class="task-name">12-Month Support Clock Starts</td>
-        <td class="task-desc">Quarterly reviews scheduled, data freshness monitors armed</td>
-        <td class="task-owner">JONATHAN</td>
-        <td class="task-status"><button class="status-pill status-not-started" data-id="t19">NOT STARTED</button></td>
-      </tr>
-      <tr>
-        <td class="task-week">8</td>
-        <td class="task-name">Phase Two Trigger Defined</td>
-        <td class="task-desc">Suggested: 200+ hrs/qtr saved across the team</td>
-        <td class="task-owner">JONATHAN</td>
-        <td class="task-status"><button class="status-pill status-not-started" data-id="t20">NOT STARTED</button></td>
-      </tr>
-    </tbody>
-  </table>
-</section>
-
-<!-- ============== TEAM ============== -->
-<section class="block alt" id="team">
-  <div class="inner">
-    <div class="section-eyebrow">WHO OWNS WHAT</div>
-    <h2 class="section-head">TEAM &amp; OWNERSHIP</h2>
-    <p class="section-deck">Each function has a clear owner. Folder ownership maps to who can approve agent behavior and ship the workflow.</p>
-
-    <div class="team-grid">
-      <div class="team-card">
-        <div class="name">LOUISE</div>
-        <div class="role">Co-Owner / Brand &amp; Voice</div>
-        <ul>
-          <li>Brand approval &amp; voice standards</li>
-          <li>Phase One scope sign-off</li>
-          <li>Strategic direction &amp; final say on heritage-anchored work</li>
-        </ul>
+    <details class="disclosure" data-show-if="cadence">
+      <summary>Week-by-week, if you want the detail</summary>
+      <div class="cadence-stripe" data-list="cadence">
+        <template>
+          <div class="cadence-week">
+            <div class="wk-num" data-bind="num"></div>
+            <div class="wk-title" data-bind="title"></div>
+            <div class="wk-desc" data-bind="desc"></div>
+          </div>
+        </template>
       </div>
-      <div class="team-card">
-        <div class="name">CARRIE</div>
-        <div class="role">Co-Owner / Brand &amp; Voice</div>
-        <ul>
-          <li>Brand approval &amp; voice standards</li>
-          <li>Phase One scope sign-off</li>
-          <li>Strategic direction &amp; final say on heritage-anchored work</li>
-        </ul>
-      </div>
-      <div class="team-card">
-        <div class="name">JONATHAN</div>
-        <div class="role">Builder / Operator</div>
-        <ul>
-          <li>Architecture &amp; agent build</li>
-          <li>MCP infrastructure</li>
-          <li>Cross-functional integration</li>
-        </ul>
-      </div>
-      <div class="team-card">
-        <div class="name">CHRISTY</div>
-        <div class="role">VP of Marketing</div>
-        <ul>
-          <li>Brand kit &amp; voice profile ownership</li>
-          <li>Claude Design</li>
-          <li>Klaviyo &amp; Attentive agents</li>
-          <li>Meta design agents</li>
-          <li>Adobe CC production</li>
-          <li>Firefly imagery production</li>
-          <li>Canva workflows &amp; MCP</li>
-        </ul>
-      </div>
-      <div class="team-card">
-        <div class="name">KELCIE</div>
-        <div class="role">Director of Marketing</div>
-        <ul>
-          <li>Adobe CC production</li>
-          <li>Firefly imagery production</li>
-          <li>Canva workflows &amp; MCP</li>
-        </ul>
-      </div>
-      <div class="team-card">
-        <div class="name">KAITLYN</div>
-        <div class="role">Digital Marketing Specialist</div>
-        <ul>
-          <li>Google, Meta, TikTok data &amp; workflows</li>
-          <li>Google Analytics workflows &amp; MCP</li>
-          <li>Claude Design</li>
-          <li>Adobe Business Account admin</li>
-          <li>Firefly workflow ownership</li>
-          <li>Canva workflows &amp; MCP</li>
-        </ul>
-      </div>
-      <div class="team-card">
-        <div class="name">BRITTANY</div>
-        <div class="role">Product / Ops</div>
-        <ul>
-          <li>Adobe Business Account admin</li>
-          <li>Firefly workflow ownership</li>
-          <li>Creative agent partner</li>
-          <li>Shopify MCPs</li>
-          <li>Cin7 MCPs</li>
-          <li>Canva workflows &amp; MCP</li>
-        </ul>
-      </div>
-      <div class="team-card">
-        <div class="name">WILLY</div>
-        <div class="role">Director of Wholesale</div>
-        <ul>
-          <li>Wholesale agent design partner</li>
-          <li>Pipeline / sell-sheet validation</li>
-          <li>Apollo CRM</li>
-          <li>LinkedIn MCP</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
+    </details>
+  </section>
 
-<!-- ============== CREATIVE / IMAGE STACK ============== -->
-<section class="block" id="creative">
-  <div class="section-eyebrow">CREATIVE STACK</div>
-  <h2 class="section-head">HOW WE HANDLE IMAGES</h2>
-  <p class="section-deck">Marketing and product development need on-brand, fast-turnaround creative without the AI-slop look. Three layers, each with a job.</p>
-
-  <div class="creative-grid">
-
-    <div class="creative-card adobe">
-      <h4>ADOBE BUSINESS</h4>
-      <div class="tagline">Three seats. Pro tools. The fundamentals.</div>
-      <p>Adobe Business Account with Photoshop, Illustrator, and full Firefly Pro access for the creative team.</p>
-      <div class="seat-row">
-        <span class="seat-chip">BRITTANY</span>
-        <span class="seat-chip">KELCIE</span>
-        <span class="seat-chip">KAITLYN</span>
-      </div>
-      <p style="margin-top:14px"><strong>Why Adobe:</strong> commercially safe outputs, full editing precision, integrates with the rest of our creative stack. Photoshop + Illustrator remain the workhorses; Firefly is the AI layer for fast generation and edits.</p>
-    </div>
-
-    <div class="creative-card firefly">
-      <h4>FIREFLY × ZAPIER</h4>
-      <div class="tagline">The bridge between our image library and our store.</div>
-      <p>Firefly Pro integrated via Zapier to pull, edit, and push images across our stack — no manual download/upload cycle.</p>
-      <ul>
-        <li>Pull source images from Google Drive or Shopify product library</li>
-        <li>Inside Firefly: toggle between ChatGPT Image 2 or preferred LLM image model</li>
-        <li>Edit, prompt, and regenerate in one workspace</li>
-        <li>Push refined image back to Drive folder and/or Shopify product variant</li>
-        <li>Brand-aware presets so output matches the Pappy palette out of the gate</li>
-      </ul>
-      <div class="workflow">
-        <div class="workflow-title">THE PIPELINE</div>
-        <div class="workflow-row">
-          <div class="workflow-node">DRIVE / SHOPIFY</div>
-          <div class="workflow-arrow">→</div>
-          <div class="workflow-node mustard">FIREFLY EDIT</div>
-          <div class="workflow-arrow">→</div>
-          <div class="workflow-node">ZAPIER ROUTER</div>
-          <div class="workflow-arrow">→</div>
-          <div class="workflow-node">DRIVE / SHOPIFY</div>
+  <!-- ============== YOUR DATA — WHAT WE WILL & WON'T DO ============== -->
+  <section class="block alt" id="your-data">
+    <div class="inner">
+      <div class="section-eyebrow" data-bind="yourData.eyebrow">YOUR DATA</div>
+      <h2 class="section-head" data-bind="yourData.title">WHAT WE WILL — AND WON'T — DO WITH IT.</h2>
+      <p class="section-deck" data-bind="yourData.deck">Being straight about this matters. Here it is.</p>
+      <div class="data-cols">
+        <div class="data-col will">
+          <div class="data-col-head">WHAT WE WILL DO</div>
+          <ul data-list="yourData.will"><template><li data-html="value"></li></template></ul>
+        </div>
+        <div class="data-col wont">
+          <div class="data-col-head">WHAT WE WON'T DO</div>
+          <ul data-list="yourData.wont"><template><li data-html="value"></li></template></ul>
         </div>
       </div>
+      <p class="data-note" data-bind="yourData.note" data-show-if="yourData.note"></p>
     </div>
+  </section>
 
-    <div class="creative-card claude-design">
-      <h4>CLAUDE DESIGN</h4>
-      <div class="tagline">The new layer — concepting &amp; product dev.</div>
-      <p>Claude's new Design feature gives us a powerful concepting tool inside the same environment we already use for everything else. Great for early-stage product, packaging, and marketing exploration.</p>
-      <ul>
-        <li>Rapid concepting for packaging &amp; product dev (Brittany lead)</li>
-        <li>Marketing layout exploration before committing to Adobe production</li>
-        <li>Brand-kit-aware via the Pappy Co Brand Kit skill</li>
-        <li>Stays inside the governance framework — no extra tool sprawl</li>
-      </ul>
+  <!-- ============== HOW WE'LL KNOW IT'S WORKING (ROI) ============== -->
+  <section class="block" id="results">
+    <div class="section-eyebrow" data-bind="resultsSection.eyebrow">HOW WE'LL KNOW IT'S WORKING</div>
+    <h2 class="section-head" data-bind="resultsSection.title">WE'LL MEASURE IT, HONESTLY.</h2>
+    <p class="section-deck" data-bind="resultsSection.deck">Three simple things we'll track — no inflated promises.</p>
+    <div class="metrics-grid" data-list="resultsCards">
+      <template>
+        <div class="metric-card">
+          <div class="metric-num" data-bind="num"></div>
+          <div class="metric-label" data-bind="label"></div>
+          <div class="metric-detail" data-bind="detail"></div>
+        </div>
+      </template>
     </div>
+  </section>
 
-    <div class="creative-card">
-      <h4>WHY THIS COMBO</h4>
-      <div class="tagline">Answering "ChatGPT has native images, Claude doesn't."</div>
-      <p>The honest answer: native image generation isn't where Claude competes — and we don't need it to. Firefly does generative images better than ChatGPT for commercial work (rights-clear, brand-tunable) and integrates directly with our existing Adobe stack.</p>
-      <p>Claude's job is reasoning, agents, and now Design for concepting. Firefly's job is production-grade visuals. Photoshop and Illustrator are the final mile. Each tool does what it does best — no AI slop, no rights ambiguity, no workflow rework.</p>
-    </div>
-
-  </div>
-</section>
-
-<!-- ============== ROI TOOLS ============== -->
-<section class="block alt" id="metrics">
-  <div class="inner">
-    <div class="section-eyebrow">MEASURING IMPACT</div>
-    <h2 class="section-head">ROI TOOLS</h2>
-    <p class="section-deck">How we'll measure the return on these AI tools and agents themselves — what they produce and how much time they give back to the team.</p>
-
-    <div class="metrics-grid">
-      <div class="metric-card">
-        <div class="metric-num">OUTPUT</div>
-        <div class="metric-label">WHAT THE AI PRODUCES</div>
-        <div class="metric-detail">Volume and quality of work generated by AI tools and agents across functions.</div>
-      </div>
-      <div class="metric-card">
-        <div class="metric-num">TIME</div>
-        <div class="metric-label">TIME SAVED</div>
-        <div class="metric-detail">Hours given back to the team — work that used to take days, now compressed.</div>
-      </div>
-      <div class="metric-card">
-        <div class="metric-num">ROI</div>
-        <div class="metric-label">RETURN ON SPEND</div>
-        <div class="metric-detail">Overall return on tool spend and operator time invested in the AI layer.</div>
+  <!-- ============== HOW WE'LL HANDLE IMAGES (optional) ============== -->
+  <section class="block alt" id="creative" data-show-if="creativeStack">
+    <div class="inner">
+      <div class="section-eyebrow" data-bind="creativeSection.eyebrow">A NOTE ON IMAGES & DESIGN</div>
+      <h2 class="section-head" data-bind="creativeSection.title">HOW WE'LL HANDLE IMAGES.</h2>
+      <p class="section-deck" data-bind="creativeSection.deck"></p>
+      <div class="creative-grid" data-list="creativeStack">
+        <template>
+          <div class="creative-card" data-attr="data-accent:accent">
+            <h4 data-bind="title"></h4>
+            <div class="tagline" data-bind="tagline"></div>
+            <p data-html="bodyHtml"></p>
+            <ul data-list="bullets"><template><li data-html="value"></li></template></ul>
+          </div>
+        </template>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ============== PORTABILITY ============== -->
-<section class="block" id="portability">
-  <div class="portability">
-    <div class="eyebrow">VENDOR-PORTABLE BY DESIGN</div>
-    <h2>ANTHROPIC-FIRST.<br>NEVER ANTHROPIC-LOCKED.</h2>
-    <p>Claude (Sonnet/Opus) is the best model for the structured, agentic work Pappy needs — voice-sensitive copy, multi-step ops workflows, customer-service triage, wholesale relationship drafting. But every artifact we build is portable:</p>
-    <ul>
-      <li>Skills as markdown</li>
-      <li>Prompts as plain text</li>
-      <li>MCP for data — model-agnostic</li>
-      <li>Agnostic auth — SSO, not vendor-bound identity</li>
-      <li>RAG indices built on open formats</li>
-    </ul>
-    <div class="footnote">If Pappy ever needs to move to Gemini or OpenAI, the intelligence layer comes with you. Your investment is in your intelligence — not someone else's API.</div>
-  </div>
-</section>
-
-<!-- ============== TECH STACK ============== -->
-<section class="block alt" id="stack">
-  <div class="inner">
-    <div class="section-eyebrow">THE FOUNDATION</div>
-    <h2 class="section-head">TECH STACK</h2>
-    <p class="section-deck">Every agent we build assumes this stack. No replacements — we wrap and extend.</p>
-
-    <div class="stack-row">
-      <span class="stack-pill">SHOPIFY PLUS</span>
-      <span class="stack-pill">KLAVIYO</span>
-      <span class="stack-pill">ATTENTIVE</span>
-      <span class="stack-pill">CIN7 CORE</span>
-      <span class="stack-pill">GORGIAS</span>
-      <span class="stack-pill">GA4</span>
-      <span class="stack-pill">SHOPIFY FLOW</span>
-      <span class="stack-pill">LIQUID</span>
-      <span class="stack-pill">GOOGLE WORKSPACE</span>
-      <span class="stack-pill">CLAUDE TEAMS</span>
-      <span class="stack-pill">CLAUDE CODE</span>
-      <span class="stack-pill">COWORK</span>
-      <span class="stack-pill">MCP</span>
-      <span class="stack-pill">CLAUDE AGENT SDK</span>
-      <span class="stack-pill">ZAPIER</span>
-      <span class="stack-pill">ADOBE CC</span>
-      <span class="stack-pill">FIREFLY</span>
+  <!-- ============== TEAM & OWNERSHIP ============== -->
+  <section class="block" id="team">
+    <div class="section-eyebrow" data-bind="teamSection.eyebrow">WHO OWNS WHAT</div>
+    <h2 class="section-head" data-bind="teamSection.title">WHO OWNS WHAT.</h2>
+    <p class="section-deck" data-bind="teamSection.deck">So you know who to go to. Each person below can answer for their part.</p>
+    <div class="team-grid" data-list="team">
+      <template>
+        <div class="team-card">
+          <div class="name" data-bind="name"></div>
+          <div class="role" data-bind="role"></div>
+          <ul data-list="items"><template><li data-bind="value"></li></template></ul>
+        </div>
+      </template>
     </div>
+  </section>
+
+  <!-- ============== UNDER THE HOOD (collapsible — the technical track) ============== -->
+  <section class="block alt" id="under-the-hood">
+    <div class="inner">
+      <details class="disclosure big">
+        <summary>
+          <span class="uth-eyebrow" data-bind="underTheHood.eyebrow">UNDER THE HOOD</span>
+          <span class="uth-title" data-bind="underTheHood.title">The technical version — for whoever wants it</span>
+          <span class="uth-hint" data-bind="underTheHood.hint">Click to expand. None of this is required reading.</span>
+        </summary>
+        <div class="disclosure-body">
+          <p class="section-deck" data-bind="underTheHood.deck"></p>
+
+          <div class="uth-grid" data-list="underTheHood.blocks">
+            <template>
+              <div class="uth-card">
+                <h4 data-bind="title"></h4>
+                <p data-html="bodyHtml"></p>
+              </div>
+            </template>
+          </div>
+
+          <div class="uth-sub" data-show-if="agents">
+            <div class="optional-banner">
+              <div class="label">ADVANCED LAYER — SCOPED TO FIT YOU</div>
+              <p data-html="phaseTwo.bannerHtml"></p>
+            </div>
+            <h3 class="uth-h3" data-bind="phaseTwo.title">A workforce of agents.</h3>
+            <p class="section-deck" data-bind="phaseTwo.deck"></p>
+            <table class="agents-table">
+              <thead><tr><th>Agent</th><th>Primary Role</th><th>Connected Systems</th></tr></thead>
+              <tbody data-list="agents">
+                <template>
+                  <tr>
+                    <td class="agent-name" data-bind="name"></td>
+                    <td data-bind="role"></td>
+                    <td class="agent-systems" data-bind="systems"></td>
+                  </tr>
+                </template>
+              </tbody>
+            </table>
+            <div class="phase-two-banner">
+              <h3><span class="optional-badge">ADVANCED</span><span data-bind="phaseTwo.headStaffTitle">Head-of-staff agent</span></h3>
+              <div class="trigger" data-bind="phaseTwo.trigger"></div>
+              <p data-html="phaseTwo.headStaffHtml"></p>
+            </div>
+          </div>
+
+          <div class="uth-sub" data-show-if="portability">
+            <div class="portability">
+              <div class="eyebrow" data-bind="portability.eyebrow">VENDOR-PORTABLE BY DESIGN</div>
+              <h2 data-html="portability.headlineHtml">Anthropic-first.<br>Never Anthropic-locked.</h2>
+              <p data-html="portability.bodyHtml"></p>
+              <ul data-list="portability.bullets"><template><li data-bind="value"></li></template></ul>
+              <div class="footnote" data-bind="portability.footnote"></div>
+            </div>
+          </div>
+
+          <div class="uth-sub" data-show-if="techStack">
+            <div class="section-eyebrow" data-bind="stackSection.eyebrow">THE FOUNDATION</div>
+            <h3 class="uth-h3" data-bind="stackSection.title">Tech stack.</h3>
+            <p class="section-deck" data-bind="stackSection.deck"></p>
+            <div class="stack-row" data-list="techStack">
+              <template><span class="stack-pill" data-bind="value"></span></template>
+            </div>
+          </div>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <!-- ============== GLOSSARY ============== -->
+  <section class="block" id="glossary" data-show-if="glossary">
+    <div class="section-eyebrow" data-bind="glossarySection.eyebrow">PLAIN ENGLISH</div>
+    <h2 class="section-head" data-bind="glossarySection.title">WHAT WE MEAN WHEN WE SAY…</h2>
+    <p class="section-deck" data-bind="glossarySection.deck">If a word in here ever made you go "huh?", it's probably below.</p>
+    <dl class="glossary-list" data-list="glossary">
+      <template>
+        <div class="glossary-item">
+          <dt data-bind="term"></dt>
+          <dd data-html="plainHtml"></dd>
+        </div>
+      </template>
+    </dl>
+  </section>
+
+  <!-- ════════════════════ ZONE 3 — TOOLS FOR ACTION & DEPLOY ════════════════════ -->
+  <div class="zone-divider">
+    <span class="zone-label">TOOLS FOR ACTION &amp; DEPLOY</span>
+    <span class="zone-sub">What we'll do here together. The hub grows as the deployment does.</span>
   </div>
-</section>
-</main>
 
-<!-- ============== FOOTER ============== -->
-<footer>
-  <p class="quote">"We make fine bourbon, at a profit if we can, at a loss if we must, but always fine bourbon."</p>
-  <p class="attribution">— Julian P. "Pappy" Van Winkle, Sr.</p>
-  <p class="built-by">Pappy &amp; Company AI Integration Project</p>
-  <p class="meta">PAPPY &amp; COMPANY · LOUISVILLE, KY · 2026 AI INTEGRATION</p>
-</footer>
+  <!-- ============== MORE TOOLS COMING ============== -->
+  <section class="block" id="coming-soon" data-show-if="comingSoon">
+    <div class="section-eyebrow" data-bind="comingSoon.eyebrow">COMING TO THE HUB</div>
+    <h2 class="section-head" data-bind="comingSoon.title">MORE ONBOARDING TOOLS, SOON.</h2>
+    <p class="section-deck" data-bind="comingSoon.deck">The document sign-offs above are live now. These are landing next.</p>
+    <div class="coming-grid" data-list="comingSoon.items">
+      <template>
+        <div class="coming-card">
+          <div class="coming-status" data-bind="status"></div>
+          <div class="coming-title" data-bind="title"></div>
+          <p data-html="bodyHtml"></p>
+        </div>
+      </template>
+    </div>
+  </section>
 
-<!-- ============== SCRIPTS ============== -->
-<script>
-  /* =========== CONFIG =========== */
-  // Replace with your actual Google OAuth Client ID from console.cloud.google.com
-  const GOOGLE_CLIENT_ID = '546240169489-smvcnclp09hti04cu9o0c66d5l1anffh.apps.googleusercontent.com';
-  const ALLOWED_DOMAIN = 'pappyco.com';
+  <!-- ============== QUESTIONS / CTA ============== -->
+  <section class="block alt" id="questions" data-show-if="questions">
+    <div class="inner">
+      <div class="cta-box">
+        <div class="cta-label" data-bind="questions.label">GOT A QUESTION?</div>
+        <h2 data-bind="questions.title">There's no dumb question here.</h2>
+        <p data-html="questions.bodyHtml"></p>
+      </div>
+    </div>
+  </section>
+  </main>
 
-  /* =========== GOOGLE SSO =========== */
-  window.onload = function () {
-    if (typeof google === 'undefined' || !google.accounts) {
-      setTimeout(window.onload, 200);
-      return;
-    }
-    google.accounts.id.initialize({
-      client_id: GOOGLE_CLIENT_ID,
-      callback: handleCredentialResponse,
-      hd: ALLOWED_DOMAIN,
-      auto_select: false
-    });
-    google.accounts.id.renderButton(
-      document.getElementById('g_id_signin'),
-      { theme: 'filled_black', size: 'large', shape: 'rectangular', text: 'signin_with' }
-    );
+  <!-- ============== FOOTER ============== -->
+  <footer>
+    <p class="quote" data-bind="footer.quote" data-show-if="footer.quote"></p>
+    <p class="attribution" data-bind="footer.attribution" data-show-if="footer.attribution"></p>
+    <p class="built-by" data-html="footer.builtByHtml"></p>
+    <p class="meta" data-bind="footer.meta"></p>
+  </footer>
+  </div><!-- /.rail-content -->
+</div><!-- /.rail-layout -->
 
-    const cached = sessionStorage.getItem('pappy_user');
-    if (cached) {
-      try {
-        const u = JSON.parse(cached);
-        if (u.hd === ALLOWED_DOMAIN) revealApp(u);
-      } catch (e) {}
-    }
-  };
-
-  function decodeJwt(token) {
-    const base64Url = token.split('.')[1];
-    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-    const json = decodeURIComponent(atob(base64).split('').map(c =>
-      '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)
-    ).join(''));
-    return JSON.parse(json);
-  }
-
-  function handleCredentialResponse(response) {
-    const payload = decodeJwt(response.credential);
-    if (payload.hd !== ALLOWED_DOMAIN) {
-      document.getElementById('gate-error').classList.add('show');
-      return;
-    }
-    sessionStorage.setItem('pappy_user', JSON.stringify(payload));
-    revealApp(payload);
-  }
-
-  function revealApp(payload) {
-    document.getElementById('login-gate').style.display = 'none';
-    document.body.classList.remove('locked');
-    document.getElementById('user-email').textContent = payload.email || '—';
-  }
-
-  function signOut() {
-    sessionStorage.removeItem('pappy_user');
-    if (typeof google !== 'undefined' && google.accounts) {
-      google.accounts.id.disableAutoSelect();
-    }
-    location.reload();
-  }
-
-  /* =========== STATUS TRACKER =========== */
-  const STATUSES = [
-    { class: 'status-not-started', label: 'NOT STARTED' },
-    { class: 'status-in-progress', label: 'IN PROGRESS' },
-    { class: 'status-blocked',     label: 'BLOCKED' },
-    { class: 'status-done',        label: 'DONE' }
-  ];
-
-  // Bump STATUS_VERSION any time TASK_DEFAULTS changes so the team's view re-syncs.
-  const STATUS_VERSION = '2026-05-12-r1';
-  const STATUS_UPDATED = '2026-05-12';  // YYYY-MM-DD shown as "Last updated"
-
-  // Statuses pushed by the project lead. Keys are data-id values on the tracker pills.
-  // 0 = Not Started · 1 = In Progress · 2 = Blocked · 3 = Done
-  const TASK_DEFAULTS = {
-    t02: 1, // Data & Connector Audit
-    t03: 1, // Security Posture Review
-    t05: 3, // Architecture Diagram
-    t09: 3, // MCP Connectors — Tier 1
-    t10: 3, // MCP Connectors — Tier 2
-    t12: 3  // Adobe Business Account
-  };
-
-  function loadTrackerState() {
-    try {
-      const stored = JSON.parse(localStorage.getItem('pappy_tracker') || '{}');
-      const storedVersion = localStorage.getItem('pappy_tracker_version');
-      if (storedVersion !== STATUS_VERSION) {
-        // New version: project lead's defaults win for listed tasks; other user changes preserved
-        const merged = { ...stored, ...TASK_DEFAULTS };
-        localStorage.setItem('pappy_tracker', JSON.stringify(merged));
-        localStorage.setItem('pappy_tracker_version', STATUS_VERSION);
-        return merged;
-      }
-      // Same version: stored wins; defaults fill any gaps
-      return { ...TASK_DEFAULTS, ...stored };
-    } catch (e) {
-      return { ...TASK_DEFAULTS };
-    }
-  }
-  function saveTrackerState(state) {
-    localStorage.setItem('pappy_tracker', JSON.stringify(state));
-  }
-
-  function applyStatus(button, idx) {
-    const s = STATUSES[idx];
-    button.className = 'status-pill ' + s.class;
-    button.textContent = s.label;
-    button.dataset.statusIdx = idx;
-  }
-
-  function updateProgress() {
-    const pills = document.querySelectorAll('.status-pill');
-    let done = 0, total = pills.length;
-    pills.forEach(p => { if (Number(p.dataset.statusIdx) === 3) done++; });
-    const pct = total === 0 ? 0 : Math.round((done / total) * 100);
-    const fill = document.getElementById('progress-fill');
-    const text = document.getElementById('progress-text');
-    if (fill) fill.style.width = pct + '%';
-    if (text) text.textContent = pct + '%';
-    updateDashboard();
-  }
-
-  function updateDashboard() {
-    const pills = document.querySelectorAll('.status-pill');
-    let done = 0, inProgress = 0, blocked = 0, notStarted = 0;
-    const inProgressTasks = [];
-    const doneTasks = [];
-    pills.forEach(p => {
-      const idx = Number(p.dataset.statusIdx);
-      const row = p.closest('tr');
-      const name = row?.querySelector('.task-name')?.textContent.trim() || '';
-      const owner = row?.querySelector('.task-owner')?.textContent.trim() || '';
-      if (idx === 0) notStarted++;
-      else if (idx === 1) { inProgress++; inProgressTasks.push({ name, owner }); }
-      else if (idx === 2) blocked++;
-      else if (idx === 3) { done++; doneTasks.push({ name, owner }); }
-    });
-    const total = pills.length;
-    const pct = total === 0 ? 0 : Math.round((done / total) * 100);
-
-    const setText = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val; };
-    setText('stat-total', total);
-    setText('stat-done', done);
-    setText('stat-in-progress', inProgress);
-    setText('stat-blocked', blocked);
-    setText('stat-todo', notStarted);
-    setText('stat-pct', pct + '%');
-
-    const nowList = document.getElementById('now-list');
-    if (nowList) {
-      nowList.innerHTML = inProgressTasks.length === 0
-        ? '<li class="empty">Nothing in flight</li>'
-        : inProgressTasks.map(t => `<li><span class="task">${t.name}</span><span class="owner">${t.owner}</span></li>`).join('');
-    }
-    const doneList = document.getElementById('done-list');
-    if (doneList) {
-      doneList.innerHTML = doneTasks.length === 0
-        ? '<li class="empty">Nothing finished yet</li>'
-        : doneTasks.slice(-6).reverse().map(t => `<li><span class="task">${t.name}</span><span class="owner">${t.owner}</span></li>`).join('');
-    }
-
-    const dateEl = document.getElementById('last-updated-date');
-    if (dateEl) {
-      const d = new Date(STATUS_UPDATED + 'T12:00:00');
-      dateEl.textContent = d.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' });
-    }
-  }
-
-  function initTracker() {
-    const state = loadTrackerState();
-    document.querySelectorAll('.status-pill').forEach(btn => {
-      const id = btn.dataset.id;
-      const idx = Number.isInteger(state[id]) ? state[id] : 0;
-      applyStatus(btn, idx);
-      btn.addEventListener('click', () => {
-        const next = (Number(btn.dataset.statusIdx) + 1) % STATUSES.length;
-        applyStatus(btn, next);
-        const s = loadTrackerState();
-        s[id] = next;
-        saveTrackerState(s);
-        updateProgress();
-      });
-    });
-    updateProgress();
-  }
-
-  function resetTracker() {
-    if (!confirm('Reset all task statuses to the project lead\'s current defaults?')) return;
-    localStorage.removeItem('pappy_tracker');
-    localStorage.removeItem('pappy_tracker_version');
-    location.reload();
-  }
-
-  document.addEventListener('DOMContentLoaded', initTracker);
-</script>
+<!-- ============== DOC VIEWER MODAL ============== -->
+<div class="doc-modal" id="doc-modal">
+  <div class="doc-modal-inner">
+    <div class="doc-modal-cat">REQUIRED READING</div>
+    <h2>Document</h2>
+    <div class="doc-modal-body"></div>
+    <div class="doc-modal-actions"></div>
+  </div>
+</div>
 
 </body>
 </html>

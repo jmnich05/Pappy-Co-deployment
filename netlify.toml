@@ -1,3 +1,22 @@
 [build]
   publish = "."
-  command = "sed -i \"s|YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com|$GOOGLE_CLIENT_ID|g\" index.html"
+  command = """
+    set -e
+    f=config/runtime.js
+    sed -i "s|__SUPABASE_URL__|${SUPABASE_URL:-__SUPABASE_URL__}|g" "$f"
+    sed -i "s|__SUPABASE_ANON_KEY__|${SUPABASE_ANON_KEY:-__SUPABASE_ANON_KEY__}|g" "$f"
+    sed -i "s|__GOOGLE_CLIENT_ID__|${GOOGLE_CLIENT_ID:-__GOOGLE_CLIENT_ID__}|g" "$f"
+    if [ -n "${GOOGLE_CLIENT_ID:-}" ]; then
+      find brands -name content.json -exec sed -i "s|__GOOGLE_CLIENT_ID__|${GOOGLE_CLIENT_ID}|g" {} +
+    fi
+  """
+
+[build.environment]
+  SECRETS_SCAN_OMIT_KEYS = "SUPABASE_URL,SUPABASE_ANON_KEY,GOOGLE_CLIENT_ID"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"

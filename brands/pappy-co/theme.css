@@ -1,0 +1,31 @@
+/* ============================================================
+   BRAND THEME — Pappy & Co
+   Charcoal + mustard gold + cream. Van Winkle heritage palette.
+   ============================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap');
+
+:root {
+  --color-bg-dark:        #3a3a37;   /* charcoal-deep */
+  --color-surface-dark:   #595955;   /* charcoal (PMS 419 U) */
+  --color-cream:          #F6EBD8;   /* PMS 9184 U */
+  --color-cream-soft:     #faf3e6;
+
+  --color-accent:         #E6B10E;   /* mustard gold — PMS 7405 U — CORE / Phase 1 */
+  --color-accent-deep:    #c79a08;
+  --color-accent-2:       #DF7357;   /* terracotta — PMS 7579 U — OPTIONAL / Phase 2 */
+  --color-accent-2-soft:  #FACCAD;   /* peach — PMS 475 U */
+  --color-accent-3:       #78754A;   /* dark olive — PMS 581 U */
+
+  --color-text-dark:      #3a3a37;
+  --color-muted:          #CABE96;   /* sage — PMS 4535 U */
+  --color-on-dark:        #F6EBD8;
+
+  --color-status-todo:     #595955;
+  --color-status-progress: #E6B10E;
+  --color-status-blocked:  #DF7357;
+  --color-status-done:     #78754A;
+
+  --font-display:     'Anton', 'Impact', 'Arial Black', sans-serif;          /* ≈ Ferry Black */
+  --font-serif-head:  'Playfair Display', 'Times New Roman', Georgia, serif;  /* ≈ Romana Roman */
+  --font-body:        'EB Garamond', Georgia, serif;                          /* ≈ Lyon Text */
+}

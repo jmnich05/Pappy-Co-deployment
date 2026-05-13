@@ -1,0 +1,8 @@
+.DS_Store
+.vscode/
+.idea/
+node_modules/
+*.log
+
+# Local handoff bundle — must not ship in this repo
+_handoff/

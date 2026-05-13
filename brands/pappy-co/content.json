@@ -1,0 +1,316 @@
+{
+  "meta": {
+    "tabTitle": "Pappy & Co — AI Rollout Portal",
+    "description": "What's happening with AI at Pappy & Company over the next 60 days — in plain language. Internal team portal."
+  },
+  "brand": {
+    "name": "Pappy & Company",
+    "logo": "assets/logo.svg",
+    "headerLabel": "AI DEPLOYMENT HUB",
+    "headerSublabel": "& ACTION DASHBOARD · PAPPY & COMPANY"
+  },
+  "coBrand": {
+    "enabled": false
+  },
+  "auth": {
+    "allowedDomain": "pappyco.com",
+    "googleClientId": "__GOOGLE_CLIENT_ID__"
+  },
+  "gate": {
+    "heading": "Pappy & Co's AI Deployment Hub",
+    "subtitle": "Where the rollout lives — plain language throughout",
+    "copyHtml": "This is the team's home base for the AI rollout. Sign in with your <strong>@pappyco.com</strong> Google Workspace account to take a look.",
+    "errorText": "That account isn't authorized. Use your @pappyco.com Workspace login, or ask Jonathan.",
+    "footnote": "Internal team only. Pappy & Company AI Integration."
+  },
+  "nav": [
+    { "label": "Project update", "href": "#status" },
+    { "label": "Full plan", "href": "#tracker" },
+    { "label": "Sign-offs", "href": "#reading" },
+    { "label": "What we need", "href": "#from-you" },
+    { "label": "For you", "href": "#for-you" },
+    { "label": "Your data", "href": "#your-data" },
+    { "label": "Team", "href": "#team" },
+    { "label": "How it works", "href": "#under-the-hood" },
+    { "label": "Coming soon", "href": "#coming-soon" }
+  ],
+  "sidebar": [
+    { "icon": "#i-pulse", "label": "Project update", "href": "#status" },
+    { "icon": "#i-check", "label": "Tasks for you", "href": "#reading" },
+    { "icon": "#i-list", "label": "Project plan", "href": "#tracker" },
+    { "icon": "#i-book", "label": "AI education", "href": "#for-you" },
+    { "icon": "#i-map", "label": "Deployment roadmap", "href": "#plan" },
+    { "icon": "#i-shield", "label": "Your data", "href": "#your-data" },
+    { "icon": "#i-users", "label": "Team", "href": "#team" },
+    { "icon": "#i-tool", "label": "How it works", "href": "#under-the-hood" }
+  ],
+  "hero": {
+    "eyebrow": "THE DEPLOYMENT HUB",
+    "headlineHtml": "THE AI <span class=\"gold\">DEPLOYMENT HUB</span>",
+    "deck": "This is the hub for Pappy's AI deployment — the plan, where it stands today, what's been read, and the few things we still need from you. Bookmark it; you'll come back. No jargon — and if a word ever trips you up, it's in the glossary at the bottom.",
+    "meta": [
+      { "k": "STARTS", "v": "May 26, 2026" },
+      { "k": "COMPLETES", "v": "July 25, 2026" }
+    ]
+  },
+  "dashboard": { "title": "WHERE WE ARE RIGHT NOW." },
+  "forYou": {
+    "eyebrow": "FOR YOU",
+    "title": "WHAT THIS MEANS FOR YOU.",
+    "deck": "The short version: this is about taking the dull, repetitive parts off your plate so you can spend time on the parts that actually need a person. It is not about replacing you.",
+    "points": [
+      { "title": "It does the busywork — you make the calls", "body": "Drafting the same kind of email for the hundredth time, pulling Cin7 numbers into a report, tidying product copy, building a Klaviyo flow draft — that's the stuff AI is good at. Deciding what's right for a customer, what's on-brand, what to actually send — that's still you." },
+      { "title": "You set the level of oversight", "body": "How much the AI does on its own — and how much a person checks — is a dial the team controls, workflow by workflow: tighter on the sensitive stuff (a customer reply, a wholesale email), looser on the routine, and it changes as everyone gets comfortable. Nothing turns on without the team deciding it should." },
+      { "title": "You'll get time back", "body": "The honest goal: a few hours a week, each, that used to go to repetitive tasks. What you do with that — better customer care, getting ahead on the season, leaving on time — is up to you and your manager." },
+      { "title": "You don't need to be \"techy\"", "body": "If you can use email and a web browser, you can use what we're setting up. We'll show you exactly the handful of things that matter for your role. No coding, no jargon required." },
+      { "title": "It learns how WE do things", "body": "We're not bolting on a generic chatbot. We're feeding it Pappy's own SOPs, marketing playbooks, vendor history, brand standards and product specs — so its answers sound like us, with our Louisville / Van Winkle heritage, not like the internet." },
+      { "title": "It's yours to keep", "body": "Everything built — the instructions, the connections, the know-how — belongs to Pappy. If we ever switched tools, it comes with us. The investment is in your intelligence, not someone else's software." }
+    ],
+    "straight": {
+      "title": "And here's what we won't pretend.",
+      "bodyHtml": "AI gets things wrong sometimes — confidently. That's exactly why a person reviews its work. It won't fix a broken process; if something's a mess by hand, it'll be a faster mess with AI until we fix the process itself. And some of this will feel awkward for the first few weeks while everyone finds their footing — that's normal, and it's why there's a full year of support, not just a launch. If any of this ever feels off, say so — to your manager or to Jonathan. That feedback is the point."
+    }
+  },
+  "layerSection": {
+    "eyebrow": "WHAT WE'RE SETTING UP",
+    "title": "THE PIECES WE'RE PUTTING IN PLACE.",
+    "deck": "A handful of things you get, in plain terms. Each one has a job.",
+    "colHead": "What it does, in plain terms",
+    "techNoteHtml": "<p>If you want the industry names: the shared AI workspace is <strong>Claude Teams</strong> (from Anthropic, the makers of Claude). The \"place it can look things up\" is <strong>\"Pappy Brain\"</strong> — a knowledge base with RAG (retrieval-augmented generation). The data connections are <strong>MCP connectors</strong> (Model Context Protocol). The reusable instructions are <strong>skills</strong>. The image stack is <strong>Adobe Photoshop, Illustrator & Firefly</strong> plus <strong>Claude Design</strong>. The advanced agent layer (Claude Agent SDK / Claude's managed agents) is unpacked in <em>Under the hood</em> near the bottom.</p>"
+  },
+  "layers": [
+    { "badgeLabel": "INCLUDED", "badgeClass": "core-badge", "name": "One AI workspace for the team", "bodyHtml": "A single, secure place everyone logs into to work with AI — Louise, Carrie, Jonathan, Christy, Kelcie, Kaitlyn, Brittany, Willy — instead of people using random personal accounts. One login, one bill, one set of rules. Like the company's shared Google Drive, but for AI." },
+    { "badgeLabel": "INCLUDED", "badgeClass": "core-badge", "name": "A place it can look things up about us — \"Pappy Brain\"", "bodyHtml": "We load in Pappy's own SOPs, marketing playbooks, vendor history, brand standards, product specs and past campaign data. Then when you ask the AI a question, it answers from <em>our</em> stuff — not the open internet. One trusted source instead of digging through Drive folders." },
+    { "badgeLabel": "INCLUDED", "badgeClass": "core-badge", "name": "Up to 5 custom data connections to your live info", "bodyHtml": "Up to five connections — one per tool you run (Shopify retail + wholesale, Cin7 Core, Klaviyo, Attentive, Gorgias, GA4, Google Workspace…) — so the AI sees live, current info instead of a stale export. Read-only wherever possible." },
+    { "badgeLabel": "INCLUDED", "badgeClass": "core-badge", "name": "Up to 5 custom skills, trained on how Pappy works", "bodyHtml": "Up to five reusable \"skills\" — pre-written instructions for common tasks (wholesale bundles, Cerity reports, Gorgias macros, Klaviyo flows, product copy) — so the AI starts from how <em>we</em> do it, not a blank box. Plain text; yours to keep." },
+    { "badgeLabel": "INCLUDED", "badgeClass": "core-badge", "name": "5 dashboards for the metrics that drive the business", "bodyHtml": "Five dashboards built around the numbers that actually matter to Pappy — chosen with Louise — pulling live from your connected tools, so nobody's exporting a spreadsheet to see where retail, wholesale or stock stands." },
+    { "badgeLabel": "INCLUDED", "badgeClass": "core-badge", "name": "An image & design setup that stays on-brand", "bodyHtml": "Adobe Photoshop and Illustrator plus Adobe Firefly for product imaging, gift-box mockups and social creative — and Claude Design for early concepting. On-brand, commercially safe, no \"AI slop\" look. Three Adobe seats: Brittany, Kelcie, Kaitlyn. (More on this below in the images section.)" },
+    { "badgeLabel": "INCLUDED", "badgeClass": "core-badge", "name": "Your voice and brand kit, loaded in", "bodyHtml": "How Pappy sounds — Louisville, bourbon-cultural, Van Winkle heritage, premium-but-warm — written down as tone profiles per channel; plus the brand kit (colors, fonts, logos, usage rules) so the AI writes and designs on-brand. The brand kit is the source of truth, not the model's defaults." }
+  ],
+  "planSection": {
+    "eyebrow": "THE PLAN",
+    "title": "FOUR STEPS OVER ABOUT 60 DAYS.",
+    "deck": "Predictable, not a black box. Here's the shape of it — and there's a week-by-week breakdown below if you want it."
+  },
+  "phases": [
+    { "accent": "1", "label": "STEP 1 · WEEKS 1–2", "title": "FIND OUT HOW WE WORK", "days": "Weeks 1–2", "intro": "We learn how Pappy actually runs — by asking.", "bullets": [ "Short conversations with Louise, Carrie, Jonathan, Christy, Kelcie, Kaitlyn, Brittany and Willy — what you do, what's repetitive, where it'd help", "A look at the tools and data we'd connect to — Shopify, Cin7, Klaviyo, Attentive, Gorgias, GA4", "A safety check — who can sign in, what the AI can and can't see, where customer info and wholesale terms are off-limits", "A ranked list of \"here's where AI helps most, here's where it's not worth it,\" ready for Louise to look at" ] },
+    { "accent": "2", "label": "STEP 2 · WEEKS 3–4", "title": "TEACH IT OUR VOICE", "days": "Weeks 3–4", "intro": "We capture how Pappy sounds and write it down for the AI.", "bullets": [ "How we talk in retail email, in wholesale, in customer service, in internal ops — written as instructions", "Loading the brand standards, SOPs and playbooks into \"Pappy Brain\"", "Adobe Firefly trained against Pappy's visual identity", "A first draft of the reusable instructions (\"skills\") for common tasks — wholesale bundles, Cerity reports, Gorgias macros, Klaviyo flows, product copy", "Louise signs off on the plan before any building starts" ] },
+    { "accent": "3", "label": "STEP 3 · WEEKS 5–7", "title": "BUILD IT & SHOW YOU", "days": "Weeks 5–7", "intro": "We build the pieces, test them, and train the team.", "bullets": [ "The shared AI workspace goes live with the right setup for each role", "\"Pappy Brain\" is loaded and tested — SOPs, playbooks, vendor history, brand kit", "The connections to Shopify (retail + wholesale), Cin7, Klaviyo, Attentive, Gorgias, GA4 and Workspace are built and checked", "The Adobe Business Account is set up (Brittany, Kelcie, Kaitlyn) and Firefly workflows configured", "Quality checks running on the important tasks — is the Gorgias draft good? is the copy on-brand? are wholesale replies landing?", "Training, by role — you learn the handful of things that matter for <em>your</em> job" ] },
+    { "accent": "4", "label": "STEP 4 · MONTHS 3–12", "title": "KEEP IT HEALTHY", "days": "Months 3–12 (included)", "intro": "It doesn't get switched on and abandoned. It's tended for a year.", "bullets": [ "Ongoing quality checks — customer-service quality, copy on-brand-ness, wholesale reply rates", "Watching that the connected tools are still feeding fresh, correct data", "A check-in every quarter — what's working, what to adjust", "A plain report: hours saved, revenue attributed, deflection rate, cycle time", "12 months of support included — questions, fixes, tweaks" ] }
+  ],
+  "cadence": [
+    { "num": "WEEKS 1–2", "title": "FIND OUT", "desc": "Conversations with each person, a look at the data and tools, a safety check, and a ranked list of where AI helps most." },
+    { "num": "WEEKS 3–4", "title": "DESIGN", "desc": "Pappy's voice written down, the brand kit and SOPs loaded into \"Pappy Brain,\" Firefly trained on the visual identity, the first set of reusable instructions sketched, and a plan Louise has signed off." },
+    { "num": "WEEKS 5–7", "title": "BUILD & TRAIN", "desc": "The workspace goes live, tools get connected and checked, the Adobe seats and Firefly workflows are set up, quality checks turn on, and everyone gets role-specific training." },
+    { "num": "WEEK 8", "title": "GO LIVE", "desc": "Full rollout across Claude Teams. A short \"first 5 things to try\" guide for each role. The results report turns on. The 12-month support clock starts." }
+  ],
+  "tracker": {
+    "version": "2026-05-12-r1",
+    "lastUpdated": "2026-05-12",
+    "defaults": { "t02": 1, "t03": 1, "t05": 3, "t09": 3, "t10": 3, "t12": 3 },
+    "tasks": [
+      { "id": "t01", "week": "1–2", "name": "Talk to the team", "desc": "Louise, Carrie, Jonathan, Christy, Kelcie, Kaitlyn, Brittany, Willy — what your week looks like, by role", "owner": "JONATHAN" },
+      { "id": "t02", "week": "1–2", "name": "Look at the tools & data", "desc": "Shopify (retail + wholesale), Cin7, Klaviyo, Attentive, Gorgias, GA4, Google Workspace", "owner": "JONATHAN" },
+      { "id": "t03", "week": "1–2", "name": "Safety check", "desc": "Who can sign in, what the AI can and can't see, where customer info & wholesale terms are off-limits", "owner": "JONATHAN" },
+      { "id": "t04", "week": "1–2", "name": "Rank where AI helps most", "desc": "A short list, biggest payoff first, ready for Louise to look at", "owner": "JONATHAN" },
+      { "id": "t05", "week": "3–4", "name": "Sketch the setup", "desc": "How the workspace, \"Pappy Brain,\" the connectors and Firefly fit together", "owner": "JONATHAN" },
+      { "id": "t06", "week": "3–4", "name": "Write down our voice", "desc": "How Pappy sounds in retail email, wholesale, customer service and internal ops", "owner": "CHRISTY" },
+      { "id": "t07", "week": "3–4", "name": "Sketch the reusable instructions", "desc": "Wholesale bundles, Cerity reports, Gorgias macros, Klaviyo flows, product copy, cigar-sub playbook", "owner": "JONATHAN" },
+      { "id": "t08", "week": "3–4", "name": "Louise signs off on the plan", "desc": "Walk through it together; agree on workspace seats and Adobe licensing", "owner": "LOUISE" },
+      { "id": "t09", "week": "5–7", "name": "Connect Shopify, Cin7, Klaviyo & Gorgias", "desc": "Retail + wholesale Shopify, Cin7, Klaviyo, Gorgias — built and checked", "owner": "JONATHAN" },
+      { "id": "t10", "week": "5–7", "name": "Connect Attentive, GA4 & Workspace", "desc": "Built and checked — live data, read-only where possible", "owner": "JONATHAN" },
+      { "id": "t11", "week": "5–7", "name": "Author the reusable instructions", "desc": "Shipped as plain-text \"skills\" — portable from day one", "owner": "JONATHAN" },
+      { "id": "t12", "week": "5–7", "name": "Set up the Adobe Business Account", "desc": "3 seats — Brittany, Kelcie, Kaitlyn — Photoshop, Illustrator, Firefly Pro", "owner": "BRITTANY" },
+      { "id": "t13", "week": "5–7", "name": "Configure Firefly workflows", "desc": "Trained against Pappy's visual identity; Zapier bridges Drive ↔ Firefly ↔ Shopify", "owner": "BRITTANY" },
+      { "id": "t14", "week": "5–7", "name": "Turn on quality checks", "desc": "Customer-service response quality, copy on-brand-ness, wholesale reply rates", "owner": "JONATHAN" },
+      { "id": "t15", "week": "5–7", "name": "Train the team, by role", "desc": "Day-to-day operation for each role — Louise, Carrie, Christy, Kelcie, Kaitlyn, Brittany, Willy", "owner": "CHRISTY" },
+      { "id": "t16", "week": "8", "name": "Go live for everyone", "desc": "Claude Teams live across the operating team with single sign-on and one central bill", "owner": "JONATHAN" },
+      { "id": "t17", "week": "8", "name": "\"First 5 things to try\" guides", "desc": "A short, role-specific cheat sheet for each person", "owner": "CHRISTY" },
+      { "id": "t18", "week": "8", "name": "Turn on the results report", "desc": "Hours saved, revenue influenced, deflection rate, cycle time", "owner": "JONATHAN" },
+      { "id": "t19", "week": "8", "name": "Start the 12-month support clock", "desc": "Quarterly check-ins scheduled; data-freshness alerts armed", "owner": "JONATHAN" },
+      { "id": "t20", "week": "8", "name": "Set the cadence for what gets automated next", "desc": "Quarterly review of which workflows to automate further, and the level of oversight on each", "owner": "JONATHAN" }
+    ]
+  },
+  "fromYou": {
+    "eyebrow": "WHAT WE NEED FROM YOU",
+    "title": "A FEW THINGS — IT'S NOT MUCH.",
+    "deck": "Over the 60 days we'll ask you for these. They all live in this portal, so you'll always know what's still outstanding. Total time: roughly half an hour, spread out.",
+    "asks": [
+      { "when": "FIRST — THIS WEEK", "title": "Read a few short docs", "bodyHtml": "Three or four short, plain documents — the ground rules, how your data is handled, how to use the new workspace. Open each one and click \"I've read this.\" That's the whole ask. Scroll down to <strong>A few short docs to read</strong> below." },
+      { "when": "WEEKS 1–2", "title": "A quick chat about your work", "bodyHtml": "Jonathan will spend 20–30 minutes with you asking what your week looks like, what's repetitive, and where AI might help. No prep needed — just talk through your job. You can also fill in a short form here if you'd rather." },
+      { "when": "WEEKS 5–7", "title": "Confirm the tools you own are connected", "bodyHtml": "If you're the person who \"owns\" a tool — Shopify, Cin7, Klaviyo, Attentive, Gorgias — we'll ask you to confirm it's connected the right way and ready. You'll see a checklist for that here when the time comes." },
+      { "when": "WEEK 8 ONWARD", "title": "Try it, and tell us what's off", "bodyHtml": "Once you're trained, actually use it for the handful of things that fit your role — and when something's wrong, clunky or not landing, say so. There's a questions box for that. The feedback in those first weeks is how we make it actually good." }
+    ]
+  },
+  "readingSection": {
+    "eyebrow": "FIRST ASK · REQUIRED READING",
+    "title": "A FEW SHORT DOCS TO READ.",
+    "deck": "Short, plain, and worth your five minutes. Open each one, then mark it read — that's all we need, and it gives us one clear record that the team's been brought up to speed."
+  },
+  "requiredReading": [
+    {
+      "id": "pappy-rules",
+      "slug": "ground-rules",
+      "category": "governance",
+      "required": true,
+      "title": "The ground rules for using AI here",
+      "summary": "What's fine to do, what's not, and how oversight works — your team decides, workflow by workflow.",
+      "body_md": "## The short version\nWe're giving the team a shared AI workspace (it's called Claude Teams). Here's how to use it well.\n\n## You can\n- Draft emails, Gorgias replies, reports, product copy, briefs, wholesale outreach — and use them within whatever workflow your team has agreed for that kind of work\n- Ask it questions about how Pappy does things — it can look up our SOPs, brand standards, marketing playbooks and vendor history (\"Pappy Brain\")\n- Use it with the connected tools (Shopify, Cin7, Klaviyo, Attentive, Gorgias, GA4) to pull current info\n\n## Please don't\n- Paste sensitive stuff into it — full customer lists, payment details, anyone's personal records, confidential wholesale account terms\n- Use a personal ChatGPT or other AI account for Pappy work — everything goes through the shared workspace, signed in with your @pappyco.com account\n- Change how automated a workflow is on your own — that's a team decision, not a solo one\n\n## How much oversight?\n**Your team decides, workflow by workflow.** Some work gets a person reviewing everything; some runs more automated once everyone's confident; it changes over time. The Pappy brand kit and voice profiles are the source of truth for how things sound and look — not the model's defaults. When you're not sure where a workflow falls, ask Jonathan — and when in doubt, more oversight, not less.\n\n## Questions?\nAsk your manager, or Jonathan. There's a questions box in the portal too."
+    },
+    {
+      "id": "pappy-data",
+      "slug": "your-data",
+      "category": "security",
+      "required": true,
+      "title": "What happens to our data",
+      "summary": "Plain answers: where data goes, what stays out of the AI entirely, the Tier 1–4 sorting, and who can see your \"I've read this\" record.",
+      "body_md": "## The plain version\nPeople worry about this, fairly. Here's where things stand.\n\n## We sort information by how sensitive it is\n- **Tier 1 — never goes near the AI.** Full customer lists, payment data, employee records.\n- **Tier 2 — connected tools only, never pasted into chat.** Revenue figures, wholesale account terms, supplier pricing.\n- **Tier 3 — lives in \"Pappy Brain.\"** SOPs, marketing playbooks, campaign history, brand standards.\n- **Tier 4 — share-with-the-team.** Roadmaps, training guides, this portal.\n\n## How the connections work\nThe links to Shopify, Cin7, Klaviyo, Attentive, Gorgias and GA4 are scoped down to only what a task actually needs, and read-only wherever possible. A connector that returns more than a task needs is a bug — we report it, we don't work around it.\n\n## This portal\nThis page carries Tier 4 only. If Tier 3 data ever needed to live here, we'd add a stronger access gate first. Your \"I've read this\" record is Tier 4 — it shows your manager and Jonathan who's been brought up to speed, and once recorded it can't be quietly changed.\n\n## If you ever spot something that doesn't sit right\nSay so — to your manager or Jonathan. Take it seriously; we will too."
+    },
+    {
+      "id": "pappy-howto",
+      "slug": "how-to-use-it",
+      "category": "how-to",
+      "required": false,
+      "title": "How to actually use the workspace",
+      "summary": "Day-one orientation: your private space vs. the team space, where the shared instructions and brand kit live, and what to do when you're stuck.",
+      "body_md": "## Your space vs. the team's space\nThe AI workspace (Claude Teams) has two kinds of areas:\n- **Your own private space** — only you see it. Use it for drafts, half-formed ideas, scratch work, anything not ready to share.\n- **The shared team space** — this holds the approved reusable instructions, the brand kit and the project know-how everyone draws from. Changes here affect the whole team, so treat it like the shared drive: don't reorganize it on a whim.\n\nA simple rule: **if you wouldn't put it in the company Google Drive, keep it in your private space.**\n\n## The shared instructions (\"skills\")\nFor common tasks — wholesale bundles, Cerity reports, Gorgias macros, Klaviyo flows, product copy — there are pre-written instructions you can call up by name, so you don't start from a blank box every time. If one needs changing, tell whoever owns it (see Team & Ownership) rather than editing it yourself.\n\n## Cost\nThe workspace is paid for centrally. There's no per-person charge — use it for Pappy work as much as you like.\n\n## When you're stuck\nUse the questions box in this portal, or ask in the team channel. Answered questions get collected here so the next person doesn't have to ask twice."
+    }
+  ],
+  "yourData": {
+    "eyebrow": "YOUR DATA",
+    "title": "WHAT WE WILL — AND WON'T — DO WITH IT.",
+    "deck": "Being straight about this matters more than anything else on the page. Here it is, both sides.",
+    "will": [
+      "Connect the AI to your work tools (Shopify, Cin7, Klaviyo, Attentive, Gorgias, GA4, Workspace) — scoped to the minimum a task needs, read-only wherever we can",
+      "Load Pappy's own know-how — SOPs, playbooks, vendor history, brand standards, product specs — into \"Pappy Brain\" for the AI to answer from",
+      "Keep a record of who's read which onboarding doc, and when, so there's one clear picture of where the team's at",
+      "Keep this portal to the Tier-4 (share-with-the-team) kind of information only",
+      "Tell you, plainly, anytime that changes"
+    ],
+    "wont": [
+      "Put full customer lists, payment details, employee records or confidential wholesale terms anywhere near the AI or this portal",
+      "Turn on automation for a workflow without the team agreeing the level of oversight first",
+      "Use Pappy's data to train some outside company's AI model",
+      "Connect a tool with broader access than the work actually requires"
+    ],
+    "note": "If anything here ever stops being true, you'll hear it from us first — not discover it later. And if a connection or a setting ever looks off to you, flag it; \"reconnect it with more access to make it work\" is never the answer."
+  },
+  "resultsSection": {
+    "eyebrow": "HOW WE'LL KNOW IT'S WORKING",
+    "title": "WE'LL MEASURE IT, HONESTLY.",
+    "deck": "No inflated promises. Three simple things we'll track and report back to the team."
+  },
+  "resultsCards": [
+    { "num": "WHAT GOT MADE", "label": "OUTPUT", "detail": "How much useful work the AI helped produce — drafts, replies, reports, copy, creative — and whether it held up to a person's review." },
+    { "num": "TIME BACK", "label": "HOURS SAVED", "detail": "Roughly how many hours a week the team got back from repetitive tasks, by role. Honest estimates, not wishful ones." },
+    { "num": "WAS IT WORTH IT", "label": "RETURN", "detail": "What we spent (tools + time) against what it gave back — revenue influenced, deflection rate, cycle time. We'll show the math, good or bad." }
+  ],
+  "creativeSection": {
+    "eyebrow": "A NOTE ON IMAGES & DESIGN",
+    "title": "HOW WE'LL HANDLE IMAGES.",
+    "deck": "Marketing and product development need on-brand, fast-turnaround creative without the \"AI slop\" look. Three layers, each with a job."
+  },
+  "creativeStack": [
+    { "accent": "4", "title": "ADOBE BUSINESS", "tagline": "Three seats. Pro tools. The fundamentals.", "bodyHtml": "An Adobe Business Account with Photoshop, Illustrator and full Firefly Pro access for the creative team. Seats: Brittany, Kelcie, Kaitlyn.", "bullets": [ "Commercially safe outputs, full editing precision", "Integrates with the rest of the creative stack", "Photoshop + Illustrator stay the workhorses; Firefly is the AI layer for fast generation and edits" ] },
+    { "accent": "1", "title": "FIREFLY × ZAPIER", "tagline": "The bridge between our image library and our store.", "bodyHtml": "Firefly Pro connected via Zapier to pull, edit and push images across the stack — no manual download/upload cycle.", "bullets": [ "Pull source images from Google Drive or the Shopify product library", "Inside Firefly: toggle between ChatGPT Image 2 or a preferred image model", "Edit, prompt and regenerate in one workspace", "Push the refined image back to Drive and/or a Shopify product variant", "Brand-aware presets so output matches the Pappy palette out of the gate" ] },
+    { "accent": "3", "title": "CLAUDE DESIGN", "tagline": "The new layer — early concepting & product dev.", "bodyHtml": "Claude's Design feature gives us a concepting tool inside the same environment we already use for everything else. Good for early-stage product, packaging and marketing exploration before committing to Adobe production.", "bullets": [ "Rapid concepting for packaging & product dev (Brittany lead)", "Marketing layout exploration before Adobe production", "Brand-kit-aware via the Pappy Co brand kit instructions", "Stays inside the rules — no extra tool sprawl" ] },
+    { "accent": "2", "title": "WHY THIS COMBO", "tagline": "Answering \"ChatGPT makes images, Claude doesn't.\"", "bodyHtml": "The honest answer: native image generation isn't where Claude competes — and we don't need it to. Firefly does generative images better than ChatGPT for commercial work (rights-clear, brand-tunable) and plugs straight into the Adobe stack. Claude's job is reasoning, drafting and Design for concepting. Each tool does what it does best — no \"AI slop,\" no rights ambiguity, no workflow rework.", "bullets": [] }
+  ],
+  "teamSection": {
+    "eyebrow": "WHO OWNS WHAT",
+    "title": "WHO TO GO TO.",
+    "deck": "Each person below can answer for their part of the rollout — and can approve changes to how the AI behaves in that area. When in doubt, start with whoever's closest to your work."
+  },
+  "team": [
+    { "name": "LOUISE", "role": "Co-Owner — brand & final say", "items": [ "Approves brand & voice standards", "Signs off on the plan", "Final say on heritage-anchored work" ] },
+    { "name": "CARRIE", "role": "Co-Owner — brand & voice", "items": [ "Brand approval & voice standards", "Plan sign-off", "Strategic direction" ] },
+    { "name": "JONATHAN", "role": "The builder", "items": [ "Builds and connects everything", "The tool connections (MCP)", "Runs the quality checks", "Cross-team integration" ] },
+    { "name": "CHRISTY", "role": "VP of Marketing", "items": [ "Owns the brand kit & voice profiles", "Claude Design", "Klaviyo & Attentive", "Adobe & Firefly production", "Canva", "Runs the team training" ] },
+    { "name": "KELCIE", "role": "Director of Marketing", "items": [ "Adobe production", "Firefly imagery", "Canva workflows" ] },
+    { "name": "KAITLYN", "role": "Digital Marketing Specialist", "items": [ "Google, Meta, TikTok data & workflows", "GA4", "Claude Design", "Adobe Business Account admin", "Firefly workflow ownership", "Canva" ] },
+    { "name": "BRITTANY", "role": "Product / Ops", "items": [ "Adobe Business Account admin", "Firefly workflow ownership", "Creative partner", "Shopify & Cin7 connections", "Canva" ] },
+    { "name": "WILLY", "role": "Director of Wholesale", "items": [ "Wholesale workflow partner", "Sell-sheet & pipeline validation", "Apollo CRM", "LinkedIn" ] }
+  ],
+  "questions": {
+    "label": "GOT A QUESTION?",
+    "title": "There's no dumb question here.",
+    "bodyHtml": "If anything on this page didn't land, or you're nervous about something, or you just want to know more — ask. Talk to your manager, or message Jonathan directly. Soon there'll be a questions box right in this portal, and answered questions get posted here so everyone benefits. The worst outcome is someone quietly worrying about this for two months — don't be that person."
+  },
+  "underTheHood": {
+    "eyebrow": "UNDER THE HOOD",
+    "title": "The technical version — for whoever wants it",
+    "hint": "Click to expand. None of this is required reading — it's here for the curious, and for anyone who likes to know exactly what's being plugged in.",
+    "deck": "Same rollout, described the way an AI person would describe it. If you skipped everything above and came straight here, welcome — the rest of the page is the plain-English version of all this.",
+    "blocks": [
+      { "title": "Claude Teams — the model layer", "bodyHtml": "The \"shared AI workspace\" is <strong>Claude Teams</strong> from Anthropic — Claude (Sonnet/Opus) across the operating team, with SSO, a shared skills library and centralized billing. Anthropic-first because Claude is strong at the structured, voice-sensitive, multi-step work Pappy needs — but everything we build is portable (see below)." },
+      { "title": "Pappy Brain — knowledge layer + RAG", "bodyHtml": "The \"place it looks things up\" is a retrieval-augmented generation (RAG) layer indexed over SOPs, marketing playbooks, vendor history, brand standards, product specs and historical campaign data. Built on open formats." },
+      { "title": "MCP connectors — the data layer", "bodyHtml": "The \"connections to your tools\" are <strong>MCP servers</strong> (Model Context Protocol) for Shopify Plus (retail + wholesale), Cin7 Core, Klaviyo, Attentive, Gorgias, GA4 and Google Workspace. Live data, model-agnostic, least privilege and read-only wherever possible. Credentials in a secret store, never in a prompt or a repo." },
+      { "title": "Creative & imaging stack", "bodyHtml": "<strong>Adobe Photoshop + Illustrator + Firefly</strong> (3 seats), with Firefly bridged to Drive and Shopify via Zapier, plus <strong>Claude Design</strong> for concepting. Firefly is rights-clear and brand-tunable; Claude can't generate native images and doesn't need to." },
+      { "title": "Voice profiles + skills", "bodyHtml": "Pappy's voice as per-channel tone profiles (retail email, wholesale, customer service, internal ops), plus a skills library authored as <strong>markdown</strong> — portable plain text, not a proprietary format." },
+      { "title": "Evals — the quality layer", "bodyHtml": "An evaluation harness runs on the critical workflows — customer-service response quality, copy on-brand-ness, wholesale reply rates — so \"is it good?\" is something we measure, not something we guess." }
+    ]
+  },
+  "phaseTwo": {
+    "title": "A workforce of agents.",
+    "bannerHtml": "<strong>This is the maybe-later, advanced piece — not part of the 60 days, and not required for the rollout to be a success.</strong> The main goal is the \"included\" pieces above (the workspace, Pappy Brain, the connectors, the image stack, the voice). Agents only get layered on after that's working and clearly paying off, and only the ones the team actually wants. Teams can opt into the agents that fit them and skip the rest.",
+    "deck": "If Pappy wants to go further: specialized agents wired into the workflows, built on the Claude Agent SDK or Claude's managed agents (Skills, subagents, Cowork) — decision made at build time based on operational preference.",
+    "headStaffTitle": "Head-of-staff agent",
+    "trigger": "Suggested trigger: Phase 1 ROI clears the bar — e.g. 200+ hours/quarter saved across the team.",
+    "headStaffHtml": "A head-of-staff agent routes tasks across the workforce, manages context, and hands off between specialists — with agent-level logging and oversight (who did what, when, on which order, customer or flow).<br><br>ROI dashboard per agent function: hours saved, revenue influenced, error rate, escalations."
+  },
+  "agents": [
+    { "name": "WHOLESALE", "role": "Outreach drafts, account research, follow-ups, sell-sheet generation", "systems": "Shopify Wholesale, Cin7, Google Workspace, Klaviyo" },
+    { "name": "CX", "role": "Gorgias triage, draft replies in the Pappy voice, escalation routing", "systems": "Gorgias, Shopify" },
+    { "name": "RETENTION", "role": "Klaviyo + Attentive flow drafts, segment ideation, post-purchase journeys", "systems": "Klaviyo, Attentive, Shopify" },
+    { "name": "OPS", "role": "Cin7 stock health, PO drafting, warehouse coordination, Cerity reporting", "systems": "Cin7 Core, Shopify, Gmail" },
+    { "name": "CREATIVE", "role": "Brief generation, copy variants, Firefly imagery prompts, asset routing", "systems": "Adobe CC + Firefly, Google Drive, Shopify" }
+  ],
+  "portability": {
+    "eyebrow": "VENDOR-PORTABLE BY DESIGN",
+    "headlineHtml": "Anthropic-first.<br>Never Anthropic-locked.",
+    "bodyHtml": "Claude (Sonnet/Opus) is the best model for the structured, agentic work Pappy needs — voice-sensitive copy, multi-step ops, customer-service triage, wholesale relationship drafting. But every artifact we build is portable:",
+    "bullets": [ "Skills as markdown", "Prompts as plain text", "MCP for data — model-agnostic", "Agnostic auth — SSO, not vendor-bound identity", "RAG indices built on open formats" ],
+    "footnote": "If Pappy ever needs to move to Gemini or OpenAI, the intelligence layer comes with you. Your investment is in your intelligence — not someone else's API."
+  },
+  "stackSection": {
+    "eyebrow": "THE FOUNDATION",
+    "title": "Tech stack.",
+    "deck": "Every piece we build assumes this stack. No replacements — we wrap and extend the tools you already run."
+  },
+  "techStack": [ "SHOPIFY PLUS", "KLAVIYO", "ATTENTIVE", "CIN7 CORE", "GORGIAS", "GA4", "SHOPIFY FLOW", "LIQUID", "GOOGLE WORKSPACE", "CLAUDE TEAMS", "CLAUDE CODE", "COWORK", "MCP", "CLAUDE AGENT SDK", "ZAPIER", "ADOBE CC", "FIREFLY" ],
+  "glossarySection": {
+    "eyebrow": "PLAIN ENGLISH",
+    "title": "WHAT WE MEAN WHEN WE SAY…",
+    "deck": "If a word in here ever made you go \"huh?\", it's probably below. Nobody's expected to know these going in."
+  },
+  "glossary": [
+    { "term": "AI / large language model", "plainHtml": "Software that's very good at working with text — drafting, summarizing, answering questions, pulling things together. It's a strong drafter and a fast researcher; it is <em>not</em> a source of truth, which is why a person checks its work." },
+    { "term": "Claude", "plainHtml": "The specific AI we're using, made by a company called Anthropic. \"Claude Teams\" is the shared, secure version for a whole company." },
+    { "term": "Claude Design", "plainHtml": "A feature inside Claude for visual concepting — sketching layouts and packaging ideas — separate from the production work that happens in Photoshop, Illustrator and Firefly." },
+    { "term": "Prompt", "plainHtml": "What you type to the AI — your question or instruction. Better, more specific prompts get better answers, same as a clearer brief to a coworker." },
+    { "term": "Pappy Brain / RAG", "plainHtml": "\"RAG\" stands for \"retrieval-augmented generation.\" Plainly: \"Pappy Brain\" is a library of <em>our</em> documents — SOPs, playbooks, vendor history, brand standards — that the AI looks things up in before it answers, so it replies from how Pappy does things, not the open internet." },
+    { "term": "MCP / connector", "plainHtml": "A standard way to plug the AI into a tool you already use (Shopify, Cin7, Klaviyo, Gorgias) so it can see current information instead of a stale export. \"MCP\" is just the name of the standard." },
+    { "term": "Firefly", "plainHtml": "Adobe's AI image tool — generates and edits images that are commercially safe to use and can be tuned to Pappy's look. It's how we'll do AI imagery, not ChatGPT." },
+    { "term": "Agent", "plainHtml": "An AI set up to handle a particular job mostly on its own — like \"draft the wholesale follow-up emails\" — within rules a person set. That's the maybe-later, opt-in piece; it's not part of the 60 days." },
+    { "term": "Skill", "plainHtml": "A pre-written set of instructions for a common task — wholesale bundles, Cerity reports, Gorgias macros — saved so you can call it up by name instead of starting from scratch. Stored as plain text so it's easy to read, change and keep." },
+    { "term": "SSO (single sign-on)", "plainHtml": "Logging into the AI workspace with your existing @pappyco.com account, instead of yet another username and password." },
+    { "term": "Eval", "plainHtml": "A quality check — a repeatable test that scores how good the AI's output is on the tasks that matter (is the Gorgias reply helpful? is the copy on-brand?). So quality is measured, not assumed." },
+    { "term": "Tier 1–4", "plainHtml": "Our way of sorting information by how sensitive it is — from \"share with the team\" (Tier 4, this portal) up to \"never goes near the AI\" (Tier 1: full customer lists, payment data, personnel records)." }
+  ],
+  "comingSoon": {
+    "eyebrow": "COMING TO THE HUB",
+    "title": "MORE ONBOARDING TOOLS, SOON.",
+    "deck": "The document sign-offs above are live now. These land next — each one shows up right here when it's ready.",
+    "items": [
+      { "status": "UP NEXT", "title": "Brand intake forms", "bodyHtml": "A short guided form to capture <strong>how Pappy should sound</strong> — voice per channel (retail email, wholesale, CX, internal ops), do's and don'ts, examples you love and ones you don't. Your answers get saved so the AI uses them. It replaces the 90-minute \"interview Louise about brand voice\" call." },
+      { "status": "SOON", "title": "Data sign-offs", "bodyHtml": "When a connector goes live (Shopify, Cin7, Klaviyo, Attentive, Gorgias…), the person who owns that tool confirms here that it's connected and scoped right. One checklist, one source of truth — no more chasing \"is that hooked up yet?\" emails." },
+      { "status": "SOON", "title": "Team Q&A", "bodyHtml": "Ask a question right in the hub; Jonathan answers in the hub; the answer becomes the FAQ for the whole team. Every question answered is one fewer thing the next person has to ask." }
+    ]
+  },
+  "footer": {
+    "quote": "We make fine bourbon, at a profit if we can, at a loss if we must, but always fine bourbon.",
+    "attribution": "— Julian P. \"Pappy\" Van Winkle, Sr.",
+    "builtByHtml": "Pappy &amp; Company AI Integration Project",
+    "meta": "PAPPY & COMPANY · LOUISVILLE, KY · 2026 AI ROLLOUT"
+  }
+}
