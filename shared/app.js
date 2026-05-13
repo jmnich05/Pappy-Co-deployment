@@ -9,8 +9,10 @@
 (function () {
   'use strict';
 
-  var DEFAULT_TENANT = 'pappy-co';
-  var HOSTMAP = { 'ai.pappyco.com': 'pappy-co' };
+  var DEFAULT_TENANT = 'pappy-co';            // the sample-client demo brand
+  var HOSTMAP = {                              // hostname -> tenant slug (extend per deployment)
+    'ai.pappyco.com': 'pappy-co'
+  };
   var KNOWN_TENANTS = ['pappy-co'];
 
   /* ---------- tenant resolution (must match the inline <head> bootstrap) ---------- */
@@ -412,6 +414,21 @@
     spy();
   }
 
+  /* ---------- tenant switcher (demo) ---------- */
+  function initSwitcher() {
+    var sw = document.getElementById('tenant-switcher');
+    if (!sw) return;
+    if (!DEMO_MODE) return;
+    sw.classList.add('show');
+    var sel = sw.querySelector('select');
+    KNOWN_TENANTS.forEach(function (t) {
+      var o = document.createElement('option'); o.value = t; o.textContent = t; if (t === SLUG) o.selected = true; sel.appendChild(o);
+    });
+    sel.addEventListener('change', function () {
+      var u = new URL(location.href); u.searchParams.set('tenant', sel.value); u.searchParams.set('demo', '1'); location.href = u.toString();
+    });
+  }
+
   /* ---------- boot ---------- */
   function applyMeta(content) {
     var m = content.meta || {};
@@ -440,9 +457,11 @@
         initTracker(CONTENT);
         initReading(CONTENT);
         initRail();
+        initSwitcher();
+        if (window.AOP_INTAKE && window.AOP_INTAKE.init) window.AOP_INTAKE.init();
       })
       .catch(function (e) {
-        document.body.innerHTML = '<pre style="padding:40px;font-family:monospace;color:#c00">Failed to load brand "' + SLUG + '": ' + (e && e.message || e) + '\n\nCheck brands/' + SLUG + '/content.json</pre>';
+        document.body.innerHTML = '<pre style="padding:40px;font-family:monospace;color:#c00">Failed to load brand "' + SLUG + '": ' + (e && e.message || e) + '\n\nCheck app/brands/' + SLUG + '/content.json</pre>';
       });
   });
 })();

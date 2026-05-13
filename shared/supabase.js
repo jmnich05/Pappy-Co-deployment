@@ -3,7 +3,7 @@
    Exposes window.AOP_SUPABASE only when configured. app.js falls
    back to local-only behaviour when this object is absent.
 
-   Configure via config/runtime.js (netlify substitutes the
+   Configure via app/config/runtime.js (netlify substitutes the
    __SUPABASE_URL__ / __SUPABASE_ANON_KEY__ placeholders at build
    time) — or set window.AOP_CONFIG before this script runs.
    ============================================================ */
@@ -55,8 +55,107 @@
       var acks = {};
       (acksR.data || []).forEach(function (a) { acks[a.document_id] = a.acknowledged_at; });
       var memR = await sb.from('tenant_members').select('role').eq('user_id', uid).maybeSingle();
-      var isAdmin = !memR.error && memR.data && (memR.data.role === 'tenant_admin' || memR.data.role === 'super_admin');
+      var isAdmin = !memR.error && memR.data && (memR.data.role === 'tenant_admin' || memR.data.role === 'animo_admin');
       return { documents: docsR.data || [], acks: acks, isAdmin: !!isAdmin };
+    },
+
+    // ---------- Intake forms ----------
+    // We cache the user's tenant_id once per session since RLS won't infer it on insert.
+    _tenantId: null,
+    _getTenantId: async function () {
+      if (this._tenantId) return this._tenantId;
+      var sb = await client();
+      var sess = await sb.auth.getSession();
+      var user = sess && sess.data && sess.data.session && sess.data.session.user;
+      if (!user) throw new Error('not authenticated');
+      var r = await sb.from('tenant_members').select('tenant_id').eq('user_id', user.id).maybeSingle();
+      if (r.error || !r.data) throw new Error('No tenant membership for this account.');
+      this._tenantId = r.data.tenant_id;
+      return this._tenantId;
+    },
+
+    // Returns { responses, status, progress_pct, updated_at } or null if no draft yet.
+    intakeLoad: async function (formKind) {
+      var sb = await client();
+      var sess = await sb.auth.getSession();
+      var user = sess && sess.data && sess.data.session && sess.data.session.user;
+      if (!user) throw new Error('not authenticated');
+      var r = await sb.from('intake_responses').select('responses, status, progress_pct, updated_at, submitted_at').eq('user_id', user.id).eq('form_kind', formKind).maybeSingle();
+      if (r.error) throw r.error;
+      return r.data || null;
+    },
+
+    // Upserts the draft. responses = object; progressPct = 0–100.
+    intakeSave: async function (formKind, responses, progressPct) {
+      var sb = await client();
+      var sess = await sb.auth.getSession();
+      var user = sess && sess.data && sess.data.session && sess.data.session.user;
+      if (!user) throw new Error('not authenticated');
+      var tenantId = await this._getTenantId();
+      var r = await sb.from('intake_responses').upsert({
+        user_id: user.id, tenant_id: tenantId, form_kind: formKind,
+        responses: responses || {}, progress_pct: progressPct || 0, status: 'draft'
+      }, { onConflict: 'tenant_id,user_id,form_kind' });
+      if (r.error) throw r.error;
+      return true;
+    },
+
+    intakeSubmit: async function (formKind, responses, progressPct) {
+      var sb = await client();
+      var sess = await sb.auth.getSession();
+      var user = sess && sess.data && sess.data.session && sess.data.session.user;
+      if (!user) throw new Error('not authenticated');
+      var tenantId = await this._getTenantId();
+      var r = await sb.from('intake_responses').upsert({
+        user_id: user.id, tenant_id: tenantId, form_kind: formKind,
+        responses: responses || {}, progress_pct: 100, status: 'submitted',
+        submitted_at: new Date().toISOString()
+      }, { onConflict: 'tenant_id,user_id,form_kind' });
+      if (r.error) throw r.error;
+      return true;
+    },
+
+    // ---------- Role + admin matrix ----------
+    getMyRole: async function () {
+      var sb = await client();
+      var sess = await sb.auth.getSession();
+      if (!sess || !sess.data || !sess.data.session) return null;
+      var r = await sb.from('my_role').select('role').maybeSingle();
+      if (r.error) return null;
+      return r.data ? r.data.role : null;
+    },
+    loadAdminMatrix: async function () {
+      var sb = await client();
+      var sess = await sb.auth.getSession();
+      var user = sess && sess.data && sess.data.session && sess.data.session.user;
+      if (!user) throw new Error('not authenticated');
+      var mem = await sb.from('tenant_members').select('user_id, email, full_name, role').order('email', { ascending: true });
+      if (mem.error) throw mem.error;
+      var subs = await sb.from('intake_responses').select('user_id, form_kind, status, progress_pct, updated_at, submitted_at, responses');
+      if (subs.error) throw subs.error;
+      return { members: mem.data || [], submissions: subs.data || [] };
+    },
+
+    // ---------- Storage (logo / brand-asset uploads) ----------
+    // Returns the public URL of the uploaded asset, or throws.
+    uploadAsset: async function (file, formKind, fieldId) {
+      var sb = await client();
+      var sess = await sb.auth.getSession();
+      var user = sess && sess.data && sess.data.session && sess.data.session.user;
+      if (!user) throw new Error('not authenticated');
+      var tenantId = await this._getTenantId();
+      var safeName = (file.name || 'file').replace(/[^a-zA-Z0-9._-]/g, '_').slice(0, 80);
+      var ext = '';
+      var dot = safeName.lastIndexOf('.');
+      if (dot > 0) { ext = safeName.slice(dot); safeName = safeName.slice(0, dot); }
+      var stamp = Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 8);
+      var path = tenantId + '/' + (formKind || 'misc') + '/' + (fieldId || 'file') + '/' + safeName + '-' + stamp + ext;
+      var up = await sb.storage.from('tenant-assets').upload(path, file, {
+        upsert: false, contentType: file.type || 'application/octet-stream'
+      });
+      if (up.error) throw up.error;
+      var pub = sb.storage.from('tenant-assets').getPublicUrl(path);
+      return pub.data && pub.data.publicUrl;
     },
 
     acknowledge: async function (documentId) {

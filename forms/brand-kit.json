@@ -1,0 +1,68 @@
+{
+  "kind": "brand-kit",
+  "title": "Brand Kit",
+  "subtitle": "Colors, fonts, logos — the look",
+  "icon": "#i-book",
+  "intro": "We're going to load all of this into the AI so anything it writes or designs comes out looking like you. No need to be precise — best-guesses you can refine later are better than blanks. Auto-saves as you go.",
+  "estimatedTime": "15–20 min",
+  "savedAsLabel": "→ brand-kit.md",
+  "steps": [
+    {
+      "id": "identity",
+      "title": "The basics",
+      "intro": "Quick warm-up.",
+      "fields": [
+        { "id": "brand_name", "type": "text", "label": "Brand name", "placeholder": "How it appears on packaging / the site", "required": true },
+        { "id": "tagline", "type": "text", "label": "Tagline or positioning line", "help": "If you have one. Skip if not.", "placeholder": "e.g. \"Buy it once. Repair it forever.\"" },
+        { "id": "voice_one_liner", "type": "textarea", "label": "How would you describe how the brand sounds, in one or two sentences?", "rows": 2, "placeholder": "Plainspoken and durable, never precious. / Warm and small-batch, never corporate.", "help": "If a brand new copywriter joined tomorrow, what would you tell them about your voice?" }
+      ]
+    },
+    {
+      "id": "colors",
+      "title": "Color palette",
+      "intro": "List the colors you actually use — primary, accent, neutrals. Best-guess hex codes are fine; we'll refine.",
+      "fields": [
+        { "id": "colors", "type": "repeater", "label": "Brand colors", "addLabel": "Add a color", "minItems": 1, "itemFields": [
+          { "id": "name", "type": "text", "label": "Name", "placeholder": "Primary, Accent, Neutral, …", "required": true },
+          { "id": "hex", "type": "color", "label": "Hex", "required": true, "help": "Format: #RRGGBB" },
+          { "id": "usage", "type": "textarea", "label": "When to use it", "rows": 2, "placeholder": "Primary CTAs and headlines / soft backgrounds only / never on text" }
+        ]}
+      ]
+    },
+    {
+      "id": "typography",
+      "title": "Typography",
+      "intro": "What fonts do you use? Names are fine — we'll handle web-safe equivalents.",
+      "fields": [
+        { "id": "display_font", "type": "text", "label": "Display / headline font", "placeholder": "e.g. Anton, Impact, Ferry Black" },
+        { "id": "display_notes", "type": "textarea", "label": "Notes on the display font", "rows": 2, "placeholder": "All caps only. Wide letter-spacing. Never below 18px." },
+        { "id": "body_font", "type": "text", "label": "Body font", "placeholder": "e.g. EB Garamond, Inter, Source Sans" },
+        { "id": "body_notes", "type": "textarea", "label": "Notes on the body font", "rows": 2, "placeholder": "Workhorse for paragraphs. Never below 14px screen / 10pt print." },
+        { "id": "accent_font", "type": "text", "label": "(Optional) Accent / editorial font", "placeholder": "e.g. Playfair Display, Fraunces — leave blank if you only use two faces" },
+        { "id": "type_rules", "type": "textarea", "label": "Any typography rules to follow?", "rows": 3, "placeholder": "Three faces, no fourth. Italics for emphasis, never bold. Never set the wordmark in another font.", "help": "The \"don't do this\" stuff is as useful as the \"do this\" stuff." }
+      ]
+    },
+    {
+      "id": "logo",
+      "title": "Logo & visual references",
+      "intro": "Upload your logo files (PNG / SVG / PDF up to 20 MB), or paste a link if they live in Drive or Dropbox.",
+      "fields": [
+        { "id": "logo_primary_url", "type": "file", "accept": "image/*,application/pdf", "label": "Primary logo", "help": "The default lockup — what you'd put on a business card." },
+        { "id": "logo_mark_url", "type": "file", "accept": "image/*,application/pdf", "label": "(Optional) Just the mark — no wordmark" },
+        { "id": "logo_horizontal_url", "type": "file", "accept": "image/*,application/pdf", "label": "(Optional) Horizontal lockup" },
+        { "id": "logo_rules", "type": "textarea", "label": "Logo rules", "rows": 3, "placeholder": "Don't recolor, restretch, or rotate. Minimum size: 24px digital. Clear space: 25% of the mark's diameter." },
+        { "id": "visual_inspiration", "type": "textarea", "label": "Brands or visuals you admire / want to feel adjacent to", "rows": 3, "placeholder": "Patagonia for the rugged-with-heart thing. Aesop for the apothecary restraint. Avoid the Glossier-millennial-pink moment." }
+      ]
+    },
+    {
+      "id": "voice",
+      "title": "Voice — do's & don'ts",
+      "intro": "Lists are great here. We'll bake these straight into the AI's voice profile.",
+      "fields": [
+        { "id": "voice_dos", "type": "textarea", "label": "DO sound like this", "rows": 5, "placeholder": "One per line:\n- Plainspoken, never precious\n- Specific over generic — name the thing\n- Warm but not chatty" },
+        { "id": "voice_donts", "type": "textarea", "label": "DON'T sound like this", "rows": 5, "placeholder": "One per line:\n- \"Synergy,\" \"leverage,\" \"circle back\"\n- Emojis in customer email\n- Apologetic openers (\"sorry to bother you…\")" },
+        { "id": "voice_examples", "type": "textarea", "label": "(Optional) Examples — copy you love, copy you hate", "rows": 5, "placeholder": "Paste a paragraph or two you'd want the AI to learn from. Or a competitor's line you'd never want to write." }
+      ]
+    }
+  ]
+}

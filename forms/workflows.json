@@ -1,0 +1,64 @@
+{
+  "kind": "workflows",
+  "title": "Your Workflows",
+  "subtitle": "Tell us about your job — so the AI is shaped around you",
+  "icon": "#i-users",
+  "intro": "This one's personal — your role, your week, what's repetitive enough to hand off. Everyone on the team fills this in for their own job. (The owner sees a summary; nothing here is shared without that.) Auto-saves; come back anytime.",
+  "estimatedTime": "10–15 min",
+  "savedAsLabel": "Per-person workflow notes",
+  "steps": [
+    {
+      "id": "you",
+      "title": "About you",
+      "fields": [
+        { "id": "name", "type": "text", "label": "Your name", "required": true },
+        { "id": "role", "type": "text", "label": "Your role / title", "placeholder": "Customer care lead, Wholesale director, etc.", "required": true },
+        { "id": "team", "type": "text", "label": "Your team / department" },
+        { "id": "tenure", "type": "text", "label": "How long have you been doing this role?", "placeholder": "3 months, 5 years, whole career, etc." }
+      ]
+    },
+    {
+      "id": "week",
+      "title": "Your typical week",
+      "intro": "No need to be exhaustive — a representative picture.",
+      "fields": [
+        { "id": "monday", "type": "textarea", "label": "What's a Monday usually like for you?", "rows": 4, "placeholder": "Catching up on weekend tickets, the standup, prepping Tuesday's wholesale calls…" },
+        { "id": "rest_of_week", "type": "textarea", "label": "And the rest of the week?", "rows": 4, "placeholder": "Tuesdays-Wednesdays: calls and emails. Thursdays: reports. Fridays: catch-up + planning." },
+        { "id": "start_of_day", "type": "text", "label": "First app / tab / window you open in the morning?", "placeholder": "Gorgias / Shopify orders / inbox / Slack" }
+      ]
+    },
+    {
+      "id": "repetitive",
+      "title": "What's repetitive — would love off your plate",
+      "intro": "The stuff that's the same kind of work, over and over. AI is best here.",
+      "fields": [
+        { "id": "repetitive_tasks", "type": "textarea", "label": "3–5 things you do that are repetitive enough to be worth handing off (or partially handing off)", "rows": 7, "placeholder": "One per line:\n- Drafting the same kind of \"thanks for reaching out\" reply to wholesale leads\n- Pulling Monday's sales numbers into a slide\n- Rewriting product copy to match the new brand voice\n- Following up on 30-60-90 day post-purchase emails\n- Writing the weekly recap for the founders" }
+      ]
+    },
+    {
+      "id": "high_stakes",
+      "title": "What's high-stakes — the AI should NOT touch",
+      "intro": "Equally important. Where does judgment, taste, or relationship matter too much?",
+      "fields": [
+        { "id": "ai_no_touch", "type": "textarea", "label": "3–5 things you do that AI should not be involved in", "rows": 7, "placeholder": "One per line:\n- Anything to our biggest wholesale account (relationship-only)\n- Final sign-off on campaign creative\n- Pricing decisions\n- Refund decisions over $200\n- Hiring and feedback conversations" }
+      ]
+    },
+    {
+      "id": "tools",
+      "title": "Your tools",
+      "fields": [
+        { "id": "tools_used", "type": "textarea", "label": "Tools you use in a typical day", "rows": 4, "placeholder": "One per line, with rough time spent:\n- Gmail (2h)\n- Shopify (1h)\n- Klaviyo (1h on flow days)\n- Slack\n- Notion\n- Spreadsheets" },
+        { "id": "tools_wish", "type": "textarea", "label": "Anything you wish your tools did but they don't?", "rows": 3, "placeholder": "Wish Shopify could tell me which wholesale accounts are slipping. Wish I could ask the helpdesk \"how did we handle this last time?\" in plain English." }
+      ]
+    },
+    {
+      "id": "honest",
+      "title": "Be honest with us",
+      "intro": "Optional, but the more honest, the better the rollout.",
+      "fields": [
+        { "id": "concerns", "type": "textarea", "label": "What are you worried about with bringing AI into your work?", "rows": 4, "placeholder": "No wrong answers. \"I don't want to be the slow one on the team.\" \"I don't want it to write to customers in a voice that isn't mine.\" \"I'm worried about losing the part of my job I actually like.\"" },
+        { "id": "excited", "type": "textarea", "label": "What would make this a clear win for you?", "rows": 3, "placeholder": "An hour back every Friday for the part of the job I never get to. Faster turnaround on copy reviews. Not having to write the same kind of email 40 times a week." }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "kind": "skills",
+  "title": "Skills",
+  "subtitle": "Processes the AI should learn — both internal and external (legal, accounting, vendors)",
+  "icon": "#i-list",
+  "intro": "A \"skill\" is a process the AI can run when you ask. Drafting a wholesale follow-up. Building a monthly report. Writing a return-merchandise reply. List the ones worth teaching — internal first, then anything you outsource to legal / accounting / etc. that touches your work.",
+  "estimatedTime": "20–40 min (depends how many)",
+  "savedAsLabel": "→ skills.md",
+  "steps": [
+    {
+      "id": "internal",
+      "title": "Internal processes",
+      "intro": "Things your team does — repetitive enough to be worth teaching the AI.",
+      "fields": [
+        { "id": "internal_skills", "type": "repeater", "label": "Internal skills", "addLabel": "Add a skill", "itemFields": [
+          { "id": "name", "type": "text", "label": "Skill name", "placeholder": "\"Draft a wholesale follow-up\" / \"Build the weekly retail report\"", "required": true },
+          { "id": "trigger", "type": "textarea", "label": "When does this happen?", "rows": 2, "placeholder": "Every Monday morning / when a wholesale account hasn't ordered in 90 days / after every return is processed" },
+          { "id": "inputs", "type": "textarea", "label": "What info comes IN?", "rows": 2, "placeholder": "Account name, last order date, what they usually buy, their rep's name" },
+          { "id": "outputs", "type": "textarea", "label": "What gets produced?", "rows": 2, "placeholder": "A 4-paragraph email draft, ready for the rep to send. Or a CSV. Or a Slack message." },
+          { "id": "steps", "type": "textarea", "label": "How is it done today, step by step?", "rows": 5, "placeholder": "1. Pull the account's order history from Shopify\n2. Note their usual cadence\n3. Check if anything's been said in the last 30 days\n4. Draft something warm, not pushy — mention something specific to their store\n5. Sign with the rep's name", "help": "The steps are the skill. The AI follows them." },
+          { "id": "pain_today", "type": "textarea", "label": "What's painful about doing this today?", "rows": 2, "placeholder": "It's the kind of thing that gets pushed to Fridays and then doesn't happen." },
+          { "id": "ai_role", "type": "textarea", "label": "How should the AI help? How much oversight does it need?", "rows": 3, "placeholder": "Draft only — a person reviews and sends. / Run the data pull and surface the list, the rep writes the email. / Fully automate after the first month of human approval." }
+        ]}
+      ]
+    },
+    {
+      "id": "external",
+      "title": "External processes",
+      "intro": "Things you outsource to professionals — legal, accounting, vendors — where the AI should help your team interact with them, not replace them.",
+      "fields": [
+        { "id": "external_skills", "type": "repeater", "label": "External skills", "addLabel": "Add a skill", "itemFields": [
+          { "id": "name", "type": "text", "label": "Skill name", "placeholder": "\"Prep questions for the quarterly meeting with accounting\" / \"Draft a vendor scope-of-work\"", "required": true },
+          { "id": "external_party", "type": "text", "label": "Who's the outside party?", "placeholder": "Our accountant (Cerity Partners) / our lawyer / our packaging vendor" },
+          { "id": "trigger", "type": "textarea", "label": "When does this happen?", "rows": 2 },
+          { "id": "inputs", "type": "textarea", "label": "What info comes IN?", "rows": 2 },
+          { "id": "outputs", "type": "textarea", "label": "What gets produced?", "rows": 2 },
+          { "id": "steps", "type": "textarea", "label": "How is it done today, step by step?", "rows": 5 },
+          { "id": "ai_role", "type": "textarea", "label": "How should the AI help?", "rows": 3, "placeholder": "Draft the agenda / prep the brief. A person reviews before anything goes to the external party." }
+        ]}
+      ]
+    },
+    {
+      "id": "anti",
+      "title": "What we should NOT automate",
+      "intro": "The judgment-heavy stuff. Worth being explicit so it stays out of scope.",
+      "fields": [
+        { "id": "do_not_automate", "type": "textarea", "label": "Processes the AI should NOT touch", "rows": 6, "placeholder": "One per line:\n- Anything that goes to a customer who's complained twice\n- Pricing decisions on wholesale terms\n- Final approval on creative campaigns\n- Anything related to staff or hiring", "help": "Write these as workflows, not vague principles. \"Don't price wholesale accounts\" beats \"don't make business decisions.\"" }
+      ]
+    }
+  ]
+}

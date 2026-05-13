@@ -1,0 +1,46 @@
+{
+  "kind": "data-sources",
+  "title": "Data Sources",
+  "subtitle": "What tools should the AI be able to see?",
+  "icon": "#i-shield",
+  "intro": "List the tools you live in day-to-day, with one line on what each is for and who at the company owns it. We'll connect the most important ones as part of the included 5 connections; the rest we'll add over time.",
+  "estimatedTime": "10–15 min",
+  "savedAsLabel": "→ data-sources.md",
+  "steps": [
+    {
+      "id": "tools",
+      "title": "Tools you'd like the AI to see",
+      "intro": "One row per tool. Rank by priority — most important first.",
+      "fields": [
+        { "id": "tools", "type": "repeater", "label": "Tools", "addLabel": "Add a tool", "minItems": 1, "itemFields": [
+          { "id": "name", "type": "text", "label": "Tool", "placeholder": "Shopify, Klaviyo, the helpdesk, the project tracker…", "required": true },
+          { "id": "purpose", "type": "textarea", "label": "What it's for, in one line", "rows": 2, "placeholder": "Orders, inventory, customer history" },
+          { "id": "owner", "type": "text", "label": "Who at your company owns / manages it?", "placeholder": "Name or role" },
+          { "id": "priority", "type": "select", "label": "Priority", "options": [
+            { "value": "must", "label": "Must-have — connect first" },
+            { "value": "soon", "label": "Important — soon after" },
+            { "value": "later", "label": "Nice-to-have — later is fine" }
+          ]},
+          { "id": "access_notes", "type": "textarea", "label": "Access notes (scopes, restrictions, anything sensitive)", "rows": 2, "placeholder": "Read-only is fine. Don't expose the wholesale pricing table. We've got a service account ready." }
+        ]}
+      ]
+    },
+    {
+      "id": "off_limits",
+      "title": "Tools or data we should NOT connect",
+      "fields": [
+        { "id": "off_limits_tools", "type": "repeater", "label": "Off-limits", "addLabel": "Add an off-limits source", "itemFields": [
+          { "id": "name", "type": "text", "label": "Tool / data source", "placeholder": "Payroll system, the founder's personal email, …" },
+          { "id": "why", "type": "textarea", "label": "Why it's off-limits", "rows": 2 }
+        ]}
+      ]
+    },
+    {
+      "id": "notes",
+      "title": "Notes",
+      "fields": [
+        { "id": "general_notes", "type": "textarea", "label": "Anything else worth knowing about your data setup?", "rows": 5, "placeholder": "We migrated from Magento to Shopify last year so older order history is messy. The helpdesk is a self-hosted instance. We have a data warehouse but it's a mess — skip it for now." }
+      ]
+    }
+  ]
+}

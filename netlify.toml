@@ -1,17 +1,40 @@
+# Netlify build config for the Pappy & Co AI Deployment Hub.
+#
+# We publish the `app/` directory. At build time we substitute runtime
+# config placeholders in app/config/runtime.js from environment variables,
+# so no secrets live in the repo.
+#
+# Required environment variables (Site configuration → Environment variables):
+#   SUPABASE_URL        e.g. https://abcdefgh.supabase.co   (optional — omit to run local-only)
+#   SUPABASE_ANON_KEY   the project's anon/public key       (optional)
+#   GOOGLE_CLIENT_ID    OAuth Web client id ending in .apps.googleusercontent.com (optional)
+
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
+
 [build]
   publish = "."
   command = """
     set -e
-    f=config/runtime.js
+    f=app/config/runtime.js
     sed -i "s|__SUPABASE_URL__|${SUPABASE_URL:-__SUPABASE_URL__}|g" "$f"
     sed -i "s|__SUPABASE_ANON_KEY__|${SUPABASE_ANON_KEY:-__SUPABASE_ANON_KEY__}|g" "$f"
     sed -i "s|__GOOGLE_CLIENT_ID__|${GOOGLE_CLIENT_ID:-__GOOGLE_CLIENT_ID__}|g" "$f"
+    # also substitute the per-brand __GOOGLE_CLIENT_ID__ markers in brand content
     if [ -n "${GOOGLE_CLIENT_ID:-}" ]; then
-      find brands -name content.json -exec sed -i "s|__GOOGLE_CLIENT_ID__|${GOOGLE_CLIENT_ID}|g" {} +
+      grep -rl "__GOOGLE_CLIENT_ID__" app/brands || true
+      find app/brands -name content.json -exec sed -i "s|__GOOGLE_CLIENT_ID__|${GOOGLE_CLIENT_ID}|g" {} +
     fi
   """
 
 [build.environment]
+  # These values are injected into app/config/runtime.js at build time on
+  # purpose, so Netlify's secrets scanner would otherwise fail the build when
+  # it spots them in the deploy output. None are real secrets:
+  #   SUPABASE_URL       — public project URL
+  #   SUPABASE_ANON_KEY  — the anon/public key (RLS is the security boundary, not this key)
+  #   GOOGLE_CLIENT_ID   — public OAuth client id (the OAuth *secret* lives in Supabase, not here)
   SECRETS_SCAN_OMIT_KEYS = "SUPABASE_URL,SUPABASE_ANON_KEY,GOOGLE_CLIENT_ID"
 
 [[headers]]
@@ -20,3 +43,10 @@
     X-Frame-Options = "SAMEORIGIN"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
+
+# Old single-page Pappy deployment lived at /index.html with assets/ — keep
+# anyone hitting old paths pointed at the portal.
+[[redirects]]
+  from = "/assets/pappy-keys-logo.png"
+  to = "/brands/pappy-co/assets/logo.png"
+  status = 301

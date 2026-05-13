@@ -1,0 +1,52 @@
+{
+  "kind": "competitors",
+  "title": "Competitors & Positioning",
+  "subtitle": "Who you stack against — and what makes you different",
+  "icon": "#i-map",
+  "intro": "We're going to teach the AI who you compete with, where you win, where you lose, and how you'd rather frame the comparison. The AI will use this so drafts position you accurately — not generically. Auto-saves as you go.",
+  "estimatedTime": "15–20 min",
+  "savedAsLabel": "→ competitors.md",
+  "steps": [
+    {
+      "id": "landscape",
+      "title": "The landscape",
+      "intro": "A quick honest read of where you sit.",
+      "fields": [
+        { "id": "category_name", "type": "text", "label": "What category would a customer say you're in?", "placeholder": "\"Premium bourbon gift retailer.\" \"Outdoor gear brand for serious hikers.\" \"AI consultancy for mid-market CPG.\" Their words." },
+        { "id": "category_alternative", "type": "textarea", "label": "What do you do instead of the obvious competitor move?", "rows": 3, "placeholder": "What's the lazy version of your category, and how do you refuse to do it? \"Everyone else discounts to move volume — we don't.\" \"Most consultants sell hours — we ship outcomes.\"" }
+      ]
+    },
+    {
+      "id": "competitors",
+      "title": "Direct competitors",
+      "intro": "Two to five is plenty. The named, real ones — not a vague category.",
+      "fields": [
+        { "id": "competitors", "type": "repeater", "label": "Competitors", "addLabel": "Add a competitor", "minItems": 1, "itemFields": [
+          { "id": "name", "type": "text", "label": "Name", "placeholder": "ACME Bourbon Co.", "required": true },
+          { "id": "url", "type": "url", "label": "Website (optional)", "placeholder": "https://" },
+          { "id": "where_they_win", "type": "textarea", "label": "Where they genuinely win (be honest)", "rows": 2, "placeholder": "Bigger distribution. Lower price. Faster shipping. Better app. Don't downplay — the AI mirrors confidence, not denial." },
+          { "id": "where_we_win", "type": "textarea", "label": "Where you win against them", "rows": 2, "placeholder": "The specific reason a customer picks you over them. Not \"better quality\" — concrete. \"Curated by an actual sommelier.\" \"Free returns no questions.\"" },
+          { "id": "how_we_differ", "type": "textarea", "label": "Real positioning difference (not feature list)", "rows": 2, "placeholder": "They're \"fast and cheap,\" you're \"slow and considered.\" They're \"for everyone,\" you're \"for the gift-giver who cares.\" Name the philosophy gap." }
+        ]}
+      ]
+    },
+    {
+      "id": "framing",
+      "title": "How you want the comparison framed",
+      "intro": "When the AI writes anything competitive, this is the lens.",
+      "fields": [
+        { "id": "preferred_frame", "type": "textarea", "label": "How would you rather customers compare you?", "rows": 4, "placeholder": "\"Don't compare us on price — compare us on what you get when it shows up.\" \"We'd rather be the second bottle they try than the first.\" Set the terms of the comparison." },
+        { "id": "avoid_frame", "type": "textarea", "label": "Comparisons you DON'T want the AI to make", "rows": 3, "placeholder": "\"Don't position us as 'budget.'\" \"Never call us a 'Shopify store' — we're a brand that uses Shopify.\" \"Never compare directly to [competitor]; we'd rather be in our own conversation.\"" },
+        { "id": "switching_story", "type": "textarea", "label": "When customers switch TO you, what was the trigger?", "rows": 3, "placeholder": "What broke down with the other option? \"They got burned by a bad gift one too many times.\" \"They realized the cheap one didn't last.\" Real switching moments." }
+      ]
+    },
+    {
+      "id": "non_competitors",
+      "title": "Adjacent — not actually competitors",
+      "intro": "Things you get mistaken for. Helps the AI not lump you in.",
+      "fields": [
+        { "id": "lookalikes", "type": "textarea", "label": "Companies you're often confused with — but aren't really competing against", "rows": 4, "placeholder": "\"People think we compete with Total Wine — we don't, that's volume retail.\" \"We get lumped in with marketing agencies, but we're not one.\" Name the lump-in problem." }
+      ]
+    }
+  ]
+}

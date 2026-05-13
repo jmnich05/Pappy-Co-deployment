@@ -1,0 +1,35 @@
+{
+  "kind": "customer-personas",
+  "title": "Customer Personas",
+  "subtitle": "Who you actually serve — the real people behind \"your customer\"",
+  "icon": "#i-users",
+  "intro": "We're going to teach the AI about your actual customers — concrete enough that drafts come out feeling like they're for someone specific, not \"all customers.\" Most companies have two or three personas worth naming. Auto-saves as you go.",
+  "estimatedTime": "15–25 min",
+  "savedAsLabel": "→ customer-personas.md",
+  "steps": [
+    {
+      "id": "primary",
+      "title": "Your personas",
+      "intro": "One section per real persona. The AI will use these when drafting anything customer-facing.",
+      "fields": [
+        { "id": "personas", "type": "repeater", "label": "Personas", "addLabel": "Add a persona", "minItems": 1, "itemFields": [
+          { "id": "name", "type": "text", "label": "Persona name", "placeholder": "\"Weekend hiker Mary,\" \"Wholesale buyer Brent,\" \"First-time bourbon gifter\"", "required": true },
+          { "id": "snapshot", "type": "textarea", "label": "Quick snapshot", "rows": 3, "placeholder": "Who they are in one paragraph — age range, life stage, what they do for a living if it's relevant. Plain, not demographic spreadsheet stuff." },
+          { "id": "what_they_want", "type": "textarea", "label": "What they actually want from you", "rows": 3, "placeholder": "Not features — outcomes. \"Confidence the gift will land right.\" \"Gear that won't need replacing.\" \"Something they can give and not feel cheap.\"" },
+          { "id": "what_blocks_them", "type": "textarea", "label": "What gets in their way (today, without you)", "rows": 3, "placeholder": "What's hard about solving this on their own? Why is the current state insufficient?" },
+          { "id": "where_they_are", "type": "textarea", "label": "Where you reach them", "rows": 2, "placeholder": "Channels, communities, search terms, referral patterns. \"Instagram more than email.\" \"Word-of-mouth from existing customers.\"" },
+          { "id": "what_they_call_it", "type": "textarea", "label": "How THEY describe what they want", "rows": 2, "placeholder": "Their words, not yours. \"A really nice bottle to give my dad\" not \"premium gifting SKU.\" The AI will mirror this voice." }
+        ]}
+      ]
+    },
+    {
+      "id": "anti",
+      "title": "Who you're NOT for",
+      "intro": "Just as useful — sometimes more.",
+      "fields": [
+        { "id": "anti_personas", "type": "textarea", "label": "Who is NOT the right customer for you?", "rows": 5, "placeholder": "Bargain shoppers chasing a coupon. People who want fast fashion. The customer who'd return it after one use. Be specific — the AI uses this to avoid drafting for them." },
+        { "id": "lookalike_traps", "type": "textarea", "label": "Lookalike traps — customers you sometimes get but probably shouldn't", "rows": 4, "placeholder": "We sometimes get gifters who don't read the description and are disappointed. We sometimes get wholesale leads from people way outside our region. Where does your customer base accidentally grow in the wrong direction?" }
+      ]
+    }
+  ]
+}

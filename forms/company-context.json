@@ -1,0 +1,61 @@
+{
+  "kind": "company-context",
+  "title": "Company Context",
+  "subtitle": "What you do, who you serve, what's special",
+  "icon": "#i-book",
+  "intro": "We're building the AI's mental model of the company. Pretend you're explaining it to a smart new hire who's never heard of you. Auto-saves; come back anytime.",
+  "estimatedTime": "20–30 min",
+  "savedAsLabel": "→ company-context.md",
+  "steps": [
+    {
+      "id": "pitch",
+      "title": "The 30-second pitch",
+      "intro": "If someone asked at a wedding, what would you say?",
+      "fields": [
+        { "id": "what_we_do", "type": "textarea", "label": "What does the company do?", "rows": 4, "placeholder": "Plain language. \"We make small-batch X for Y kind of customer\" is fine. The AI will get cleverer from here.", "required": true },
+        { "id": "who_we_serve", "type": "textarea", "label": "Who do you serve?", "rows": 3, "placeholder": "The actual customer. Be specific — \"women 25–45 who hike\" beats \"outdoor enthusiasts.\" If you serve multiple segments, list them and which is biggest." },
+        { "id": "mission", "type": "textarea", "label": "Your \"why\" — what would you say at the rotary club?", "rows": 3, "placeholder": "One or two sentences. Why does this company exist? What gets people up in the morning around here?" }
+      ]
+    },
+    {
+      "id": "shape",
+      "title": "The shape of the business",
+      "intro": "How the company actually makes money and where its energy goes.",
+      "fields": [
+        { "id": "founded", "type": "text", "label": "Founded / how long around?", "placeholder": "2019, fourth-generation family business, etc." },
+        { "id": "size", "type": "text", "label": "How big?", "placeholder": "12 employees, $4M revenue, 1 location in Louisville, etc. As rough or precise as you like." },
+        { "id": "revenue_streams", "type": "textarea", "label": "What pays the bills — your revenue streams", "rows": 4, "placeholder": "List them, biggest to smallest. e.g.:\n- DTC retail (60%) — Shopify\n- Wholesale (30%) — 80 accounts\n- Custom corporate gifts (10%) — referrals only" },
+        { "id": "growth_focus", "type": "textarea", "label": "What's growing — where you're putting energy", "rows": 3, "placeholder": "Subscription is the bet for the next two years / Wholesale into the Midwest / DTC retention is the focus this fall" }
+      ]
+    },
+    {
+      "id": "differentiation",
+      "title": "What's special — and what you're NOT",
+      "intro": "Both sides are useful. The \"NOT\" half is what keeps the AI from drifting generic.",
+      "fields": [
+        { "id": "what_is_special", "type": "textarea", "label": "What's actually different about how you do it?", "rows": 4, "placeholder": "The thing competitors can't easily copy. Heritage / ingredients / process / philosophy / who's behind it / where it's made. Concrete beats abstract." },
+        { "id": "what_we_are_not", "type": "textarea", "label": "What you are NOT", "rows": 4, "placeholder": "What kinds of things do you say no to? \"Not a fast-fashion brand.\" \"Not a tech company.\" \"Not for the bargain shopper.\" The AI will respect these." },
+        { "id": "competitors", "type": "textarea", "label": "Who else does what you do, and how are you different?", "rows": 4, "placeholder": "Name 2–4 competitors and one line on how you differ. e.g.:\n- Brand X — cheaper, mass market\n- Brand Y — similar quality, no heritage story\n- Brand Z — different category but we lose customers to them sometimes" }
+      ]
+    },
+    {
+      "id": "history",
+      "title": "Recent wins & cautionary tales",
+      "intro": "Real anecdotes the AI can reference when drafting. The more specific, the more useful.",
+      "fields": [
+        { "id": "wins", "type": "textarea", "label": "A few recent wins / proud moments / case studies", "rows": 5, "placeholder": "What's worked in the last year or two? A campaign that landed, a customer story, a milestone. A few sentences each, not a polished press release." },
+        { "id": "lessons", "type": "textarea", "label": "Things that have gone sideways — and what you learned", "rows": 5, "placeholder": "Optional but gold. A campaign that flopped, a product that didn't take, a customer-service moment you handled badly. Helps the AI not repeat the pattern." }
+      ]
+    },
+    {
+      "id": "boundaries",
+      "title": "Guardrails",
+      "intro": "Topics, claims and tones the AI should stay away from.",
+      "fields": [
+        { "id": "off_limits", "type": "textarea", "label": "Topics the AI should NOT talk about for us", "rows": 4, "placeholder": "Politics. Specific health claims we're not allowed to make. Anything about the founder's personal life. Competitor names in customer-facing copy." },
+        { "id": "sensitive", "type": "textarea", "label": "Sensitive areas — handle with extra care", "rows": 4, "placeholder": "Returns policy (don't promise what isn't true). Wholesale pricing (varies by account). Anything about the supply chain (long story)." },
+        { "id": "house_rules", "type": "textarea", "label": "Any other house rules?", "rows": 3, "placeholder": "We always credit suppliers by name. We never use \"sustainable\" without a footnote. We answer customer email within 24 hours." }
+      ]
+    }
+  ]
+}
