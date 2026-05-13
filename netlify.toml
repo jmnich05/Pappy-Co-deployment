@@ -1,13 +1,14 @@
 # Netlify build config for the Pappy & Co AI Deployment Hub.
 #
-# We publish the `app/` directory. At build time we substitute runtime
-# config placeholders in app/config/runtime.js from environment variables,
-# so no secrets live in the repo.
+# We publish the repo root. At build time we substitute runtime config
+# placeholders in config/runtime.js from environment variables, so no
+# secrets live in the repo.
 #
 # Required environment variables (Site configuration → Environment variables):
 #   SUPABASE_URL        e.g. https://abcdefgh.supabase.co   (optional — omit to run local-only)
 #   SUPABASE_ANON_KEY   the project's anon/public key       (optional)
 #   GOOGLE_CLIENT_ID    OAuth Web client id ending in .apps.googleusercontent.com (optional)
+#   ANTHROPIC_API_KEY   for the AI-assist Netlify Function (functions scope only)
 
 [functions]
   directory = "netlify/functions"
@@ -17,14 +18,14 @@
   publish = "."
   command = """
     set -e
-    f=app/config/runtime.js
+    f=config/runtime.js
     sed -i "s|__SUPABASE_URL__|${SUPABASE_URL:-__SUPABASE_URL__}|g" "$f"
     sed -i "s|__SUPABASE_ANON_KEY__|${SUPABASE_ANON_KEY:-__SUPABASE_ANON_KEY__}|g" "$f"
     sed -i "s|__GOOGLE_CLIENT_ID__|${GOOGLE_CLIENT_ID:-__GOOGLE_CLIENT_ID__}|g" "$f"
     # also substitute the per-brand __GOOGLE_CLIENT_ID__ markers in brand content
     if [ -n "${GOOGLE_CLIENT_ID:-}" ]; then
-      grep -rl "__GOOGLE_CLIENT_ID__" app/brands || true
-      find app/brands -name content.json -exec sed -i "s|__GOOGLE_CLIENT_ID__|${GOOGLE_CLIENT_ID}|g" {} +
+      grep -rl "__GOOGLE_CLIENT_ID__" brands || true
+      find brands -name content.json -exec sed -i "s|__GOOGLE_CLIENT_ID__|${GOOGLE_CLIENT_ID}|g" {} +
     fi
   """
 
