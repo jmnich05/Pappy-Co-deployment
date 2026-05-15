@@ -870,6 +870,36 @@ details.disclosure.big .disclosure-body { padding: 8px 28px 32px; }
 .intake-card:hover { transform: translateY(-2px); box-shadow: 0 8px 22px rgba(0,0,0,0.18); }
 .intake-card.status-submitted { border-top-color: var(--color-status-done); }
 .intake-card.has-progress { border-top-color: var(--color-status-progress); }
+/* Per-user filter notice + toggle */
+.intake-filter-notice {
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 12px;
+  background: rgba(230, 177, 14, 0.08);
+  border-left: 4px solid var(--color-accent);
+  padding: 14px 18px;
+  margin-bottom: 18px;
+  border-radius: 2px;
+}
+.intake-filter-notice .intake-filter-text {
+  font-family: var(--font-serif-head); font-style: italic;
+  color: var(--color-on-dark); font-size: 15px;
+}
+.intake-filter-notice .intake-filter-toggle {
+  background: transparent;
+  border: 1px solid var(--color-accent);
+  color: var(--color-accent);
+  font-family: var(--font-display);
+  font-size: 11px; letter-spacing: 0.18em;
+  padding: 6px 12px; border-radius: 2px; cursor: pointer;
+  white-space: nowrap;
+}
+.intake-filter-notice .intake-filter-toggle:hover {
+  background: var(--color-accent); color: var(--color-bg-dark);
+}
+/* Forms not assigned to the signed-in user (only visible when "Show all" is on) */
+.intake-card.not-mine { opacity: 0.5; }
+.intake-card.not-mine:hover { opacity: 0.85; }
+
 .intake-card .intake-card-owner {
   display: inline-block;
   font-family: var(--font-display); font-size: 10px; letter-spacing: 0.2em;

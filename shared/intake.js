@@ -36,6 +36,41 @@
   var ROLE      = null; // 'member' | 'tenant_admin' | 'animo_admin' | null
   function isAdmin() { return ROLE === 'tenant_admin' || ROLE === 'animo_admin'; }
 
+  /* ---------- per-user filtering ---------- */
+  // Toggle (saved in sessionStorage): show only forms assigned to me, vs all forms
+  function showAllPref() {
+    try { return sessionStorage.getItem('aop_intake_showall_' + SLUG) === '1'; } catch (e) { return false; }
+  }
+  function setShowAll(v) {
+    try { sessionStorage.setItem('aop_intake_showall_' + SLUG, v ? '1' : '0'); } catch (e) {}
+  }
+  // Read signed-in user's "person key" from the auth cache (matches app.js's aop_user_<slug>)
+  function currentPersonKey() {
+    var raw = '';
+    try {
+      var cached = sessionStorage.getItem('aop_user_' + SLUG);
+      if (cached) {
+        var u = JSON.parse(cached);
+        if (u && typeof u === 'object' && u.email) raw = u.email;
+      }
+    } catch (e) {}
+    if (!raw) return null;
+    var local = String(raw).split('@')[0].toLowerCase().replace(/[._\-+]/g, '');
+    var aliases = { jon: 'jonathan', willie: 'willy' };
+    return aliases[local] || local;
+  }
+  function formAssignedToMe(f) {
+    var person = currentPersonKey();
+    if (!person) return true; // demo mode / not signed in: show everything
+    var ass = f.assignees || ['*'];
+    return ass.indexOf('*') !== -1 || ass.indexOf(person) !== -1;
+  }
+  function visibleForms() {
+    if (showAllPref()) return FORMS.slice();
+    var filtered = FORMS.filter(formAssignedToMe);
+    return filtered.length ? filtered : FORMS.slice(); // fallback: never hide everything
+  }
+
   function localKey(kind) { return 'aop_intake_' + SLUG + '_' + kind; }
 
   /* ---------- persistence (Supabase if configured, else local) ---------- */
@@ -275,18 +310,41 @@
   var root = null;
 
   function renderCards() {
+    var wrap = el('div', { class: 'intake-wrap' });
+    var person = currentPersonKey();
+    var shownForms = visibleForms();
+    var filteredOut = FORMS.length - shownForms.length;
+
+    // Filter notice / toggle (only when signed in and there's a filter active)
+    if (person && (filteredOut > 0 || showAllPref())) {
+      var notice = el('div', { class: 'intake-filter-notice' }, [
+        el('span', { class: 'intake-filter-text' }, [
+          showAllPref()
+            ? 'Showing all ' + FORMS.length + ' forms.'
+            : 'Showing ' + shownForms.length + ' of ' + FORMS.length + ' forms — the ones assigned to you.'
+        ]),
+        el('button', {
+          class: 'intake-filter-toggle', type: 'button',
+          on: { click: function () { setShowAll(!showAllPref()); rerender(); } }
+        }, [showAllPref() ? 'Show only mine →' : 'Show all forms →'])
+      ]);
+      wrap.appendChild(notice);
+    }
+
     var grid = el('div', { class: 'intake-grid' });
-    var statusPromises = FORMS.map(function (f) { return loadState(f.kind).then(function (s) { return { kind: f.kind, state: s }; }); });
+    var statusPromises = shownForms.map(function (f) { return loadState(f.kind).then(function (s) { return { kind: f.kind, state: s }; }); });
     Promise.all(statusPromises).then(function (results) {
       results.forEach(function (r) {
         var def = formDefs[r.kind];  // may be undefined until loaded
         var formMeta = FORMS.filter(function (f) { return f.kind === r.kind; })[0] || {};
         var ownerLabel = formMeta.ownerLabel || '';
+        var mine = formAssignedToMe(formMeta);
         var pct = def ? calcProgress(def, r.state.responses) : (r.state.progress || 0);
         var status = r.state.status;
         var statusLabel = status === 'submitted' ? '✓ SUBMITTED' : (pct > 0 ? 'IN PROGRESS · ' + pct + '%' : 'NOT STARTED');
         var canExport = pct > 0;
-        var card = el('div', { class: 'intake-card status-' + status + (pct > 0 ? ' has-progress' : ''), on: { click: function (e) { if (e.target.closest('.intake-card-export')) return; openForm(r.kind); } } }, [
+        var classes = 'intake-card status-' + status + (pct > 0 ? ' has-progress' : '') + (person && !mine ? ' not-mine' : '');
+        var card = el('div', { class: classes, on: { click: function (e) { if (e.target.closest('.intake-card-export')) return; openForm(r.kind); } } }, [
           ownerLabel ? el('div', { class: 'intake-card-owner' }, [ownerLabel]) : null,
           el('div', { class: 'intake-card-status' }, [statusLabel]),
           el('div', { class: 'intake-card-title' }, [titleFor(r.kind)]),
@@ -303,8 +361,17 @@
         grid.appendChild(card);
       });
     });
-    return grid;
+    wrap.appendChild(grid);
+    return wrap;
   }
+
+  function rerender() {
+    if (!root) return;
+    root.innerHTML = '';
+    root.appendChild(renderCards());
+  }
+  // Re-render whenever the SSO gate reveals so the right person's filter applies.
+  window.addEventListener('aop:revealed', function () { setTimeout(rerender, 50); });
 
   // Static metadata so cards render before form JSON loads
   var META = {
