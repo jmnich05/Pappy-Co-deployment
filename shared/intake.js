@@ -10,13 +10,13 @@
   'use strict';
 
   var FORMS = [
-    { kind: 'brand-kit',         order: 1 },
-    { kind: 'company-context',   order: 2 },
-    { kind: 'customer-personas', order: 3 },
-    { kind: 'competitors',       order: 4 },
-    { kind: 'data-sources',      order: 5 },
-    { kind: 'skills',            order: 6 },
-    { kind: 'workflows',         order: 7 }
+    { kind: 'workflows',         order: 1, assignees: ['*'],                                          ownerLabel: 'STEP 1 · EVERYONE' },
+    { kind: 'skills',            order: 2, assignees: ['*'],                                          ownerLabel: 'STEP 2 · EVERYONE · 1 PER DEPT REQUIRED' },
+    { kind: 'data-sources',      order: 3, assignees: ['*'],                                          ownerLabel: 'STEP 3 · EVERYONE' },
+    { kind: 'company-context',   order: 4, assignees: ['carrie', 'louise', 'christy', 'kelcie'],      ownerLabel: 'STEP 4 · CARRIE, LOUISE, CHRISTY, KELCIE' },
+    { kind: 'competitors',       order: 5, assignees: ['carrie', 'louise', 'christy', 'kelcie'],      ownerLabel: 'STEP 5 · CARRIE, LOUISE, CHRISTY, KELCIE' },
+    { kind: 'customer-personas', order: 6, assignees: ['jonathan'],                                   ownerLabel: 'STEP 6 · JONATHAN' },
+    { kind: 'brand-kit',         order: 7, assignees: ['kelcie'],                                     ownerLabel: 'STEP 7 · KELCIE' }
   ];
 
   var SLUG = (function () {
@@ -280,11 +280,14 @@
     Promise.all(statusPromises).then(function (results) {
       results.forEach(function (r) {
         var def = formDefs[r.kind];  // may be undefined until loaded
+        var formMeta = FORMS.filter(function (f) { return f.kind === r.kind; })[0] || {};
+        var ownerLabel = formMeta.ownerLabel || '';
         var pct = def ? calcProgress(def, r.state.responses) : (r.state.progress || 0);
         var status = r.state.status;
         var statusLabel = status === 'submitted' ? '✓ SUBMITTED' : (pct > 0 ? 'IN PROGRESS · ' + pct + '%' : 'NOT STARTED');
         var canExport = pct > 0;
         var card = el('div', { class: 'intake-card status-' + status + (pct > 0 ? ' has-progress' : ''), on: { click: function (e) { if (e.target.closest('.intake-card-export')) return; openForm(r.kind); } } }, [
+          ownerLabel ? el('div', { class: 'intake-card-owner' }, [ownerLabel]) : null,
           el('div', { class: 'intake-card-status' }, [statusLabel]),
           el('div', { class: 'intake-card-title' }, [titleFor(r.kind)]),
           el('p', { class: 'intake-card-sub' }, [subtitleFor(r.kind)]),

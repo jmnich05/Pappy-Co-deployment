@@ -531,28 +531,6 @@
     ],
     "note": "If anything here ever stops being true, you'll hear it from us first — not discover it later. And if a connection or a setting ever looks off to you, flag it; \"reconnect it with more access to make it work\" is never the answer."
   },
-  "resultsSection": {
-    "eyebrow": "HOW WE'LL KNOW IT'S WORKING",
-    "title": "WE'LL MEASURE IT, HONESTLY.",
-    "deck": "No inflated promises. Three simple things we'll track and report back to the team."
-  },
-  "resultsCards": [
-    {
-      "num": "WHAT GOT MADE",
-      "label": "OUTPUT",
-      "detail": "How much useful work the AI helped produce — drafts, replies, reports, copy, creative — and whether it held up to a person's review."
-    },
-    {
-      "num": "TIME BACK",
-      "label": "HOURS SAVED",
-      "detail": "Roughly how many hours a week the team got back from repetitive tasks, by role. Honest estimates, not wishful ones."
-    },
-    {
-      "num": "WAS IT WORTH IT",
-      "label": "RETURN",
-      "detail": "What we spent (tools + time) against what it gave back — revenue influenced, deflection rate, cycle time. We'll show the math, good or bad."
-    }
-  ],
   "creativeSection": {
     "eyebrow": "A NOTE ON IMAGES & DESIGN",
     "title": "HOW WE'LL HANDLE IMAGES.",
@@ -882,6 +860,6 @@
   "intakeSection": {
     "eyebrow": "INTAKE FORMS · LIVE NOW",
     "title": "TELL US ABOUT YOUR COMPANY.",
-    "deck": "Five short forms to capture the things the AI needs to know about you — brand kit, company context, data sources, processes (your \"skills\"), and your workflow. Save-as-you-go, come back later, finish when ready. Everyone on the team contributes the parts they own."
+    "deck": "Seven short forms, in order. Start at Step 1. Steps 1–3 are for everyone; steps 4–7 are assigned to specific people (see each card). Save-as-you-go, come back later, finish when ready."
   }
 }
