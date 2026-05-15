@@ -73,11 +73,6 @@
       "href": "#reading"
     },
     {
-      "icon": "#i-edit",
-      "label": "Intake forms",
-      "href": "#intake"
-    },
-    {
       "icon": "#i-list",
       "label": "Project plan",
       "href": "#tracker"
@@ -451,37 +446,10 @@
       }
     ]
   },
-  "fromYou": {
-    "eyebrow": "WHAT WE NEED FROM YOU",
-    "title": "A FEW THINGS — IT'S NOT MUCH.",
-    "deck": "Over the 60 days we'll ask you for these. They all live in this portal, so you'll always know what's still outstanding. Total time: roughly half an hour, spread out.",
-    "asks": [
-      {
-        "when": "FIRST — THIS WEEK",
-        "title": "Read a few short docs",
-        "bodyHtml": "Three or four short, plain documents — the ground rules, how your data is handled, how to use the new workspace. Open each one and click \"I've read this.\" That's the whole ask. Scroll down to <strong>A few short docs to read</strong> below."
-      },
-      {
-        "when": "WEEKS 1–2",
-        "title": "A quick chat about your work",
-        "bodyHtml": "Jonathan will spend 20–30 minutes with you asking what your week looks like, what's repetitive, and where AI might help. No prep needed — just talk through your job. You can also fill in a short form here if you'd rather."
-      },
-      {
-        "when": "WEEKS 5–7",
-        "title": "Confirm the tools you own are connected",
-        "bodyHtml": "If you're the person who \"owns\" a tool — Shopify, Cin7, Klaviyo, Attentive, Gorgias — we'll ask you to confirm it's connected the right way and ready. You'll see a checklist for that here when the time comes."
-      },
-      {
-        "when": "WEEK 8 ONWARD",
-        "title": "Try it, and tell us what's off",
-        "bodyHtml": "Once you're trained, actually use it for the handful of things that fit your role — and when something's wrong, clunky or not landing, say so. There's a questions box for that. The feedback in those first weeks is how we make it actually good."
-      }
-    ]
-  },
   "readingSection": {
-    "eyebrow": "FIRST ASK · REQUIRED READING",
-    "title": "A FEW SHORT DOCS TO READ.",
-    "deck": "Short, plain, and worth your five minutes. Open each one, then mark it read — that's all we need, and it gives us one clear record that the team's been brought up to speed."
+    "eyebrow": "TASKS FOR YOU",
+    "title": "READ. THEN FILL IN.",
+    "deck": "Two things, in order. First, read and sign off on the short ground-rules and data docs below — five minutes. Then, fill out the intake forms further down so the AI gets shaped around how Pappy actually works."
   },
   "requiredReading": [
     {
@@ -858,8 +826,8 @@
     "meta": "PAPPY & COMPANY · LOUISVILLE, KY · 2026 AI ROLLOUT"
   },
   "intakeSection": {
-    "eyebrow": "INTAKE FORMS · LIVE NOW",
-    "title": "TELL US ABOUT YOUR COMPANY.",
+    "eyebrow": "TASKS FOR YOU · CONTINUED",
+    "title": "THE INTAKE FORMS.",
     "deck": "Seven short forms, in order. Start at Step 1. Steps 1–3 are for everyone; steps 4–7 are assigned to specific people (see each card). Save-as-you-go, come back later, finish when ready."
   }
 }
