@@ -471,6 +471,15 @@
       "body_md": "## The plain version\nPeople worry about this, fairly. Here's where things stand.\n\n## We sort information by how sensitive it is\n- **Tier 1 — never goes near the AI.** Full customer lists, payment data, employee records.\n- **Tier 2 — connected tools only, never pasted into chat.** Revenue figures, wholesale account terms, supplier pricing.\n- **Tier 3 — lives in \"The Vault.\"** SOPs, marketing playbooks, campaign history, brand standards.\n- **Tier 4 — share-with-the-team.** Roadmaps, training guides, this portal.\n\n## How the connections work\nThe links to Shopify, Cin7, Klaviyo, Attentive, Gorgias and GA4 are scoped down to only what a task actually needs, and read-only wherever possible. A connector that returns more than a task needs is a bug — we report it, we don't work around it.\n\n## This portal\nThis page carries Tier 4 only. If Tier 3 data ever needed to live here, we'd add a stronger access gate first. Your \"I've read this\" record is Tier 4 — it shows your manager and Jonathan who's been brought up to speed, and once recorded it can't be quietly changed.\n\n## If you ever spot something that doesn't sit right\nSay so — to your manager or Jonathan. Take it seriously; we will too."
     },
     {
+      "id": "pappy-gdrive-claude",
+      "slug": "google-drive-and-claude",
+      "category": "how-to",
+      "required": true,
+      "title": "How we use Google Drive with Claude (and why it works)",
+      "summary": "Google Drive holds the truth. Claude reads from it. Together they give us context-rich AI without ever leaving the team's normal way of working.",
+      "body_md": "## The short version\n\n**Google Drive is where our documents live. Claude is what reads them, on demand, in the context of a question.** Drive handles storage and version control like it always has — we don't change how the team writes, edits, or shares files. Claude becomes the smart reader on top: ask it about an SOP, and it pulls the current version from Drive, reads it, and answers in plain language using what's actually written down.\n\nYou don't move documents into Claude. You don't copy-paste from Drive into a chat. You point Claude at the Drive file, and Claude reads it when needed.\n\n## Why Google Drive stays in charge\n\nDrive is the **source of truth**. That means:\n- **One copy.** Everyone's looking at the same document, not a fork inside an AI tool.\n- **Version history.** Drive remembers every change anyone has ever made. If the brand voice doc gets a bad edit, we can roll it back in two clicks.\n- **Permissions you already understand.** Sharing rules are Google's — who can view, comment, edit. We don't reinvent it.\n- **Edit anywhere.** Phone, laptop, Docs, Word, third-party tools. Drive doesn't care; the document keeps working.\n- **Search you already know.** ⌘+K in Drive finds things by filename and full text the way it always has.\n\nIf we instead uploaded documents *into* Claude as fixed copies, the moment someone updates the original in Drive, Claude would be reading a stale version. The mismatch becomes invisible — Claude sounds confident, but it's quoting a doc that no longer exists. That's the failure mode we're avoiding.\n\n## Why Claude is the smart reader, not the storage\n\nClaude's job is **inference** — turning a question into an answer that uses the documents it can see. It's <em>great</em> at:\n- Reading several long documents at once and writing a coherent summary\n- Pulling the relevant paragraph out of a 40-page SOP\n- Catching what a doc <em>doesn't</em> say (\"the policy doesn't mention returns\")\n- Writing in the same voice as the source material\n\nWhat Claude is <em>bad</em> at:\n- Being trusted as a vault. Don't make Claude the only place a document exists.\n- Remembering the last conversation forever. Each chat is fresh; what carries over is the project's files and instructions, not the chat history.\n- Quoting fixed numbers from memory. It might *paraphrase* a number wrong. Always have it cite the source.\n\nSo the architecture is:\n> **Drive = persistent memory.**\n> **Claude = the part that thinks.**\n\nThey each do what they're best at.\n\n## How to actually do it\n\n1. **Document lives in Drive** like always. Edit it where you'd normally edit it.\n2. **Attach the Drive link to your Claude project** (Claude Teams projects have a \"Files\" panel — paste the Drive URL or upload). For a one-off question, you can also paste the link inside the chat.\n3. **Ask Claude about it.** \"Read the wholesale onboarding SOP I just added, and draft a follow-up email for an account that hasn't replied in two weeks.\"\n4. **When the Drive doc changes**, Claude picks up the new version next time it reads. You don't have to re-upload — the reference is to the live file.\n5. **Cite your source.** Ask Claude to quote the section it used. If the answer is fuzzy, that usually means the source doc itself is fuzzy — fix it in Drive, and the answer improves everywhere.\n\n## Why this combination works\n\nIt's a **separation of concerns**, which is just engineer-speak for \"two things, each doing what it's best at\":\n\n| Drive does | Claude does |\n|---|---|\n| Stores the file forever | Reads it when asked |\n| Tracks every version | Reasons about the current one |\n| Handles permissions | Stays within whatever Drive allows it to see |\n| Lets people edit collaboratively | Doesn't try to be a document editor |\n| Search by filename and exact text | Search by meaning — finds the relevant section even if the words don't match |\n\nThe combination gives us:\n- **No duplication.** One document, one place. The thing on Drive is the thing.\n- **Privacy by default.** Drive holds the data. Claude reads only what we let it see, when we ask. It doesn't keep a permanent copy.\n- **Updates are free.** No \"sync the AI\" step. Edit in Drive, Claude reads the new version next time.\n- **Version control is built in.** When we change how we do something, the change history is in Drive, not buried in Claude chat logs.\n- **Hybrid search.** Drive's keyword search + Claude's meaning-based search. Use both — they find different things.\n\n## Common gotchas\n\n- **Permission mismatches.** Claude can only read what your account has access to in Drive. If a doc is \"only me,\" Claude can't see it in a shared project. Open access in Drive first.\n- **Stale screenshots.** If you take a screenshot of a Google Doc and paste the image into Claude, you've broken the live link. Just paste the URL.\n- **Whole-folder references.** Claude can read a Drive folder, but the more files in the folder, the slower and fuzzier the answer. Point it at the specific docs that matter.\n- **Don't ask Claude to \"save\" something to Drive yet.** That's a workflow we'd build separately. For now: Claude drafts, you save to Drive.\n\n## What about Pappy Brain?\n\nPappy Brain (the RAG library) is the **always-on** version of this same idea — a curated subset of documents that every project automatically has access to, indexed so even very large libraries are fast to search. Project-level Drive references are the **on-demand, project-specific** version.\n\nUse Drive references when:\n- The doc is specific to one project or one person's work\n- The doc changes often and you want the latest version each time\n- The doc is too operational to belong in the core Pappy Brain library\n\nUse Pappy Brain when:\n- It's a foundational SOP, brand standard, or playbook every project should know about\n- You want it indexed for fast semantic search across hundreds of docs\n\nThe two work well together — Pappy Brain is the company's memory, Drive references are the working drafts.\n\n## Questions?\n\nAsk your manager, or Jonathan. The questions box in the portal works too.\n"
+    },
+    {
       "id": "pappy-howto",
       "slug": "how-to-use-it",
       "category": "how-to",
@@ -800,6 +809,130 @@
     {
       "term": "Tier 1–4",
       "plainHtml": "Our way of sorting information by how sensitive it is — from \"share with the team\" (Tier 4, this portal) up to \"never goes near the AI\" (Tier 1: full customer lists, payment data, personnel records)."
+    },
+    {
+      "term": "Anthropic",
+      "plainHtml": "The company that makes Claude. Founded by ex-OpenAI researchers; their thing is safety-focused AI. They're the vendor behind our Claude Teams subscription."
+    },
+    {
+      "term": "OpenAI / ChatGPT",
+      "plainHtml": "Different AI company, different chatbot. ChatGPT is what most people have tried at home. <em>We don't use ChatGPT for Pappy work</em> — everything goes through our company Claude Teams account so it stays inside the company and never trains anyone else's model."
+    },
+    {
+      "term": "Gemini",
+      "plainHtml": "Google's AI, baked into Google Workspace (Gmail, Docs, Drive). You might see it pop up in the corner of your Google apps. We don't drive Pappy work through Gemini — same reason: everything stays in Claude Teams."
+    },
+    {
+      "term": "Copilot",
+      "plainHtml": "Microsoft's AI assistant (and GitHub's coding assistant — same name, different products). You'll hear it a lot in business press. Not what we use; just useful to know what people mean."
+    },
+    {
+      "term": "Opus / Sonnet / Haiku",
+      "plainHtml": "The three sizes of Claude. <strong>Opus</strong> is the biggest/smartest (and slowest/most expensive). <strong>Sonnet</strong> is the balanced one most work runs on. <strong>Haiku</strong> is fast and cheap, for simple tasks. You usually don't have to pick — Claude Teams uses the right one for the job."
+    },
+    {
+      "term": "Token",
+      "plainHtml": "How AI counts text. Roughly 4 characters or ¾ of a word. Pricing and the size of what fits in one conversation are measured in tokens. You don't have to count them — just know that very long prompts or huge documents can hit limits."
+    },
+    {
+      "term": "Context window",
+      "plainHtml": "How much text Claude can \"see at once\" in a conversation — everything you've said, everything it's said, every file you've attached. Modern Claude can hold roughly a 200-page book in context. When a conversation gets very long, it starts to forget the early bits — start a fresh chat if that happens."
+    },
+    {
+      "term": "Hallucination",
+      "plainHtml": "When the AI makes something up that sounds confident but isn't true. The classic one is inventing a citation or a customer name. <em>This is why a person checks its work</em> — especially on numbers, dates, names, and anything quoted as fact. Pappy Brain helps a lot here because it pulls from real Pappy documents instead of guessing."
+    },
+    {
+      "term": "Temperature",
+      "plainHtml": "A dial for how creative vs. predictable the AI's answer is. Low = same answer every time (good for structured stuff). High = more variation (good for brainstorming taglines). You won't usually touch this — skills set it for you."
+    },
+    {
+      "term": "Training data",
+      "plainHtml": "The text the AI was taught on. Claude learned from a big chunk of the public internet plus licensed books and code. Importantly: <em>your conversations with Claude Teams are NOT used to train future Claude</em> — that's a key part of why we picked Teams over the consumer version."
+    },
+    {
+      "term": "Fine-tuning",
+      "plainHtml": "Taking a general AI model and giving it extra training on a specific company's stuff so it sounds more like them. We mostly don't do this — Pappy Brain (RAG) gets us 95% of the way there without the cost or complexity."
+    },
+    {
+      "term": "System prompt",
+      "plainHtml": "Invisible instructions Claude gets at the start of every conversation in a project (\"You're a wholesale-team assistant for Pappy & Co; sound like X; always use Pappy Brain for facts; etc.\"). You don't write this — it's set up per project."
+    },
+    {
+      "term": "Project (in Claude Teams)",
+      "plainHtml": "A workspace inside Claude Teams for one kind of work — \"Wholesale outreach,\" \"Gorgias replies,\" \"Brand voice.\" A project carries its own files, instructions, and chat history, so you're not setting context from scratch every time."
+    },
+    {
+      "term": "Files (project files)",
+      "plainHtml": "Documents you attach to a project so Claude can read them — SOPs, brand kit, customer scripts. Different from Pappy Brain (which is bigger and indexed): files are the local, project-specific stuff."
+    },
+    {
+      "term": "Artifact",
+      "plainHtml": "Claude's saved output — a code block, a long doc, a chart — shown in a side panel you can preview and copy. \"Open the artifact\" just means \"look at the thing Claude built in the side panel.\""
+    },
+    {
+      "term": "Custom instructions",
+      "plainHtml": "Persistent notes you give Claude about yourself or how you want answers (\"I work in wholesale; be concise; always use Pappy voice\"). Set once, apply to every chat in that project."
+    },
+    {
+      "term": "API",
+      "plainHtml": "<em>Application Programming Interface</em> — the way one piece of software talks to another, with no human in the middle. When we say \"connect Shopify via API,\" we mean software-to-software, automatic. Claude has an API behind it — Claude Teams is the human-facing wrapper."
+    },
+    {
+      "term": "API key",
+      "plainHtml": "A long secret string that authorizes software to call an API on your behalf. Like a password but for code. Stored carefully — never pasted into a chat, never put in a public spreadsheet."
+    },
+    {
+      "term": "Tool use / tool call",
+      "plainHtml": "When Claude decides to use a connected tool to get information (e.g., look up a Shopify order) rather than guessing. You'll see this as \"Claude is searching Shopify…\" mid-conversation. It's how Claude stays accurate."
+    },
+    {
+      "term": "Embedding / vector search",
+      "plainHtml": "The math behind <em>Pappy Brain</em>. Documents get turned into a kind of meaning-fingerprint, and queries find the closest-meaning ones — even if the words don't match. It's why \"how do we ship to a wholesale account\" finds the right SOP even if the SOP says \"B2B fulfillment.\""
+    },
+    {
+      "term": "OAuth",
+      "plainHtml": "The \"Sign in with Google\" button, basically. Lets one app trust your login from another (Google) without ever seeing your password. That's how Claude Teams knows you're <em>you</em> when you click sign-in."
+    },
+    {
+      "term": "Workspace / org / tenant",
+      "plainHtml": "Three names for the same thing: the boundary around \"Pappy & Co's stuff\" inside a vendor's app. Our Claude Teams workspace is the Pappy bubble — what's in it stays in it, separate from any other company's workspace."
+    },
+    {
+      "term": "Conversation / chat / thread",
+      "plainHtml": "All three mean the same thing: one back-and-forth with Claude. Each is independent (Claude forgets the last one when you start a new one — unless it's in the same project's saved conversations)."
+    },
+    {
+      "term": "Workflow",
+      "plainHtml": "A repeatable way we do something. \"Drafting a wholesale follow-up\" is a workflow; \"replying to a Gorgias ticket\" is a workflow. Each workflow has its own level of AI oversight that the team agrees on."
+    },
+    {
+      "term": "Automation",
+      "plainHtml": "Software running a workflow without a person clicking each step. The opposite of \"manually\". When we say a workflow is \"automated,\" we mean AI runs it within agreed rules; a person reviews on a defined cadence."
+    },
+    {
+      "term": "Sandbox vs. production",
+      "plainHtml": "<strong>Sandbox</strong> = a safe play area for testing (no real customers see the output). <strong>Production</strong> = the real thing, customer-facing. We try things in sandbox first."
+    },
+    {
+      "term": "PII",
+      "plainHtml": "<em>Personally Identifiable Information</em> — anything that could identify a real person (name + email, full credit card, home address, etc.). Pappy's Tier 1 list includes a lot of PII; that's why it never goes near Claude."
+    },
+    {
+      "term": "Audit log",
+      "plainHtml": "A record of who did what, when. Claude Teams keeps one (every conversation, every connector use). It's how we can investigate \"did this go wrong?\" without trusting memory."
+    },
+    {
+      "term": "LLM / SLM",
+      "plainHtml": "<strong>LLM</strong> = Large Language Model (Claude, GPT, Gemini — the big general-purpose ones). <strong>SLM</strong> = Small Language Model — smaller, faster, runs on a phone or a small server for specific tasks. The press talks about both."
+    },
+    {
+      "term": "ML / NLP",
+      "plainHtml": "<strong>ML</strong> = Machine Learning (the broader field; LLMs are one part of it). <strong>NLP</strong> = Natural Language Processing (working with text specifically). LLMs are NLP done at huge scale."
+    },
+    {
+      "term": "AGI",
+      "plainHtml": "<em>Artificial General Intelligence</em> — a hypothetical AI as broadly capable as a human across every domain. We don't have it. When you see \"AGI\" in the news, it's usually speculative. What we have today (LLMs like Claude) is narrower — very good at text, not capable of reasoning about the physical world the way a person is."
     }
   ],
   "comingSoon": {
