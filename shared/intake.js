@@ -92,11 +92,30 @@
     try { var raw = localStorage.getItem(localKey(kind)); if (raw) return JSON.parse(raw); } catch (e) {}
     return { responses: {}, status: 'draft', progress: 0 };
   }
+  // Track the last sync state so we don't spam the user with the same error
+  // repeatedly. Updated by saveState; surfaced in the UI by intake-card status.
+  var lastSaveError = null;
+  function getLastSaveError() { return lastSaveError; }
   function saveState(kind, state) {
     var payload = { responses: state.responses, status: state.status, progress: state.progress, updated_at: new Date().toISOString() };
     try { localStorage.setItem(localKey(kind), JSON.stringify(payload)); } catch (e) {}
     if (hasSupabase() && state.status === 'draft') {
-      return window.AOP_SUPABASE.intakeSave(kind, state.responses, state.progress).catch(function () { /* keep local copy */ });
+      return window.AOP_SUPABASE.intakeSave(kind, state.responses, state.progress)
+        .then(function () {
+          // Successful Supabase write — clear any prior error state.
+          if (lastSaveError) {
+            lastSaveError = null;
+            try { window.dispatchEvent(new Event('aop:intake-sync')); } catch (_) {}
+          }
+        })
+        .catch(function (err) {
+          // Don't swallow silently — surface to console + remember + fire an
+          // event so the UI can show a banner. Local copy still kept.
+          var msg = (err && err.message) || String(err);
+          lastSaveError = { kind: kind, message: msg, at: new Date().toISOString() };
+          try { console.warn('[intake] Supabase save failed for ' + kind + ':', msg, '— data saved locally only.'); } catch (_) {}
+          try { window.dispatchEvent(new Event('aop:intake-sync')); } catch (_) {}
+        });
     }
     return Promise.resolve();
   }
@@ -311,6 +330,23 @@
 
   function renderCards() {
     var wrap = el('div', { class: 'intake-wrap' });
+
+    // Sync-status banner — visible when the last Supabase save errored. Updated
+    // live via the aop:intake-sync event so users see when their writes aren't
+    // actually reaching the server (instead of the old silent-fail behavior).
+    var syncBanner = el('div', { class: 'intake-sync-banner', style: 'display:none' });
+    function updateSyncBanner() {
+      var err = getLastSaveError();
+      if (!err) { syncBanner.style.display = 'none'; syncBanner.innerHTML = ''; return; }
+      syncBanner.style.display = '';
+      syncBanner.innerHTML = '';
+      syncBanner.appendChild(el('strong', null, ['⚠ Saved to this browser only.']));
+      syncBanner.appendChild(document.createTextNode(' Your last edit couldn\'t reach the server — most likely you need to be signed in, or admin needs to add you to the team. Details: ' + err.message));
+    }
+    updateSyncBanner();
+    window.addEventListener('aop:intake-sync', updateSyncBanner);
+    wrap.appendChild(syncBanner);
+
     var person = currentPersonKey();
     var shownForms = visibleForms();
     var filteredOut = FORMS.length - shownForms.length;

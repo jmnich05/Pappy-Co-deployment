@@ -870,6 +870,27 @@ details.disclosure.big .disclosure-body { padding: 8px 28px 32px; }
 .intake-card:hover { transform: translateY(-2px); box-shadow: 0 8px 22px rgba(0,0,0,0.18); }
 .intake-card.status-submitted { border-top-color: var(--color-status-done); }
 .intake-card.has-progress { border-top-color: var(--color-status-progress); }
+/* Sync-status banner — appears when a Supabase save errors so the user
+   knows their work is local-only rather than seeing a silent fail. */
+.intake-sync-banner {
+  background: rgba(223, 115, 87, 0.12);
+  border-left: 4px solid var(--color-accent-2);
+  color: var(--color-on-dark);
+  padding: 14px 18px;
+  margin-bottom: 18px;
+  border-radius: 2px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+.intake-sync-banner strong {
+  display: block;
+  font-family: var(--font-display);
+  letter-spacing: 0.12em;
+  font-size: 12px;
+  color: var(--color-accent-2);
+  margin-bottom: 4px;
+}
+
 /* Per-user filter notice + toggle */
 .intake-filter-notice {
   display: flex; align-items: center; justify-content: space-between;
