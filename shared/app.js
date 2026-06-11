@@ -307,10 +307,30 @@
       grid.appendChild(card);
     }
 
+    // useSupabaseForAcks is flipped to true only when documents are loaded
+    // from Supabase (so doc.id is a real UUID). When we render the bundled
+    // seed, doc.id is a slug string like "pappy-rules" — those would fail
+    // against Supabase's UUID column, so we save locally instead.
+    var useSupabaseForAcks = false;
     function doAck(doc, onDone) {
-      if (window.AOP_SUPABASE && window.AOP_SUPABASE.acknowledge) {
-        window.AOP_SUPABASE.acknowledge(doc.id).then(function () { onDone(); }).catch(function (e) { alert('Could not record acknowledgment: ' + (e && e.message || e)); });
-      } else { setLocalAck(doc.id || doc.slug); onDone(); }
+      function saveLocalAndDone() {
+        setLocalAck(doc.id || doc.slug);
+        onDone();
+      }
+      if (useSupabaseForAcks && window.AOP_SUPABASE && window.AOP_SUPABASE.acknowledge) {
+        window.AOP_SUPABASE.acknowledge(doc.id).then(function () {
+          onDone();
+          try { window.dispatchEvent(new Event('aop:ack')); } catch (e) {}
+        }).catch(function (e) {
+          // Server call failed — record locally so the UI still updates and
+          // the user isn't stuck. Log the reason for debugging; no scary alert.
+          var msg = (e && e.message) || String(e);
+          try { console.warn('[reading] Supabase ack failed, recording locally:', msg); } catch (_) {}
+          saveLocalAndDone();
+        });
+      } else {
+        saveLocalAndDone();
+      }
     }
 
     function openDoc(doc, alreadyAcked, onAck) {
@@ -343,7 +363,20 @@
     if (window.AOP_SUPABASE && window.AOP_SUPABASE.loadReading) {
       if (note) note.style.display = 'none';
       window.AOP_SUPABASE.loadReading(SLUG).then(function (res) {
-        (res.documents || []).forEach(function (doc) { paintCard(doc, (res.acks || {})[doc.id]); });
+        var docs = res.documents || [];
+        if (docs.length > 0) {
+          // Real Supabase docs with UUID ids — acks should round-trip to the server.
+          useSupabaseForAcks = true;
+          docs.forEach(function (doc) { paintCard(doc, (res.acks || {})[doc.id]); });
+        } else {
+          // Authenticated but no docs in the tenant's documents table yet — fall
+          // back to the bundled seed so the page still works; keep acks local.
+          if (note) {
+            note.style.display = '';
+            note.textContent = 'No documents seeded yet in Supabase — showing the bundled set. Your "I have read this" saves to this browser until the docs are seeded.';
+          }
+          paintSeed();
+        }
         var adminLink = document.getElementById('reading-admin-link');
         if (adminLink && res.isAdmin) adminLink.style.display = '';
       }).catch(function (e) {
