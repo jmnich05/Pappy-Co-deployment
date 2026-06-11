@@ -169,7 +169,22 @@
       if (!payload || payload.hd !== domain) { var ge = document.getElementById('gate-error'); if (ge) ge.classList.add('show'); return; }
       try { sessionStorage.setItem(cacheKey, JSON.stringify(payload)); } catch (e) {}
       if (window.AOP_SUPABASE && window.AOP_SUPABASE.signInWithCredential) {
-        window.AOP_SUPABASE.signInWithCredential(resp.credential).catch(function () {});
+        // Don't swallow — this is the bridge that creates the user's auth.users
+        // row in Supabase. If it fails (Google provider not enabled, allowed
+        // domain mismatch, etc.), nothing else server-side works for them.
+        window.AOP_SUPABASE.signInWithCredential(resp.credential).catch(function (err) {
+          var msg = (err && err.message) || String(err);
+          try { console.error('[auth] Supabase signInWithCredential failed:', msg, '— intake/ack saves will be local-only until this is resolved. Most likely cause: Google provider not enabled in Supabase Auth → Providers, or Authorized Client IDs not configured to skip nonce check.'); } catch (_) {}
+          // Show a soft warning banner so admins notice. Plain users still
+          // get into the portal (revealApp below) so they're not blocked.
+          try {
+            var b = document.createElement('div');
+            b.style.cssText = 'position:fixed;bottom:16px;left:16px;right:16px;max-width:560px;margin:0 auto;padding:12px 16px;background:rgba(223,115,87,0.95);color:#3a3a37;font:13px/1.4 system-ui;border-radius:4px;z-index:9000;box-shadow:0 6px 24px rgba(0,0,0,0.3);';
+            b.innerHTML = '<strong>Heads up:</strong> signed into the page but not into our backend. Your edits will save to this browser only. Tell Jonathan: ' + msg;
+            document.body.appendChild(b);
+            setTimeout(function () { b.style.transition = 'opacity 0.5s'; b.style.opacity = '0'; setTimeout(function () { b.remove(); }, 600); }, 12000);
+          } catch (_) {}
+        });
       }
       revealApp(payload.email);
     }
