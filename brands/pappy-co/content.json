@@ -293,15 +293,36 @@
     }
   ],
   "tracker": {
-    "version": "2026-05-12-r1",
-    "lastUpdated": "2026-05-12",
+    "version": "phase2-rollout-2026-05-29",
+    "lastUpdated": "2026-05-29",
     "defaults": {
-      "t02": 1,
-      "t03": 1,
+      "t01": 3,
+      "t02": 3,
+      "t03": 3,
+      "t04": 3,
       "t05": 3,
+      "t06": 3,
+      "t07": 3,
+      "t08": 3,
       "t09": 3,
       "t10": 3,
-      "t12": 3
+      "t11": 3,
+      "t12": 3,
+      "t13": 3,
+      "t14": 3,
+      "t15": 3,
+      "t16": 3,
+      "t17": 3,
+      "t18": 3,
+      "t19": 3,
+      "t20": 3,
+      "t21": 1,
+      "t22": 1,
+      "t23": 1,
+      "t24": 1,
+      "t25": 1,
+      "t26": 1,
+      "t27": 1
     },
     "tasks": [
       {
@@ -442,6 +463,55 @@
         "week": "8",
         "name": "Set the cadence for what gets automated next",
         "desc": "Quarterly review of which workflows to automate further, and the level of oversight on each",
+        "owner": "JONATHAN"
+      },
+      {
+        "id": "t21",
+        "week": "9+",
+        "name": "1×1 sessions: data connectors",
+        "desc": "Sit with each owner; verify their connectors are wired correctly; show them how to query the data themselves and lock in 'who looks at what, when.'",
+        "owner": "JONATHAN"
+      },
+      {
+        "id": "t22",
+        "week": "9+",
+        "name": "1×1 sessions: skills",
+        "desc": "Walk each role through the skills that touch their work; teach them how to invoke and refine — moving from 'Jonathan triggers it' to 'the team owns it.'",
+        "owner": "JONATHAN"
+      },
+      {
+        "id": "t23",
+        "week": "9+",
+        "name": "1×1 sessions: department dashboards & reports",
+        "desc": "Build a department-specific report set with each owner — what gets reviewed when, what Claude auto-drafts, what the cadence is.",
+        "owner": "JONATHAN"
+      },
+      {
+        "id": "t24",
+        "week": "ONGOING",
+        "name": "Continue team-facing project rollout",
+        "desc": "Stand up shared Claude Teams Projects for each team's recurring work — wholesale, retail, marketing, ops, customer service — and document the scope of each.",
+        "owner": "JONATHAN"
+      },
+      {
+        "id": "t25",
+        "week": "ONGOING",
+        "name": "Hand off data management to each owner",
+        "desc": "Each department lead becomes responsible for their data's freshness, taxonomy and connector hygiene. Jonathan moves from operator to support.",
+        "owner": "OWNERS"
+      },
+      {
+        "id": "t26",
+        "week": "10+",
+        "name": "ROI + usage estimator for the team",
+        "desc": "Lightweight tool visible in the hub: hours saved, queries run, $ of outcomes attributed, usage trends per role. So value is measured, not assumed.",
+        "owner": "JONATHAN"
+      },
+      {
+        "id": "t27",
+        "week": "11+",
+        "name": "Eval judgment tool (drift prevention)",
+        "desc": "Automated quality checks that score AI output on the work that matters — voice, accuracy, tone — and alert when scores drop. Stops the slow drift that creeps in over months.",
         "owner": "JONATHAN"
       }
     ]
