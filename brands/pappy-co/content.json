@@ -148,12 +148,12 @@
         "title": "Everyone has been playing AI in single-player mode. The whole game is multiplayer.",
         "bodyHtml": "<p>Going into this year, and honestly right up until last month, essentially everybody was using AI as a single-player tool — even on the enterprise platforms. Single-player means you're building out your own personal context, your own data, your own chat history, alone. And every platform genuinely struggles to turn that into something multiplayer and cross-functional. It isn't that the vendors don't care; it's that the out-of-the-box product — Anthropic, OpenAI, Gemini, any of them — was never really built for a multiplayer experience.</p>",
         "thenLabel": "WHAT I PLANNED IN APRIL",
-        "thenText": "Shared folders. One per department, holding the context and the files for that team, shared publicly across the company.",
-        "nowLabel": "WHAT I'D DO NOW",
-        "nowText": "Bring Claude into the channels where people already talk to each other.",
-        "bodyHtml2": "<p>I still think the folders have real value, especially on a project-by-project basis. But I've learned that's not the best way of doing it, and it's not how people are actually using this today. It puts somebody on the hook for the boring admin of making sure everything gets loaded into the folder. It asks everyone to remember to go <em>into</em> a specific folder just to raise a question, float an idea, or continue a conversation. It isn't interactive the way you'd naturally chat in Slack or Google Chat. It's an awkward experience, and I don't think it was ever going to stick.</p><p>What's actually landed in the last thirty days — on Slack and Microsoft Teams, not Google Chat yet — is <strong>Claude tagging</strong>. You have a group of people, a department, or just the two of you working on something in your normal communication channel. You tag Claude right there in the thread. It answers the question, builds the thing, drafts the document, runs the analysis — in that same window. Everyone in the window shares the context, and everyone shares the result, in the way you were already communicating anyway.</p>",
-        "pull": "We already have all these groups. Why not just introduce Claude into the room, instead of asking the room to come to the AI?",
-        "bodyHtml3": "<p>That's the move from single-player to multiplayer, and it's the single biggest thing I'd change.</p>"
+        "thenText": "Shared department folders as the way in. Everything routed through a folder you had to remember to open.",
+        "nowLabel": "WHAT I'D ADD NOW",
+        "nowText": "Keep the folders — and bring the AI to you: into chat, and as standalone agents you can just ask.",
+        "bodyHtml2": "<p><strong>To be clear: the shared department folders aren't going away.</strong> They still have a ton of value, especially on a project-by-project basis — one place where the context and the files for a piece of work sit together. Keep using them. What I got wrong wasn't the folders. It was making them the <em>front door</em>.</p><p>As the way in, a folder asks too much. It puts somebody on the hook for the boring admin of keeping it loaded. It asks everyone to remember to go <em>into</em> a specific place just to raise a question, float an idea, or continue a conversation. It isn't interactive the way you'd naturally chat in Google Chat or Slack. That's an awkward experience, and I don't think it was ever going to stick as the default.</p><p>So rather than making you come to the AI, the AI comes to you. Two ways.</p><p><strong>One — AI in the chat you're already in.</strong> What's landed in the last thirty days, on Slack and Microsoft Teams, is <strong>Claude tagging</strong>. You have a group of people, a department, or just the two of you working on something in your normal channel. You tag Claude right there in the thread. It answers the question, builds the thing, drafts the document, runs the analysis — in that same window. Everyone in the window shares the context, and everyone shares the result, in the way you were already communicating anyway.</p><p><strong>Two — standalone agents you can talk to.</strong> This is the direction I'm taking us, and it matters more for Pappy because tagging hasn't reached Google Chat yet. <strong>Standalone Google Chat agents:</strong> agents that live where we already work, that you hand a job to, that go out and actually <em>do the thing</em>, and come back with the finished work. No flipping over to Claude for everything. You ask; it returns the work.</p>",
+        "pull": "We already have all these groups. Why not just introduce the AI into the room, instead of asking the room to come to the AI?",
+        "bodyHtml3": "<p>That's the move from single-player to multiplayer. The folders stay as the place the work lives. The AI meets you in chat — and, increasingly, as an agent you can simply ask.</p>"
       },
       {
         "num": "02",
@@ -188,8 +188,8 @@
         "body": "You will not be asked to describe your own workflows. We'll observe the work instead and bring you the recommendations."
       },
       {
-        "title": "The shared department folders stop being the center of gravity.",
-        "body": "They stay useful project-by-project, but Claude comes to Slack and to your normal channels — not the other way around."
+        "title": "The shared folders stay — they're just not the front door.",
+        "body": "Keep using them; they still have a ton of value, especially project-by-project. What changes is that you don't have to go to the AI anymore. It comes to chat — and to standalone Google Chat agents you can hand a job to and get finished work back."
       },
       {
         "title": "The remaining work is one-on-ones and enablement.",
@@ -1072,8 +1072,13 @@
     "items": [
       {
         "status": "NEXT",
-        "title": "Claude in Slack",
-        "bodyHtml": "Tag Claude directly in the channel you're already working in — it answers, drafts and builds in that same thread, and everyone in the window shares the context and the result. This is the single-player-to-multiplayer shift from the note above, and it's the next thing being wired up."
+        "title": "Standalone Google Chat agents",
+        "bodyHtml": "The direction we're heading. Agents that live in Google Chat — where we already work — that you hand a job to, that go out and <em>do the thing</em>, and come back with the finished work. No flipping over to Claude for everything: you ask in chat, you get the work back in chat."
+      },
+      {
+        "status": "NEXT",
+        "title": "AI in the channel you're already in",
+        "bodyHtml": "Tagging the AI directly in a thread — it answers, drafts and builds in that same window, and everyone in the window shares the context and the result. Live on Slack and Teams now; Google Chat is why the standalone agents above matter for us."
       },
       {
         "status": "NEXT",
