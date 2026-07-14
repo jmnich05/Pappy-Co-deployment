@@ -25,6 +25,10 @@
   },
   "nav": [
     {
+      "label": "What changed",
+      "href": "#letter"
+    },
+    {
       "label": "Project update",
       "href": "#status"
     },
@@ -62,6 +66,11 @@
     }
   ],
   "sidebar": [
+    {
+      "icon": "#i-edit",
+      "label": "What changed",
+      "href": "#letter"
+    },
     {
       "icon": "#i-pulse",
       "label": "Project update",
@@ -106,20 +115,94 @@
   "hero": {
     "eyebrow": "THE DEPLOYMENT HUB",
     "headlineHtml": "THE AI <span class=\"gold\">DEPLOYMENT HUB</span>",
-    "deck": "This is the hub for Pappy's AI deployment — the plan, where it stands today, what's been read, and the few things we still need from you. Bookmark it; you'll come back. No jargon — and if a word ever trips you up, it's in the glossary at the bottom.",
+    "deck": "This is the hub for Pappy's AI deployment — the plan, where it stands today, and what's left. The first 60 days are done: the workspace is live, the tools are connected, the Vault is loaded. What's changed is how we get the work into the AI — start with the note below. No jargon; if a word ever trips you up, it's in the glossary at the bottom.",
     "meta": [
       {
-        "k": "STARTS",
+        "k": "STARTED",
         "v": "May 26, 2026"
       },
       {
-        "k": "COMPLETES",
-        "v": "July 25, 2026"
+        "k": "PHASE 1",
+        "v": "Complete"
+      },
+      {
+        "k": "NOW",
+        "v": "1×1s + org-wide skills"
       }
     ]
   },
   "dashboard": {
     "title": "WHERE WE ARE RIGHT NOW."
+  },
+  "letter": {
+    "eyebrow": "A NOTE FROM JONATHAN · JULY 14, 2026",
+    "title": "THREE THINGS I WISH I KNEW ABOUT AI THREE MONTHS AGO.",
+    "deck": "What changed between sketching this plan and actually living in it — and why the project list below looks different than it did.",
+    "pdfHref": "./brands/pappy-co/assets/three-things-i-wish-i-knew.pdf",
+    "pdfLabel": "Download the letter (PDF)",
+    "ledeHtml": "Every month in this space, I look back at what I was doing a month ago and think: <em>wow, I was naive.</em> I can't believe I thought that. I can't believe I thought that was an effective way of doing something.",
+    "introHtml": "<p>That's not a complaint — it's just the pace. But it does mean the plan I sketched out three months ago, when I first started mapping our Claude deployment, is not the plan I would write today. So before we go further, I want to be honest about what I got wrong, and what I'd do differently knowing what I know now.</p><p><strong>Three things.</strong></p>",
+    "things": [
+      {
+        "num": "01",
+        "title": "Everyone has been playing AI in single-player mode. The whole game is multiplayer.",
+        "bodyHtml": "<p>Going into this year, and honestly right up until last month, essentially everybody was using AI as a single-player tool — even on the enterprise platforms. Single-player means you're building out your own personal context, your own data, your own chat history, alone. And every platform genuinely struggles to turn that into something multiplayer and cross-functional. It isn't that the vendors don't care; it's that the out-of-the-box product — Anthropic, OpenAI, Gemini, any of them — was never really built for a multiplayer experience.</p>",
+        "thenLabel": "WHAT I PLANNED IN APRIL",
+        "thenText": "Shared folders. One per department, holding the context and the files for that team, shared publicly across the company.",
+        "nowLabel": "WHAT I'D DO NOW",
+        "nowText": "Bring Claude into the channels where people already talk to each other.",
+        "bodyHtml2": "<p>I still think the folders have real value, especially on a project-by-project basis. But I've learned that's not the best way of doing it, and it's not how people are actually using this today. It puts somebody on the hook for the boring admin of making sure everything gets loaded into the folder. It asks everyone to remember to go <em>into</em> a specific folder just to raise a question, float an idea, or continue a conversation. It isn't interactive the way you'd naturally chat in Slack or Google Chat. It's an awkward experience, and I don't think it was ever going to stick.</p><p>What's actually landed in the last thirty days — on Slack and Microsoft Teams, not Google Chat yet — is <strong>Claude tagging</strong>. You have a group of people, a department, or just the two of you working on something in your normal communication channel. You tag Claude right there in the thread. It answers the question, builds the thing, drafts the document, runs the analysis — in that same window. Everyone in the window shares the context, and everyone shares the result, in the way you were already communicating anyway.</p>",
+        "pull": "We already have all these groups. Why not just introduce Claude into the room, instead of asking the room to come to the AI?",
+        "bodyHtml3": "<p>That's the move from single-player to multiplayer, and it's the single biggest thing I'd change.</p>"
+      },
+      {
+        "num": "02",
+        "title": "Most people are stuck in the chatbot era. The gain is in the agentic era.",
+        "bodyHtml": "<p>There's a lot of terminology, a lot of tools, and an enormous expanse of new software from every major player right now. It's going to take people a while to make sense of it. And I think most everyone has landed in roughly the same place: the 2022-to-2024 ChatGPT mental model. A really powerful intelligence you can ask questions of. Maybe you get a report out of it. Maybe it builds you some slides.</p><p>That's real, and it's genuinely useful, and it is also the <em>smallest</em> version of what this does.</p>",
+        "thenLabel": "THE MENTAL MODEL MOST PEOPLE HAVE",
+        "thenText": "Ask a question. Get an answer. One conversation at a time, with you waiting on it.",
+        "nowLabel": "THE ONE THAT ACTUALLY PAYS",
+        "nowText": "Craft a long-running task, hand it off, and let it work while you go do something else.",
+        "bodyHtml2": "<p>What takes a while to internalize is the <strong>agentic era</strong> — where you craft and build and hand off long-form tasks, communicate what you want in an effective way, and let it run. What most people don't realize is that over the course of a day, the people using AI effectively right now are typically running six or seven different agents at the same time. There is never any downtime. It's constantly working through projects and ideas while the human is out doing other things, or working on other projects themselves. Five, six, ten concurrent tasks, all running at once — <em>that's</em> where 20x, 30x, 40x productivity actually comes from. Not from a better chat answer.</p><p>And to the obvious worry: no, having it do some of the work doesn't take the work away from you. All the data suggests the opposite. People who use AI heavily and agentically are doing more, and working more, than ever — because you're working down your dream list and your wish list. Once you find you can do things at a level you've never done before, there is always more to do.</p>",
+        "pull": "",
+        "bodyHtml3": ""
+      },
+      {
+        "num": "03",
+        "title": "You cannot ask people to describe their workflows. Let the AI watch them instead.",
+        "bodyHtml": "<p>This is the one I got most wrong, and it's the one that changes what I'm asking of you.</p><p>It is never realistic or feasible to put a data-intake field in front of a team and say: <em>explain all your problems, explain your processes</em> — and then take that data and build workflows out of it. I built exactly that. I now think the premise was flawed.</p><p>Most people don't know what AI is capable of doing. So they don't know how to describe what workflows to even ask for. They can't communicate it effectively, and they don't necessarily recognize which parts of their day are repetitive, or which parts of their job a machine would simply do better. That isn't a failure on their part. It's an unfair question.</p>",
+        "thenLabel": "WHAT I ASKED YOU TO DO",
+        "thenText": "Fill out seven intake forms describing your processes, your pain points, and what you'd like automated.",
+        "nowLabel": "WHAT I'LL ASK INSTEAD",
+        "nowText": "Just work. Let Claude watch. It tells us what's worth automating.",
+        "bodyHtml2": "<p>The real shift in the industry is away from putting the work and the time on the human. It's what's happening with OpenAI's new record button, with Scribe and their autoplay, and with several other tools landing right now. The pattern is simply: record my computer, let me work the way I normally work throughout the week, doing all my normal tasks. Then at the end of the week, it sorts based on what it observed. <em>Here are seven or eight different areas where I noticed I could help you out. Here's what I could do for you.</em></p>",
+        "pull": "Don't take time out of someone's day to sit and think deeply and try to explain a workflow process to an AI. Bring the AI into the room. Have it watch your screen, watch where you're clicking, watch what you're doing — and have it make the recommendations.",
+        "bodyHtml3": "<p>Then you deploy the enhancements worth deploying, and that frees up your time to do more meaningful work. That's the era we're moving into.</p>"
+      }
+    ],
+    "changesTitle": "WHAT THIS CHANGES ABOUT OUR PLAN",
+    "changesSub": "Most of the first sixty days holds. Here's what doesn't.",
+    "changes": [
+      {
+        "title": "The intake forms are retired.",
+        "body": "You will not be asked to describe your own workflows. We'll observe the work instead and bring you the recommendations."
+      },
+      {
+        "title": "The shared department folders stop being the center of gravity.",
+        "body": "They stay useful project-by-project, but Claude comes to Slack and to your normal channels — not the other way around."
+      },
+      {
+        "title": "The remaining work is one-on-ones and enablement.",
+        "body": "Finish the 1×1s, build skills and plugins at the organization level so they're available to everyone by default, and teach people to use and deploy them — so the tools stay updated and online without depending on me."
+      },
+      {
+        "title": "Everything educational stays.",
+        "body": "The terminology, the glossary, the data tiers, how to use Claude Teams — all of that still stands, and it's still the best on-ramp we have."
+      }
+    ],
+    "closingTitle": "ONE LAST THING",
+    "closingHtml": "<p>None of this means the last three months were wasted. The workspace is live, the connectors are wired, the Vault is loaded, the education holds up. What changed is <em>how the work gets into the AI</em>, and <em>how the AI gets into your day</em>.</p><p>And I'd bet this note doesn't survive contact with October. That's not a warning — that's the job now. The plan is supposed to change. What matters is that we're honest each time it does.</p>",
+    "sig": "— Jonathan"
   },
   "forYou": {
     "eyebrow": "FOR YOU",
@@ -293,8 +376,8 @@
     }
   ],
   "tracker": {
-    "version": "phase2-rollout-2026-05-29",
-    "lastUpdated": "2026-05-29",
+    "version": "phase3-enablement-2026-07-14",
+    "lastUpdated": "2026-07-14",
     "defaults": {
       "t01": 3,
       "t02": 3,
@@ -318,11 +401,7 @@
       "t20": 3,
       "t21": 1,
       "t22": 1,
-      "t23": 1,
-      "t24": 1,
-      "t25": 1,
-      "t26": 1,
-      "t27": 1
+      "t23": 1
     },
     "tasks": [
       {
@@ -467,59 +546,31 @@
       },
       {
         "id": "t21",
-        "week": "9+",
-        "name": "1×1 sessions: data connectors",
-        "desc": "Sit with each owner; verify their connectors are wired correctly; show them how to query the data themselves and lock in 'who looks at what, when.'",
+        "week": "NOW",
+        "name": "Finish the remaining 1×1s",
+        "desc": "Kaitlyn, Willy and Louise — the last three sit-downs. Everyone else is done.",
         "owner": "JONATHAN"
       },
       {
         "id": "t22",
-        "week": "9+",
-        "name": "1×1 sessions: skills",
-        "desc": "Walk each role through the skills that touch their work; teach them how to invoke and refine — moving from 'Jonathan triggers it' to 'the team owns it.'",
+        "week": "NOW",
+        "name": "Build skills & plugins at the org level",
+        "desc": "Keep building out skills and plugins that are universally available to everybody at the organization level — not per-person, not per-project. Available to the whole company by default.",
         "owner": "JONATHAN"
       },
       {
         "id": "t23",
-        "week": "9+",
-        "name": "1×1 sessions: department dashboards & reports",
-        "desc": "Build a department-specific report set with each owner — what gets reviewed when, what Claude auto-drafts, what the cadence is.",
-        "owner": "JONATHAN"
-      },
-      {
-        "id": "t24",
         "week": "ONGOING",
-        "name": "Continue team-facing project rollout",
-        "desc": "Stand up shared Claude Teams Projects for each team's recurring work — wholesale, retail, marketing, ops, customer service — and document the scope of each.",
-        "owner": "JONATHAN"
-      },
-      {
-        "id": "t25",
-        "week": "ONGOING",
-        "name": "Hand off data management to each owner",
-        "desc": "Each department lead becomes responsible for their data's freshness, taxonomy and connector hygiene. Jonathan moves from operator to support.",
-        "owner": "OWNERS"
-      },
-      {
-        "id": "t26",
-        "week": "10+",
-        "name": "ROI + usage estimator for the team",
-        "desc": "Lightweight tool visible in the hub: hours saved, queries run, $ of outcomes attributed, usage trends per role. So value is measured, not assumed.",
-        "owner": "JONATHAN"
-      },
-      {
-        "id": "t27",
-        "week": "11+",
-        "name": "Eval judgment tool (drift prevention)",
-        "desc": "Automated quality checks that score AI output on the work that matters — voice, accuracy, tone — and alert when scores drop. Stops the slow drift that creeps in over months.",
+        "name": "Show everyone how to use & deploy them",
+        "desc": "Teach the team to invoke, update and deploy the skills and plugins themselves — so the tools always stay updated and online, and don't depend on one person.",
         "owner": "JONATHAN"
       }
     ]
   },
   "readingSection": {
     "eyebrow": "TASKS FOR YOU",
-    "title": "READ. THEN FILL IN.",
-    "deck": "Two things, in order. First, read and sign off on the short ground-rules and data docs below — five minutes. Then, fill out the intake forms further down so the AI gets shaped around how Pappy actually works."
+    "title": "READ & SIGN OFF.",
+    "deck": "This is now the only thing being asked of you. Short, plain docs — about five minutes. Open each one, then mark it read; that's the sign-off, and it gives one clear record of who's up to speed. The seven intake forms that used to sit below this have been retired — the note above explains why."
   },
   "requiredReading": [
     {
@@ -1017,12 +1068,22 @@
   "comingSoon": {
     "eyebrow": "ALSO COMING TO THE HUB",
     "title": "MORE TOOLS, SOON.",
-    "deck": "The intake forms above are live now. These land next.",
+    "deck": "The document sign-offs above are live now. These land next.",
     "items": [
       {
+        "status": "NEXT",
+        "title": "Claude in Slack",
+        "bodyHtml": "Tag Claude directly in the channel you're already working in — it answers, drafts and builds in that same thread, and everyone in the window shares the context and the result. This is the single-player-to-multiplayer shift from the note above, and it's the next thing being wired up."
+      },
+      {
+        "status": "NEXT",
+        "title": "Watch-how-you-work sessions",
+        "bodyHtml": "The replacement for the intake forms. Record a normal working week — on your terms — and Claude comes back with the seven or eight places it noticed it could help. You pick what's worth deploying; nothing gets automated without you saying so."
+      },
+      {
         "status": "SOON",
-        "title": "Data sign-offs",
-        "bodyHtml": "When a connector goes live, the person who owns that tool confirms here that it's connected and scoped right. One checklist, one source of truth — no more chasing \"is that hooked up yet?\" emails."
+        "title": "Org-level skills library",
+        "bodyHtml": "The skills and plugins being built now become available to everyone at the organization level by default — and the hub will list what exists, what it does, and how to run it yourself."
       },
       {
         "status": "SOON",
@@ -1038,8 +1099,11 @@
     "meta": "PAPPY & COMPANY · LOUISVILLE, KY · 2026 AI ROLLOUT"
   },
   "intakeSection": {
-    "eyebrow": "TASKS FOR YOU · CONTINUED",
-    "title": "THE INTAKE FORMS.",
-    "deck": "Seven short forms, in order. Start at Step 1. Steps 1–3 are for everyone; steps 4–7 are assigned to specific people (see each card). Save-as-you-go, come back later, finish when ready."
+    "eyebrow": "RETIRED · JULY 14, 2026",
+    "title": "THE INTAKE FORMS ARE RETIRED.",
+    "deck": "Seven forms used to live here. You don't have to fill them out. Here's the honest reason why.",
+    "retiredHtml": "<p>The premise was that you'd describe your own processes and pain points in a form, and I'd turn that into workflows. Having lived with it, I think that was an unfair thing to ask.</p><p><strong>Most people don't know what AI is capable of — so they can't be expected to describe what to automate.</strong> You'd have to already know what's possible in order to tell me which parts of your day are worth handing over. That's backwards, and it put the work and the time on you.</p><p>So we're flipping it. Instead of asking you to explain how you work, we'll <em>watch</em> how you work — with screen recording, on your terms and with your say-so — and bring <em>you</em> the list: <em>here are seven or eight places I noticed I could help.</em> Then you pick the ones worth deploying.</p><p>Nothing you already filled in is lost — any answers you saved are still recorded, and I'll use them. But there's nothing left outstanding here. The full reasoning is in the note at the top of this page.</p>",
+    "ctaLabel": "Read the full note →",
+    "ctaHref": "#letter"
   }
 }

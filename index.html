@@ -117,6 +117,73 @@
     </div>
   </section>
 
+  <!-- ════════════════════ ZONE 0 — THE NOTE / WHAT CHANGED ════════════════════ -->
+  <div class="zone-divider" data-show-if="letter">
+    <span class="zone-label">WHAT CHANGED</span>
+    <span class="zone-sub">Read this first. It explains why the project list below looks different than it did.</span>
+  </div>
+
+  <!-- ============== THE LETTER — THREE THINGS ============== -->
+  <section class="block alt letter-block" id="letter" data-show-if="letter">
+    <div class="inner">
+      <div class="section-eyebrow" data-bind="letter.eyebrow"></div>
+      <h2 class="section-head" data-bind="letter.title"></h2>
+      <p class="section-deck" data-bind="letter.deck"></p>
+
+      <a class="letter-pdf" data-attr="href:letter.pdfHref" target="_blank" rel="noopener">
+        <span data-bind="letter.pdfLabel">Download the letter (PDF)</span>
+      </a>
+
+      <p class="letter-lede" data-html="letter.ledeHtml"></p>
+      <div class="letter-intro" data-html="letter.introHtml"></div>
+
+      <hr class="letter-rule" />
+
+      <div data-list="letter.things">
+        <template>
+          <article class="thing">
+            <div class="thing-head">
+              <div class="thing-num" data-bind="num"></div>
+              <h3 class="thing-title" data-bind="title"></h3>
+            </div>
+            <div class="thing-body">
+              <div data-html="bodyHtml"></div>
+              <div class="then-now">
+                <div class="tn-row">
+                  <span class="tn-label then" data-bind="thenLabel"></span>
+                  <span class="tn-text" data-bind="thenText"></span>
+                </div>
+                <div class="tn-row">
+                  <span class="tn-label now" data-bind="nowLabel"></span>
+                  <span class="tn-text" data-bind="nowText"></span>
+                </div>
+              </div>
+              <div data-html="bodyHtml2"></div>
+              <blockquote class="letter-pull" data-bind="pull" data-show-if="pull"></blockquote>
+              <div data-html="bodyHtml3"></div>
+            </div>
+          </article>
+        </template>
+      </div>
+
+      <div class="letter-changes">
+        <h3 data-bind="letter.changesTitle"></h3>
+        <p class="lc-sub" data-bind="letter.changesSub"></p>
+        <ol data-list="letter.changes">
+          <template>
+            <li><strong data-bind="title"></strong> <span data-bind="body"></span></li>
+          </template>
+        </ol>
+      </div>
+
+      <div class="letter-closing">
+        <h3 data-bind="letter.closingTitle"></h3>
+        <div data-html="letter.closingHtml"></div>
+        <div class="letter-sig" data-bind="letter.sig"></div>
+      </div>
+    </div>
+  </section>
+
   <!-- ════════════════════ ZONE 1 — PROJECT UPDATE & WHAT'S DUE ════════════════════ -->
   <div class="zone-divider" id="status">
     <span class="zone-label">PROJECT UPDATE</span>
@@ -197,13 +264,19 @@
     <a class="reading-admin-link" id="reading-admin-link" href="#" style="display:none">See who has / hasn't signed off →</a>
   </section>
 
-  <!-- ============== INTAKE FORMS — continuation of TASKS FOR YOU ============== -->
+  <!-- ============== INTAKE FORMS — RETIRED July 2026 (see #letter) ============== -->
+  <!-- The seven intake forms were removed deliberately: asking people to describe
+       workflows they don't know an AI could do put the work on them. Replaced by
+       observed-work sessions. intake.js no-ops when #intake-root is absent. -->
   <section class="block alt" id="intake">
     <div class="inner">
-      <div class="section-eyebrow" data-bind="intakeSection.eyebrow">TASKS FOR YOU · CONTINUED</div>
-      <h2 class="section-head" data-bind="intakeSection.title">THE INTAKE FORMS.</h2>
-      <p class="section-deck" data-bind="intakeSection.deck">Seven short forms, in order. Save-as-you-go — fill them in over coffee, come back later, finish when ready.</p>
-      <div id="intake-root" class="intake-root"></div>
+      <div class="section-eyebrow retired" data-bind="intakeSection.eyebrow">RETIRED</div>
+      <h2 class="section-head" data-bind="intakeSection.title">THE INTAKE FORMS ARE RETIRED.</h2>
+      <p class="section-deck" data-bind="intakeSection.deck"></p>
+      <div class="retired-note">
+        <div data-html="intakeSection.retiredHtml"></div>
+        <a class="retired-cta" data-attr="href:intakeSection.ctaHref" data-bind="intakeSection.ctaLabel"></a>
+      </div>
     </div>
   </section>
 
