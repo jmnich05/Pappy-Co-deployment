@@ -140,7 +140,7 @@
     "deck": "What changed between sketching this plan and actually living in it — and why the project list below looks different than it did.",
     "pdfHref": "./brands/pappy-co/assets/three-things-i-wish-i-knew.pdf",
     "pdfLabel": "Download the letter (PDF)",
-    "ledeHtml": "Every month in this space, I look back at what I was doing a month ago and think: <em>wow, I was naive.</em> I can't believe I thought that. I can't believe I thought that was an effective way of doing something.",
+    "ledeHtml": "Every month in artificial intelligence, I look back at what I was doing a month ago and think: <em>wow, I was naive.</em> I can't believe I thought that. I can't believe I thought that was an effective way of doing something.",
     "introHtml": "<p>That's not a complaint — it's just the pace. But it does mean the plan I sketched out three months ago, when I first started mapping our Claude deployment, is not the plan I would write today. So before we go further, I want to be honest about what I got wrong, and what I'd do differently knowing what I know now.</p><p><strong>Three things.</strong></p>",
     "things": [
       {
