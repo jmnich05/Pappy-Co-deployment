@@ -401,7 +401,9 @@
       "t20": 3,
       "t21": 1,
       "t22": 1,
-      "t23": 1
+      "t23": 1,
+      "t24": 1,
+      "t25": 1
     },
     "tasks": [
       {
@@ -563,6 +565,20 @@
         "week": "ONGOING",
         "name": "Show everyone how to use & deploy them",
         "desc": "Teach the team to invoke, update and deploy the skills and plugins themselves — so the tools always stay updated and online, and don't depend on one person.",
+        "owner": "JONATHAN"
+      },
+      {
+        "id": "t24",
+        "week": "EXPLORING",
+        "name": "Claude tags in Slack — and potentially Google Chat",
+        "desc": "Evaluating Claude tagging: tag the AI directly in a channel and get answers, drafts and analysis in that same thread. Live on Slack; exploring whether/when it reaches Google Chat, where most of our team works.",
+        "owner": "JONATHAN"
+      },
+      {
+        "id": "t25",
+        "week": "EXPLORING",
+        "name": "Department agents deployable from Google Chat",
+        "desc": "Exploring new department-specific agents that can be deployed directly from Google Chat and shared across a department's chat group — hand them a job in chat, they go do the thing and return the finished work to the whole group.",
         "owner": "JONATHAN"
       }
     ]
