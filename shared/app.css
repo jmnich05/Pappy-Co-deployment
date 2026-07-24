@@ -1327,3 +1327,10 @@ details.disclosure.big .disclosure-body { padding: 8px 28px 32px; }
   .bug-step { padding: 18px 18px 20px; }
   .bug-note { padding: 16px 18px; }
 }
+
+/* Keep "PAPPY & COMPANY" on one line so the hero breaks as
+   "AGENTIC TECH AT / PAPPY & COMPANY" rather than orphaning the ampersand.
+   Only above 700px — at phone widths the phrase is wider than the column. */
+@media (min-width: 700px) {
+  .hero h1 .gold { white-space: nowrap; }
+}
