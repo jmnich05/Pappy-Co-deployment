@@ -118,6 +118,37 @@
     </div>
   </section>
 
+  <!-- ============== THE PAPPY BUG TRACKER — sits above the three areas ============== -->
+  <section class="block alt bug-block" id="bug-tracker" data-show-if="bugTracker">
+    <div class="inner">
+      <div class="section-eyebrow bug-eyebrow" data-bind="bugTracker.eyebrow"></div>
+      <h2 class="section-head" data-bind="bugTracker.title"></h2>
+      <p class="section-deck" data-bind="bugTracker.deck"></p>
+
+      <div class="bug-intro" data-html="bugTracker.introHtml"></div>
+
+      <div class="bug-steps-label" data-bind="bugTracker.stepsLabel"></div>
+      <div class="bug-steps" data-list="bugTracker.steps">
+        <template>
+          <div class="bug-step">
+            <div class="bug-step-num" data-bind="num"></div>
+            <h3 data-bind="title"></h3>
+            <p data-html="body"></p>
+          </div>
+        </template>
+      </div>
+
+      <div class="bug-then">
+        <div class="bug-then-label" data-bind="bugTracker.thenLabel"></div>
+        <ul data-list="bugTracker.then">
+          <template><li data-bind="value"></li></template>
+        </ul>
+      </div>
+
+      <div class="bug-note" data-html="bugTracker.noteHtml"></div>
+    </div>
+  </section>
+
   <!-- ════════════════════ THE THREE THINGS ════════════════════ -->
   <div class="zone-divider">
     <span class="zone-label" data-bind="areasSection.title">THREE THINGS THAT MATTER.</span>

@@ -25,6 +25,10 @@
   },
   "nav": [
     {
+      "label": "Something broken?",
+      "href": "#bug-tracker"
+    },
+    {
       "label": "Your tool",
       "href": "#tools"
     },
@@ -46,6 +50,11 @@
     }
   ],
   "sidebar": [
+    {
+      "icon": "#i-pulse",
+      "label": "Something broken?",
+      "href": "#bug-tracker"
+    },
     {
       "icon": "#i-tool",
       "label": "Your tool",
@@ -85,8 +94,39 @@
   "hero": {
     "eyebrow": "WHERE THINGS STAND · JULY 2026",
     "headlineHtml": "AI AT <span class=\"gold\">PAPPY &amp; CO</span>",
-    "deck": "The rollout phase is over, and the project plan that used to live here has done its job. What's left is simpler, and it comes down to three things: use the tool you're actually comfortable in, build and maintain the knowledge base that makes any of them useful, and do all of it out in the open where we can learn from each other. Everything below that is reference — the terms, how the technology works, how we handle data.",
+    "deck": "The rollout phase is over, and the project plan that used to live here has done its job. What's left is simpler, and it comes down to three things: use the tool you're actually comfortable in, build and maintain the knowledge base that makes any of them useful, and do all of it out in the open where we can learn from each other. First, though, one practical thing: if something's broken, there's now a five-second way to tell me. Everything after that is reference — the terms, how the technology works, how we handle data.",
     "meta": []
+  },
+  "bugTracker": {
+    "eyebrow": "FIRST · THE PAPPY BUG TRACKER",
+    "title": "IF SOMETHING'S BROKEN, TELL ME.",
+    "deck": "Some of what's been set up doesn't work right yet. That isn't a failure — it's what the first few rounds of any deployment look like. What doesn't help is somebody quietly working around a broken tool for three weeks.",
+    "introHtml": "<p>I've heard from a few of you that some of the Claude Teams tools are broken or aren't behaving the way they should. That's fair, and it's accurate. I've been installing all of this about as fast as I can, and with something this complicated it normally takes a few iterations to get right.</p><p>So if a connector returns nothing, a skill misfires, or a tool just doesn't do what it claims to — that's useful information. I'd far rather hear it than have you assume it's meant to work that way. There's now a proper way to report it, and it takes about five seconds.</p>",
+    "stepsLabel": "HOW TO REPORT IT",
+    "steps": [
+      {
+        "num": "1",
+        "title": "Say what's wrong",
+        "body": "In the AI channel in Google Chat, type the issue in plain language. &ldquo;The Shopify connector returns nothing for wholesale orders&rdquo; is plenty — you don't need to diagnose it."
+      },
+      {
+        "num": "2",
+        "title": "Add a screenshot if it helps",
+        "body": "Optional. If the problem is visual, or the error message is long and fiddly to retype, a screenshot saves a round trip."
+      },
+      {
+        "num": "3",
+        "title": "Hit enter. You're done.",
+        "body": "That's the entire report. No form, no ticket number to keep track of, nothing else expected from you."
+      }
+    ],
+    "thenLabel": "WHAT HAPPENS NEXT",
+    "then": [
+      "It sends me an email alert straight away.",
+      "It's logged in the bug tracker — a project plan in Google Sheets — and assigned as a task, so it can't get buried in the scroll.",
+      "I pick it up, or hand it to an agent to work on. Sometimes it's a real bug and gets fixed; sometimes it's a five-minute answer, or simply a better way to do the thing."
+    ],
+    "noteHtml": "This is how tech teams at bigger companies handle it — everything routes through a tracker so problems stay visible and countable instead of living in DMs and getting forgotten. Given how complicated AI tooling is right now, it makes sense for us too."
   },
   "readingSection": {
     "eyebrow": "PLAIN-LANGUAGE DOCS",
