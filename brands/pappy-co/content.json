@@ -1,13 +1,13 @@
 {
   "meta": {
-    "tabTitle": "AI at Pappy & Company",
+    "tabTitle": "Agentic Tech at Pappy & Company",
     "description": "How we use AI at Pappy & Company — pick your tool, build the knowledge base, work in the open. Internal team reference."
   },
   "brand": {
     "name": "Pappy & Company",
     "logo": "assets/logo.png",
-    "headerLabel": "AI AT PAPPY & CO",
-    "headerSublabel": "TOOLS · KNOWLEDGE · IN THE OPEN"
+    "headerLabel": "AGENTIC TECH",
+    "headerSublabel": "AT PAPPY & COMPANY"
   },
   "coBrand": {
     "enabled": false
@@ -17,7 +17,7 @@
     "googleClientId": "__GOOGLE_CLIENT_ID__"
   },
   "gate": {
-    "heading": "AI at Pappy & Company",
+    "heading": "Agentic Tech at Pappy & Company",
     "subtitle": "Three things that matter — plain language throughout",
     "copyHtml": "The team's reference for how we work with AI. Sign in with your <strong>@pappyco.com</strong> Google Workspace account to take a look.",
     "errorText": "That account isn't authorized. Use your @pappyco.com Workspace login, or ask Jonathan.",
@@ -93,7 +93,7 @@
   ],
   "hero": {
     "eyebrow": "WHERE THINGS STAND · JULY 2026",
-    "headlineHtml": "AI AT <span class=\"gold\">PAPPY &amp; CO</span>",
+    "headlineHtml": "AGENTIC TECH AT <span class=\"gold\">PAPPY &amp; COMPANY</span>",
     "deck": "The rollout phase is over, and the project plan that used to live here has done its job. What's left is simpler, and it comes down to three things: use the tool you're actually comfortable in, build and maintain the knowledge base that makes any of them useful, and do all of it out in the open where we can learn from each other. First, though, one practical thing: if something's broken, there's now a five-second way to tell me. Everything after that is reference — the terms, how the technology works, how we handle data.",
     "meta": []
   },
