@@ -1,13 +1,13 @@
 {
   "meta": {
-    "tabTitle": "Pappy & Co — AI Rollout Portal",
-    "description": "What's happening with AI at Pappy & Company over the next 60 days — in plain language. Internal team portal."
+    "tabTitle": "AI at Pappy & Company",
+    "description": "How we use AI at Pappy & Company — pick your tool, build the knowledge base, work in the open. Internal team reference."
   },
   "brand": {
     "name": "Pappy & Company",
     "logo": "assets/logo.png",
-    "headerLabel": "AI DEPLOYMENT HUB",
-    "headerSublabel": "& ACTION DASHBOARD · PAPPY & COMPANY"
+    "headerLabel": "AI AT PAPPY & CO",
+    "headerSublabel": "TOOLS · KNOWLEDGE · IN THE OPEN"
   },
   "coBrand": {
     "enabled": false
@@ -17,84 +17,54 @@
     "googleClientId": "__GOOGLE_CLIENT_ID__"
   },
   "gate": {
-    "heading": "Pappy & Co's AI Deployment Hub",
-    "subtitle": "Where the rollout lives — plain language throughout",
-    "copyHtml": "This is the team's home base for the AI rollout. Sign in with your <strong>@pappyco.com</strong> Google Workspace account to take a look.",
+    "heading": "AI at Pappy & Company",
+    "subtitle": "Three things that matter — plain language throughout",
+    "copyHtml": "The team's reference for how we work with AI. Sign in with your <strong>@pappyco.com</strong> Google Workspace account to take a look.",
     "errorText": "That account isn't authorized. Use your @pappyco.com Workspace login, or ask Jonathan.",
     "footnote": "Internal team only. Pappy & Company AI Integration."
   },
   "nav": [
     {
-      "label": "What changed",
-      "href": "#letter"
+      "label": "Your tool",
+      "href": "#tools"
     },
     {
-      "label": "Project update",
-      "href": "#status"
+      "label": "Knowledge base",
+      "href": "#knowledge"
     },
     {
-      "label": "Full plan",
-      "href": "#tracker"
+      "label": "In the open",
+      "href": "#open"
     },
     {
-      "label": "Sign-offs",
+      "label": "The docs",
       "href": "#reading"
     },
     {
-      "label": "What we need",
-      "href": "#from-you"
-    },
-    {
-      "label": "For you",
-      "href": "#for-you"
-    },
-    {
-      "label": "Your data",
-      "href": "#your-data"
-    },
-    {
-      "label": "Team",
-      "href": "#team"
-    },
-    {
-      "label": "How it works",
-      "href": "#under-the-hood"
-    },
-    {
-      "label": "Coming soon",
-      "href": "#coming-soon"
+      "label": "Glossary",
+      "href": "#glossary"
     }
   ],
   "sidebar": [
     {
-      "icon": "#i-edit",
-      "label": "What changed",
-      "href": "#letter"
-    },
-    {
-      "icon": "#i-pulse",
-      "label": "Project update",
-      "href": "#status"
-    },
-    {
-      "icon": "#i-check",
-      "label": "Tasks for you",
-      "href": "#reading"
-    },
-    {
-      "icon": "#i-list",
-      "label": "Project plan",
-      "href": "#tracker"
+      "icon": "#i-tool",
+      "label": "Your tool",
+      "href": "#tools"
     },
     {
       "icon": "#i-book",
-      "label": "AI education",
-      "href": "#for-you"
+      "label": "Knowledge base",
+      "href": "#knowledge"
     },
     {
-      "icon": "#i-map",
-      "label": "Deployment roadmap",
-      "href": "#plan"
+      "icon": "#i-users",
+      "label": "In the open",
+      "href": "#open"
+    },
+    {
+      "icon": "#i-check",
+      "label": "The docs",
+      "href": "#reading"
     },
     {
       "icon": "#i-shield",
@@ -102,528 +72,64 @@
       "href": "#your-data"
     },
     {
-      "icon": "#i-users",
-      "label": "Team",
-      "href": "#team"
-    },
-    {
-      "icon": "#i-tool",
+      "icon": "#i-list",
       "label": "How it works",
       "href": "#under-the-hood"
+    },
+    {
+      "icon": "#i-edit",
+      "label": "Glossary",
+      "href": "#glossary"
     }
   ],
   "hero": {
-    "eyebrow": "THE DEPLOYMENT HUB",
-    "headlineHtml": "THE AI <span class=\"gold\">DEPLOYMENT HUB</span>",
-    "deck": "This is the hub for Pappy's AI deployment — the plan, where it stands today, and what's left. The first 60 days are done: the workspace is live, the tools are connected, the Vault is loaded. What's changed is how we get the work into the AI — start with the note below. No jargon; if a word ever trips you up, it's in the glossary at the bottom.",
-    "meta": [
-      {
-        "k": "STARTED",
-        "v": "May 26, 2026"
-      },
-      {
-        "k": "PHASE 1",
-        "v": "Complete"
-      },
-      {
-        "k": "NOW",
-        "v": "1×1s + org-wide skills"
-      }
-    ]
-  },
-  "dashboard": {
-    "title": "WHERE WE ARE RIGHT NOW."
-  },
-  "letter": {
-    "eyebrow": "A NOTE FROM JONATHAN · JULY 14, 2026",
-    "title": "THREE THINGS I WISH I KNEW ABOUT AI THREE MONTHS AGO.",
-    "deck": "What changed between sketching this plan and actually living in it — and why the project list below looks different than it did.",
-    "pdfHref": "./brands/pappy-co/assets/three-things-i-wish-i-knew.pdf",
-    "pdfLabel": "Download the letter (PDF)",
-    "ledeHtml": "Every month in artificial intelligence, I look back at what I was doing a month ago and think: <em>wow, I was naive.</em> I can't believe I thought that. I can't believe I thought that was an effective way of doing something.",
-    "introHtml": "<p>That's not a complaint — it's just the pace. But it does mean the plan I sketched out three months ago, when I first started mapping our Claude deployment, is not the plan I would write today. So before we go further, I want to be honest about what I got wrong, and what I'd do differently knowing what I know now.</p><p><strong>Three things.</strong></p>",
-    "things": [
-      {
-        "num": "01",
-        "title": "Everyone has been playing AI in single-player mode. The whole game is multiplayer.",
-        "bodyHtml": "<p>Going into this year, and honestly right up until last month, essentially everybody was using AI as a single-player tool — even on the enterprise platforms. Single-player means you're building out your own personal context, your own data, your own chat history, alone. And every platform genuinely struggles to turn that into something multiplayer and cross-functional. It isn't that the vendors don't care; it's that the out-of-the-box product — Anthropic, OpenAI, Gemini, any of them — was never really built for a multiplayer experience.</p>",
-        "thenLabel": "WHAT I PLANNED IN APRIL",
-        "thenText": "Shared department folders as the way in. Everything routed through a folder you had to remember to open.",
-        "nowLabel": "WHAT I'D ADD NOW",
-        "nowText": "Keep the folders — and bring the AI to you: into chat, and as standalone agents you can just ask.",
-        "bodyHtml2": "<p><strong>To be clear: the shared department folders aren't going away.</strong> They still have a ton of value, especially on a project-by-project basis — one place where the context and the files for a piece of work sit together. Keep using them. What I got wrong wasn't the folders. It was making them the <em>front door</em>.</p><p>As the way in, a folder asks too much. It puts somebody on the hook for the boring admin of keeping it loaded. It asks everyone to remember to go <em>into</em> a specific place just to raise a question, float an idea, or continue a conversation. It isn't interactive the way you'd naturally chat in Google Chat or Slack. That's an awkward experience, and I don't think it was ever going to stick as the default.</p><p>So rather than making you come to the AI, the AI comes to you. Two ways.</p><p><strong>One — AI in the chat you're already in.</strong> What's landed in the last thirty days, on Slack and Microsoft Teams, is <strong>Claude tagging</strong>. You have a group of people, a department, or just the two of you working on something in your normal channel. You tag Claude right there in the thread. It answers the question, builds the thing, drafts the document, runs the analysis — in that same window. Everyone in the window shares the context, and everyone shares the result, in the way you were already communicating anyway.</p><p><strong>Two — standalone agents you can talk to.</strong> This is the direction I'm taking us, and it matters more for Pappy because tagging hasn't reached Google Chat yet. <strong>Standalone Google Chat agents:</strong> agents that live where we already work, that you hand a job to, that go out and actually <em>do the thing</em>, and come back with the finished work. No flipping over to Claude for everything. You ask; it returns the work.</p>",
-        "pull": "We already have all these groups. Why not just introduce the AI into the room, instead of asking the room to come to the AI?",
-        "bodyHtml3": "<p>That's the move from single-player to multiplayer. The folders stay as the place the work lives. The AI meets you in chat — and, increasingly, as an agent you can simply ask.</p>"
-      },
-      {
-        "num": "02",
-        "title": "Most people are stuck in the chatbot era. The gain is in the agentic era.",
-        "bodyHtml": "<p>There's a lot of terminology, a lot of tools, and an enormous expanse of new software from every major player right now. It's going to take people a while to make sense of it. And I think most everyone has landed in roughly the same place: the 2022-to-2024 ChatGPT mental model. A really powerful intelligence you can ask questions of. Maybe you get a report out of it. Maybe it builds you some slides.</p><p>That's real, and it's genuinely useful, and it is also the <em>smallest</em> version of what this does.</p>",
-        "thenLabel": "THE MENTAL MODEL MOST PEOPLE HAVE",
-        "thenText": "Ask a question. Get an answer. One conversation at a time, with you waiting on it.",
-        "nowLabel": "THE ONE THAT ACTUALLY PAYS",
-        "nowText": "Craft a long-running task, hand it off, and let it work while you go do something else.",
-        "bodyHtml2": "<p>What takes a while to internalize is the <strong>agentic era</strong> — where you craft and build and hand off long-form tasks, communicate what you want in an effective way, and let it run. What most people don't realize is that over the course of a day, the people using AI effectively right now are typically running six or seven different agents at the same time. There is never any downtime. It's constantly working through projects and ideas while the human is out doing other things, or working on other projects themselves. Five, six, ten concurrent tasks, all running at once — <em>that's</em> where 20x, 30x, 40x productivity actually comes from. Not from a better chat answer.</p><p>And to the obvious worry: no, having it do some of the work doesn't take the work away from you. All the data suggests the opposite. People who use AI heavily and agentically are doing more, and working more, than ever — because you're working down your dream list and your wish list. Once you find you can do things at a level you've never done before, there is always more to do.</p>",
-        "pull": "",
-        "bodyHtml3": ""
-      },
-      {
-        "num": "03",
-        "title": "You cannot ask people to describe their workflows. Let the AI watch them instead.",
-        "bodyHtml": "<p>This is the one I got most wrong, and it's the one that changes what I'm asking of you.</p><p>It is never realistic or feasible to put a data-intake field in front of a team and say: <em>explain all your problems, explain your processes</em> — and then take that data and build workflows out of it. I built exactly that. I now think the premise was flawed.</p><p>Most people don't know what AI is capable of doing. So they don't know how to describe what workflows to even ask for. They can't communicate it effectively, and they don't necessarily recognize which parts of their day are repetitive, or which parts of their job a machine would simply do better. That isn't a failure on their part. It's an unfair question.</p>",
-        "thenLabel": "WHAT I ASKED YOU TO DO",
-        "thenText": "Fill out seven intake forms describing your processes, your pain points, and what you'd like automated.",
-        "nowLabel": "WHAT I'LL ASK INSTEAD",
-        "nowText": "Just work. Let Claude watch. It tells us what's worth automating.",
-        "bodyHtml2": "<p>The real shift in the industry is away from putting the work and the time on the human. It's what's happening with OpenAI's new record button, with Scribe and their autoplay, and with several other tools landing right now. The pattern is simply: record my computer, let me work the way I normally work throughout the week, doing all my normal tasks. Then at the end of the week, it sorts based on what it observed. <em>Here are seven or eight different areas where I noticed I could help you out. Here's what I could do for you.</em></p>",
-        "pull": "Don't take time out of someone's day to sit and think deeply and try to explain a workflow process to an AI. Bring the AI into the room. Have it watch your screen, watch where you're clicking, watch what you're doing — and have it make the recommendations.",
-        "bodyHtml3": "<p>Then you deploy the enhancements worth deploying, and that frees up your time to do more meaningful work. That's the era we're moving into.</p>"
-      }
-    ],
-    "changesTitle": "WHAT THIS CHANGES ABOUT OUR PLAN",
-    "changesSub": "Most of the first sixty days holds. Here's what doesn't.",
-    "changes": [
-      {
-        "title": "The intake forms are retired.",
-        "body": "You will not be asked to describe your own workflows. We'll observe the work instead and bring you the recommendations."
-      },
-      {
-        "title": "The shared folders stay — they're just not the front door.",
-        "body": "Keep using them; they still have a ton of value, especially project-by-project. What changes is that you don't have to go to the AI anymore. It comes to chat — and to standalone Google Chat agents you can hand a job to and get finished work back."
-      },
-      {
-        "title": "The remaining work is one-on-ones and enablement.",
-        "body": "Finish the 1×1s, build skills and plugins at the organization level so they're available to everyone by default, and teach people to use and deploy them — so the tools stay updated and online without depending on me."
-      },
-      {
-        "title": "Everything educational stays.",
-        "body": "The terminology, the glossary, the data tiers, how to use Claude Teams — all of that still stands, and it's still the best on-ramp we have."
-      }
-    ],
-    "closingTitle": "ONE LAST THING",
-    "closingHtml": "<p>None of this means the last three months were wasted. The workspace is live, the connectors are wired, the Vault is loaded, the education holds up. What changed is <em>how the work gets into the AI</em>, and <em>how the AI gets into your day</em>.</p><p>And I'd bet this note doesn't survive contact with October. That's not a warning — that's the job now. The plan is supposed to change. What matters is that we're honest each time it does.</p>",
-    "sig": "— Jonathan"
-  },
-  "forYou": {
-    "eyebrow": "FOR YOU",
-    "title": "WHAT THIS MEANS FOR YOU.",
-    "deck": "The short version: this is about taking the dull, repetitive parts off your plate so you can spend time on the parts that actually need a person. It is not about replacing you.",
-    "points": [
-      {
-        "title": "It does the busywork — you make the calls",
-        "body": "Drafting the same kind of email for the hundredth time, pulling Cin7 numbers into a report, tidying product copy, building a Klaviyo flow draft — that's the stuff AI is good at. Deciding what's right for a customer, what's on-brand, what to actually send — that's still you."
-      },
-      {
-        "title": "You set the level of oversight",
-        "body": "How much the AI does on its own — and how much a person checks — is a dial the team controls, workflow by workflow: tighter on the sensitive stuff (a customer reply, a wholesale email), looser on the routine, and it changes as everyone gets comfortable. Nothing turns on without the team deciding it should."
-      },
-      {
-        "title": "You'll get time back",
-        "body": "The honest goal: a few hours a week, each, that used to go to repetitive tasks. What you do with that — better customer care, getting ahead on the season, leaving on time — is up to you and your manager."
-      },
-      {
-        "title": "You don't need to be \"techy\"",
-        "body": "If you can use email and a web browser, you can use what we're setting up. We'll show you exactly the handful of things that matter for your role. No coding, no jargon required."
-      },
-      {
-        "title": "It learns how WE do things",
-        "body": "We're not bolting on a generic chatbot. We're feeding it Pappy's own SOPs, marketing playbooks, vendor history, brand standards and product specs — so its answers sound like us, with our Louisville / Van Winkle heritage, not like the internet."
-      },
-      {
-        "title": "It's yours to keep",
-        "body": "Everything built — the instructions, the connections, the know-how — belongs to Pappy. If we ever switched tools, it comes with us. The investment is in your intelligence, not someone else's software."
-      }
-    ],
-    "straight": {
-      "title": "And here's what we won't pretend.",
-      "bodyHtml": "AI gets things wrong sometimes — confidently. That's exactly why a person reviews its work. It won't fix a broken process; if something's a mess by hand, it'll be a faster mess with AI until we fix the process itself. And some of this will feel awkward for the first few weeks while everyone finds their footing — that's normal, and it's why there's a full year of support, not just a launch. If any of this ever feels off, say so — to your manager or to Jonathan. That feedback is the point."
-    }
-  },
-  "layerSection": {
-    "eyebrow": "WHAT WE'RE SETTING UP",
-    "title": "THE PIECES WE'RE PUTTING IN PLACE.",
-    "deck": "A handful of things you get, in plain terms. Each one has a job.",
-    "colHead": "What it does, in plain terms",
-    "techNoteHtml": "<p>If you want the industry names: the shared AI workspace is <strong>Claude Teams</strong> (from Anthropic, the makers of Claude). The \"place it can look things up\" is <strong>\"The Vault\"</strong> — a knowledge base with RAG (retrieval-augmented generation). The data connections are <strong>MCP connectors</strong> (Model Context Protocol). The reusable instructions are <strong>skills</strong>. The image stack is <strong>Adobe Photoshop, Illustrator & Firefly</strong> plus <strong>Claude Design</strong>. The advanced agent layer (Claude Agent SDK / Claude's managed agents) is unpacked in <em>Under the hood</em> near the bottom.</p>"
-  },
-  "layers": [
-    {
-      "badgeLabel": "",
-      "badgeClass": "core-badge",
-      "name": "One AI workspace for the team",
-      "bodyHtml": "A single, secure place everyone logs into to work with AI — Louise, Carrie, Jonathan, Christy, Kelcie, Kaitlyn, Brittany, Willy — instead of people using random personal accounts. One login, one bill, one set of rules. Like the company's shared Google Drive, but for AI."
-    },
-    {
-      "badgeLabel": "",
-      "badgeClass": "core-badge",
-      "name": "A place it can look things up about us — \"The Vault\"",
-      "bodyHtml": "We load in Pappy's own SOPs, marketing playbooks, vendor history, brand standards, product specs and past campaign data. Then when you ask the AI a question, it answers from <em>our</em> stuff — not the open internet. One trusted source instead of digging through Drive folders."
-    },
-    {
-      "badgeLabel": "",
-      "badgeClass": "core-badge",
-      "name": "Up to 5 custom data connections to your live info",
-      "bodyHtml": "Up to five connections — one per tool you run (Shopify retail + wholesale, Cin7 Core, Klaviyo, Attentive, Gorgias, GA4, Google Workspace…) — so the AI sees live, current info instead of a stale export. Read-only wherever possible."
-    },
-    {
-      "badgeLabel": "",
-      "badgeClass": "core-badge",
-      "name": "Up to 5 custom skills, trained on how Pappy works",
-      "bodyHtml": "Up to five reusable \"skills\" — pre-written instructions for common tasks (wholesale bundles, Cerity reports, Gorgias macros, Klaviyo flows, product copy) — so the AI starts from how <em>we</em> do it, not a blank box. Plain text; yours to keep."
-    },
-    {
-      "badgeLabel": "",
-      "badgeClass": "core-badge",
-      "name": "5 dashboards for the metrics that drive the business",
-      "bodyHtml": "Five dashboards built around the numbers that actually matter to Pappy — chosen with Louise — pulling live from your connected tools, so nobody's exporting a spreadsheet to see where retail, wholesale or stock stands."
-    },
-    {
-      "badgeLabel": "",
-      "badgeClass": "core-badge",
-      "name": "An image & design setup that stays on-brand",
-      "bodyHtml": "Adobe Photoshop and Illustrator plus Adobe Firefly for product imaging, gift-box mockups and social creative — and Claude Design for early concepting. On-brand, commercially safe, no \"AI slop\" look. Three Adobe seats: Brittany, Kelcie, Kaitlyn. (More on this below in the images section.)"
-    },
-    {
-      "badgeLabel": "",
-      "badgeClass": "core-badge",
-      "name": "Your voice and brand kit, loaded in",
-      "bodyHtml": "How Pappy sounds — Louisville, bourbon-cultural, Van Winkle heritage, premium-but-warm — written down as tone profiles per channel; plus the brand kit (colors, fonts, logos, usage rules) so the AI writes and designs on-brand. The brand kit is the source of truth, not the model's defaults."
-    }
-  ],
-  "planSection": {
-    "eyebrow": "THE PLAN",
-    "title": "FOUR STEPS OVER ABOUT 60 DAYS.",
-    "deck": "Predictable, not a black box. Here's the shape of it — and there's a week-by-week breakdown below if you want it."
-  },
-  "phases": [
-    {
-      "accent": "1",
-      "label": "STEP 1 · WEEKS 1–2",
-      "title": "FIND OUT HOW WE WORK",
-      "days": "Weeks 1–2",
-      "intro": "We learn how Pappy actually runs — by asking.",
-      "bullets": [
-        "Short conversations with Louise, Carrie, Jonathan, Christy, Kelcie, Kaitlyn, Brittany and Willy — what you do, what's repetitive, where it'd help",
-        "A look at the tools and data we'd connect to — Shopify, Cin7, Klaviyo, Attentive, Gorgias, GA4",
-        "A safety check — who can sign in, what the AI can and can't see, where customer info and wholesale terms are off-limits",
-        "A ranked list of \"here's where AI helps most, here's where it's not worth it,\" ready for Louise to look at"
-      ]
-    },
-    {
-      "accent": "2",
-      "label": "STEP 2 · WEEKS 3–4",
-      "title": "TEACH IT OUR VOICE",
-      "days": "Weeks 3–4",
-      "intro": "We capture how Pappy sounds and write it down for the AI.",
-      "bullets": [
-        "How we talk in retail email, in wholesale, in customer service, in internal ops — written as instructions",
-        "Loading the brand standards, SOPs and playbooks into \"The Vault\"",
-        "Adobe Firefly trained against Pappy's visual identity",
-        "A first draft of the reusable instructions (\"skills\") for common tasks — wholesale bundles, Cerity reports, Gorgias macros, Klaviyo flows, product copy",
-        "Louise signs off on the plan before any building starts"
-      ]
-    },
-    {
-      "accent": "3",
-      "label": "STEP 3 · WEEKS 5–7",
-      "title": "BUILD IT & SHOW YOU",
-      "days": "Weeks 5–7",
-      "intro": "We build the pieces, test them, and train the team.",
-      "bullets": [
-        "The shared AI workspace goes live with the right setup for each role",
-        "\"The Vault\" is loaded and tested — SOPs, playbooks, vendor history, brand kit",
-        "The connections to Shopify (retail + wholesale), Cin7, Klaviyo, Attentive, Gorgias, GA4 and Workspace are built and checked",
-        "The Adobe Business Account is set up (Brittany, Kelcie, Kaitlyn) and Firefly workflows configured",
-        "Quality checks running on the important tasks — is the Gorgias draft good? is the copy on-brand? are wholesale replies landing?",
-        "Training, by role — you learn the handful of things that matter for <em>your</em> job"
-      ]
-    },
-    {
-      "accent": "4",
-      "label": "STEP 4 · MONTHS 3–12",
-      "title": "KEEP IT HEALTHY",
-      "days": "Months 3–12 (included)",
-      "intro": "It doesn't get switched on and abandoned. It's tended for a year.",
-      "bullets": [
-        "Ongoing quality checks — customer-service quality, copy on-brand-ness, wholesale reply rates",
-        "Watching that the connected tools are still feeding fresh, correct data",
-        "A check-in every quarter — what's working, what to adjust",
-        "A plain report: hours saved, revenue attributed, deflection rate, cycle time",
-        "12 months of support included — questions, fixes, tweaks"
-      ]
-    }
-  ],
-  "cadence": [
-    {
-      "num": "WEEKS 1–2",
-      "title": "FIND OUT",
-      "desc": "Conversations with each person, a look at the data and tools, a safety check, and a ranked list of where AI helps most."
-    },
-    {
-      "num": "WEEKS 3–4",
-      "title": "DESIGN",
-      "desc": "Pappy's voice written down, the brand kit and SOPs loaded into \"The Vault,\" Firefly trained on the visual identity, the first set of reusable instructions sketched, and a plan Louise has signed off."
-    },
-    {
-      "num": "WEEKS 5–7",
-      "title": "BUILD & TRAIN",
-      "desc": "The workspace goes live, tools get connected and checked, the Adobe seats and Firefly workflows are set up, quality checks turn on, and everyone gets role-specific training."
-    },
-    {
-      "num": "WEEK 8",
-      "title": "GO LIVE",
-      "desc": "Full rollout across Claude Teams. A short \"first 5 things to try\" guide for each role. The results report turns on. The 12-month support clock starts."
-    }
-  ],
-  "tracker": {
-    "version": "phase3-enablement-2026-07-14",
-    "lastUpdated": "2026-07-14",
-    "defaults": {
-      "t01": 3,
-      "t02": 3,
-      "t03": 3,
-      "t04": 3,
-      "t05": 3,
-      "t06": 3,
-      "t07": 3,
-      "t08": 3,
-      "t09": 3,
-      "t10": 3,
-      "t11": 3,
-      "t12": 3,
-      "t13": 3,
-      "t14": 3,
-      "t15": 3,
-      "t16": 3,
-      "t17": 3,
-      "t18": 3,
-      "t19": 3,
-      "t20": 3,
-      "t21": 1,
-      "t22": 1,
-      "t23": 1,
-      "t24": 1,
-      "t25": 1
-    },
-    "tasks": [
-      {
-        "id": "t01",
-        "week": "1–2",
-        "name": "Talk to the team",
-        "desc": "Louise, Carrie, Jonathan, Christy, Kelcie, Kaitlyn, Brittany, Willy — what your week looks like, by role",
-        "owner": "JONATHAN"
-      },
-      {
-        "id": "t02",
-        "week": "1–2",
-        "name": "Look at the tools & data",
-        "desc": "Shopify (retail + wholesale), Cin7, Klaviyo, Attentive, Gorgias, GA4, Google Workspace",
-        "owner": "JONATHAN"
-      },
-      {
-        "id": "t03",
-        "week": "1–2",
-        "name": "Safety check",
-        "desc": "Who can sign in, what the AI can and can't see, where customer info & wholesale terms are off-limits",
-        "owner": "JONATHAN"
-      },
-      {
-        "id": "t04",
-        "week": "1–2",
-        "name": "Rank where AI helps most",
-        "desc": "A short list, biggest payoff first, ready for Louise to look at",
-        "owner": "JONATHAN"
-      },
-      {
-        "id": "t05",
-        "week": "3–4",
-        "name": "Sketch the setup",
-        "desc": "How the workspace, \"The Vault,\" the connectors and Firefly fit together",
-        "owner": "JONATHAN"
-      },
-      {
-        "id": "t06",
-        "week": "3–4",
-        "name": "Write down our voice",
-        "desc": "How Pappy sounds in retail email, wholesale, customer service and internal ops",
-        "owner": "CHRISTY"
-      },
-      {
-        "id": "t07",
-        "week": "3–4",
-        "name": "Sketch the reusable instructions",
-        "desc": "Wholesale bundles, Cerity reports, Gorgias macros, Klaviyo flows, product copy, cigar-sub playbook",
-        "owner": "JONATHAN"
-      },
-      {
-        "id": "t08",
-        "week": "3–4",
-        "name": "Louise signs off on the plan",
-        "desc": "Walk through it together; agree on workspace seats and Adobe licensing",
-        "owner": "LOUISE"
-      },
-      {
-        "id": "t09",
-        "week": "5–7",
-        "name": "Connect Shopify, Cin7, Klaviyo & Gorgias",
-        "desc": "Retail + wholesale Shopify, Cin7, Klaviyo, Gorgias — built and checked",
-        "owner": "JONATHAN"
-      },
-      {
-        "id": "t10",
-        "week": "5–7",
-        "name": "Connect Attentive, GA4 & Workspace",
-        "desc": "Built and checked — live data, read-only where possible",
-        "owner": "JONATHAN"
-      },
-      {
-        "id": "t11",
-        "week": "5–7",
-        "name": "Author the reusable instructions",
-        "desc": "Shipped as plain-text \"skills\" — portable from day one",
-        "owner": "JONATHAN"
-      },
-      {
-        "id": "t12",
-        "week": "5–7",
-        "name": "Set up the Adobe Business Account",
-        "desc": "3 seats — Brittany, Kelcie, Kaitlyn — Photoshop, Illustrator, Firefly Pro",
-        "owner": "BRITTANY"
-      },
-      {
-        "id": "t13",
-        "week": "5–7",
-        "name": "Configure Firefly workflows",
-        "desc": "Trained against Pappy's visual identity; Zapier bridges Drive ↔ Firefly ↔ Shopify",
-        "owner": "BRITTANY"
-      },
-      {
-        "id": "t14",
-        "week": "5–7",
-        "name": "Turn on quality checks",
-        "desc": "Customer-service response quality, copy on-brand-ness, wholesale reply rates",
-        "owner": "JONATHAN"
-      },
-      {
-        "id": "t15",
-        "week": "5–7",
-        "name": "Train the team, by role",
-        "desc": "Day-to-day operation for each role — Louise, Carrie, Christy, Kelcie, Kaitlyn, Brittany, Willy",
-        "owner": "CHRISTY"
-      },
-      {
-        "id": "t16",
-        "week": "8",
-        "name": "Go live for everyone",
-        "desc": "Claude Teams live across the operating team with single sign-on and one central bill",
-        "owner": "JONATHAN"
-      },
-      {
-        "id": "t17",
-        "week": "8",
-        "name": "\"First 5 things to try\" guides",
-        "desc": "A short, role-specific cheat sheet for each person",
-        "owner": "CHRISTY"
-      },
-      {
-        "id": "t18",
-        "week": "8",
-        "name": "Turn on the results report",
-        "desc": "Hours saved, revenue influenced, deflection rate, cycle time",
-        "owner": "JONATHAN"
-      },
-      {
-        "id": "t19",
-        "week": "8",
-        "name": "Start the 12-month support clock",
-        "desc": "Quarterly check-ins scheduled; data-freshness alerts armed",
-        "owner": "JONATHAN"
-      },
-      {
-        "id": "t20",
-        "week": "8",
-        "name": "Set the cadence for what gets automated next",
-        "desc": "Quarterly review of which workflows to automate further, and the level of oversight on each",
-        "owner": "JONATHAN"
-      },
-      {
-        "id": "t21",
-        "week": "NOW",
-        "name": "Finish the remaining 1×1s",
-        "desc": "Kaitlyn, Willy and Louise — the last three sit-downs. Everyone else is done.",
-        "owner": "JONATHAN"
-      },
-      {
-        "id": "t22",
-        "week": "NOW",
-        "name": "Build skills & plugins at the org level",
-        "desc": "Keep building out skills and plugins that are universally available to everybody at the organization level — not per-person, not per-project. Available to the whole company by default.",
-        "owner": "JONATHAN"
-      },
-      {
-        "id": "t23",
-        "week": "ONGOING",
-        "name": "Show everyone how to use & deploy them",
-        "desc": "Teach the team to invoke, update and deploy the skills and plugins themselves — so the tools always stay updated and online, and don't depend on one person.",
-        "owner": "JONATHAN"
-      },
-      {
-        "id": "t24",
-        "week": "EXPLORING",
-        "name": "Claude tags in Slack — and potentially Google Chat",
-        "desc": "Evaluating Claude tagging: tag the AI directly in a channel and get answers, drafts and analysis in that same thread. Live on Slack; exploring whether/when it reaches Google Chat, where most of our team works.",
-        "owner": "JONATHAN"
-      },
-      {
-        "id": "t25",
-        "week": "EXPLORING",
-        "name": "Department agents deployable from Google Chat",
-        "desc": "Exploring new department-specific agents that can be deployed directly from Google Chat and shared across a department's chat group — hand them a job in chat, they go do the thing and return the finished work to the whole group.",
-        "owner": "JONATHAN"
-      }
-    ]
+    "eyebrow": "WHERE THINGS STAND · JULY 2026",
+    "headlineHtml": "AI AT <span class=\"gold\">PAPPY &amp; CO</span>",
+    "deck": "The rollout phase is over, and the project plan that used to live here has done its job. What's left is simpler, and it comes down to three things: use the tool you're actually comfortable in, build and maintain the knowledge base that makes any of them useful, and do all of it out in the open where we can learn from each other. Everything below that is reference — the terms, how the technology works, how we handle data.",
+    "meta": []
   },
   "readingSection": {
-    "eyebrow": "TASKS FOR YOU",
-    "title": "READ & SIGN OFF.",
-    "deck": "This is now the only thing being asked of you. Short, plain docs — about five minutes. Open each one, then mark it read; that's the sign-off, and it gives one clear record of who's up to speed. The seven intake forms that used to sit below this have been retired — the note above explains why."
+    "eyebrow": "PLAIN-LANGUAGE DOCS",
+    "title": "THE DOCS.",
+    "deck": "Short, plain-language documents on how we work with AI here — what's fine to do, how we handle data, and how Google Drive fits in. Open whatever's useful. Nothing to sign, nothing tracked.",
+    "signOff": false
   },
   "requiredReading": [
     {
       "id": "pappy-welcome",
       "slug": "welcome-to-claude-teams",
       "category": "how-to",
-      "required": true,
-      "title": "Read me first — Welcome to Claude Teams",
-      "summary": "A 10-minute orientation. Get the Mac app, learn the three doors (Cowork, Chat, Code), and run your first real task.",
-      "body_md": "## Welcome to Claude Teams at Pappy & Co\n\nYou've just been added to our Claude Teams workspace. This is your **first stop** — a 10-minute orientation before you start building, drafting, analyzing, or asking.\n\n> 📄 **The full Welcome Kit (with diagrams, all customizers, and example asks) is here:** [Open the Pappy & Co Claude Welcome Kit (PDF)](./brands/pappy-co/assets/welcome-kit.pdf)\n\nThe summary below covers the critical bits. Open the PDF for the complete version.\n\n---\n\n## Step 00 — before anything else\n\n### Download the Claude Mac app. Don't start in Chrome.\n\nThe single most important thing you'll do this week. Go to **[claude.ai/download](https://claude.ai/download)**, install the macOS desktop app, and sign in with your Pappy & Co email. **Use the desktop app as your daily driver** — not the browser tab.\n\n**Why this matters:** The browser version is sandboxed. It can't read or write files on your Mac, can't open your selected folder, can't run scripts, and has limited connector behavior. If you start in Chrome you'll think Claude is less capable than it actually is — and you'll waste a week wondering why everyone else's Claude can build XLSX files and yours can't. *Install the app first. Everything below assumes you have.*\n\n---\n\n## The three doors — Cowork, Chat, Code\n\nSame Claude underneath. Different surface. Each one is built for a different shape of work — and the wrong door makes the job slower, not faster.\n\n### 1 · Cowork (desktop app · files & connectors)\n**For getting actual work shipped.** Cowork is a desktop app that gives Claude a workspace folder on your Mac plus a sandboxed Linux shell. It can read your selected folder, write new files, run scripts, build spreadsheets and decks, and call our connected tools.\n\n*Good for: build a wholesale deck, pull last month's Shopify orders into XLSX, reorganize supplier PDFs, draft + send a Klaviyo campaign brief.*\n\n### 2 · Chat (web · mobile · quick thinking)\n**For thinking, drafting, and asking.** The classic Claude surface — claude.ai in your browser or the mobile app. No file system. Great for drafts, conversations, brainstorms, and questions that don't need to touch our systems.\n\n*Good for: draft a Slack message, brainstorm Q3 cigar subscription messaging, summarize a vendor PDF you paste in, quick GA4 question.*\n\n### 3 · Code (terminal · repos · for developers)\n**For when the work lives in a repo.** Claude Code is a CLI that runs in your terminal and operates inside a git repository. Edits code, runs tests, opens PRs. If you don't write code day-to-day, you don't need this — Cowork covers nearly every operator workflow.\n\n### Rule of thumb\n> If the answer should land as a **file** on your computer, open Cowork.\n> If you want a **conversation**, stay in Chat.\n> If you're touching a **repo**, you're in Code.\n\n---\n\n## What's wired up for you\n\nThe full PDF lists every connector and skill in detail. The headline list:\n\n**Operations & commerce:** Shopify (retail + wholesale), Cin7 Core, Inventory Planner, Klaviyo, Attentive, Gorgias, GA4, Google Workspace, Notion + Asana.\n\n**Working & communication:** Slack, Zoom, DocuSign, LinkedIn, Canva, Apollo + Common Room.\n\n**Pappy-specific skills:** Brand Kit (always-on — triggers when you ask for branded output), Brand Voice Enforcement (on-demand reviewer), Productivity (persistent memory of our team + projects + shorthand).\n\n**Skill packs we lean on:** marketing, sales, customer support, finance, HR, ops, legal, data, design, engineering, PM — invoke with a slash command (e.g. `/marketing:campaign-plan`) or just describe what you need.\n\nYou don't have to install any of this. It's available the moment your invite goes through.\n\n---\n\n## Privacy — private chats vs. shared projects\n\nThe most-asked question on day one: *\"Can the team see what I just typed?\"* **Short answer: only if you put it in a Project that's set to share with the workspace.**\n\n🔒 **Private (default).** When you open a new chat from the Claude home screen, it lives in your account only. No one in the workspace can read it — not Jonathan, not admins. One-off questions, brainstorms, drafts → keep them private. Sensitive HR or 1:1 conversations → private.\n\n🔗 **Shared via Projects.** When you create a Project and set it to \"Share with workspace,\" every chat inside that project is visible to other teammates with access. Files, custom instructions, and chats become team-readable. Use this for cross-functional work, shared SOPs, ongoing initiatives.\n\n> **Practical rule:** If two or more people will benefit from continuity on a topic, make it a shared Project. If it's \"just me thinking out loud,\" keep it in a private chat. When in doubt — start private. You can always move work into a shared Project later.\n\nAnthropic doesn't train on Pappy's data. Default-deny is enforced at the workspace level.\n\n---\n\n## Our data handling tiers — non-negotiable\n\nYou will run into sensitive data. Our policy classifies it into four tiers — **treat the tier as the ceiling**. Don't move data to a less-restricted tier without checking with Jonathan first.\n\n| Tier | What it is | Examples |\n|---|---|---|\n| **1 · NEVER** | Secrets | API keys, passwords, OAuth tokens, signing secrets, payment processor credentials, 2FA recovery codes. **Never paste these into any AI tool, ever.** |\n| **2 · DON'T** | Regulated PII | Customer credit card numbers, CVVs, bank info, SSNs, government IDs, login credentials, age-verification docs. |\n| **3 · APPROVED TOOLS ONLY** | Confidential business data | Wholesale pricing, supplier costs (Cin7), contracts, P&L, payroll, headcount, unreleased product info, customer lists. Claude Teams only — never personal AI accounts. |\n| **4 · GENERALLY FINE** | Internal but low-risk | Aggregated analytics, public marketing copy, published product info, GA4 reports without PII, draft creative, general SOPs. |\n\n**Hard rules:** Never connect a personal Claude account to company data. Never share logins. Never use customer data for AI training. Never paste a Tier 1 secret anywhere. *If in doubt, ask Jonathan before pasting, uploading, or connecting.*\n\n---\n\n## Your first 30 minutes — quick start\n\nRun through this once and you're operational. Most of it is pre-wired — you're really just signing in and trying things.\n\n1. **Most important — download the Mac app** from [claude.ai/download](https://claude.ai/download). Not Chrome.\n2. **Accept your Claude Teams invite** and sign into the Mac app. You'll land in the Pappy & Co workspace automatically.\n3. **Open Cowork mode** in the Mac app, select a working folder (Desktop or a project folder is fine), and try a small ask.\n4. **In your first chat, ask:** *\"What customizers and connectors do I have access to?\"* — Claude will list them.\n5. **Try a real task** from the examples in the PDF. The brand kit will trigger automatically when relevant.\n6. **Decide private vs. shared.** Is this work better as a private chat or a shared Project? Make a Project for anything ongoing.\n7. **Re-read the data tiers above.** Bookmark them. Send Jonathan questions, not pastes.\n8. **Send Jonathan one workflow** you'd love to automate this quarter. We'll wire it up.\n\n---\n\n> 📄 **Read the full Welcome Kit PDF for the complete version** — example asks for every team, the rest of the connectors and skill packs, the full design treatment.\n> **[→ Open the Welcome Kit PDF](./brands/pappy-co/assets/welcome-kit.pdf)**\n\n---\n\n## Questions?\n\nSlack `#claude-help`, or email Jonathan directly. The questions box at the bottom of this portal works too.\n\n*Welcome Kit v1.0 · April 2026 · Maintained by Jonathan Nichols*\n"
+      "required": false,
+      "title": "Read me first — getting set up (Claude)",
+      "summary": "A 10-minute orientation for anyone on Claude. On ChatGPT, Gemini or Grok instead? The concepts carry over — ask Jonathan for the equivalent setup.",
+      "body_md": "## Welcome to Claude Teams at Pappy & Co\n\nYou've just been added to our Claude Teams workspace. This is your **first stop** — a 10-minute orientation before you start building, drafting, analyzing, or asking.\n\n> **A note on platforms.** Claude is one of the options, not the only one. If you've chosen ChatGPT, Gemini or Grok for your company seat, the concepts in this guide — the different surfaces, private vs. shared work, and especially the data-handling tiers — carry over almost exactly; ask Jonathan for the equivalent setup. **The data rules below apply on every platform, without exception.**\n\n> 📄 **The full Welcome Kit (with diagrams, all customizers, and example asks) is here:** [Open the Pappy & Co Claude Welcome Kit (PDF)](./brands/pappy-co/assets/welcome-kit.pdf)\n\nThe summary below covers the critical bits. Open the PDF for the complete version.\n\n---\n\n## Step 00 — before anything else\n\n### Download the Claude Mac app. Don't start in Chrome.\n\nThe single most important thing you'll do this week. Go to **[claude.ai/download](https://claude.ai/download)**, install the macOS desktop app, and sign in with your Pappy & Co email. **Use the desktop app as your daily driver** — not the browser tab.\n\n**Why this matters:** The browser version is sandboxed. It can't read or write files on your Mac, can't open your selected folder, can't run scripts, and has limited connector behavior. If you start in Chrome you'll think Claude is less capable than it actually is — and you'll waste a week wondering why everyone else's Claude can build XLSX files and yours can't. *Install the app first. Everything below assumes you have.*\n\n---\n\n## The three doors — Cowork, Chat, Code\n\nSame Claude underneath. Different surface. Each one is built for a different shape of work — and the wrong door makes the job slower, not faster.\n\n### 1 · Cowork (desktop app · files & connectors)\n**For getting actual work shipped.** Cowork is a desktop app that gives Claude a workspace folder on your Mac plus a sandboxed Linux shell. It can read your selected folder, write new files, run scripts, build spreadsheets and decks, and call our connected tools.\n\n*Good for: build a wholesale deck, pull last month's Shopify orders into XLSX, reorganize supplier PDFs, draft + send a Klaviyo campaign brief.*\n\n### 2 · Chat (web · mobile · quick thinking)\n**For thinking, drafting, and asking.** The classic Claude surface — claude.ai in your browser or the mobile app. No file system. Great for drafts, conversations, brainstorms, and questions that don't need to touch our systems.\n\n*Good for: draft a Slack message, brainstorm Q3 cigar subscription messaging, summarize a vendor PDF you paste in, quick GA4 question.*\n\n### 3 · Code (terminal · repos · for developers)\n**For when the work lives in a repo.** Claude Code is a CLI that runs in your terminal and operates inside a git repository. Edits code, runs tests, opens PRs. If you don't write code day-to-day, you don't need this — Cowork covers nearly every operator workflow.\n\n### Rule of thumb\n> If the answer should land as a **file** on your computer, open Cowork.\n> If you want a **conversation**, stay in Chat.\n> If you're touching a **repo**, you're in Code.\n\n---\n\n## What's wired up for you\n\nThe full PDF lists every connector and skill in detail. The headline list:\n\n**Operations & commerce:** Shopify (retail + wholesale), Cin7 Core, Inventory Planner, Klaviyo, Attentive, Gorgias, GA4, Google Workspace, Notion + Asana.\n\n**Working & communication:** Slack, Zoom, DocuSign, LinkedIn, Canva, Apollo + Common Room.\n\n**Pappy-specific skills:** Brand Kit (always-on — triggers when you ask for branded output), Brand Voice Enforcement (on-demand reviewer), Productivity (persistent memory of our team + projects + shorthand).\n\n**Skill packs we lean on:** marketing, sales, customer support, finance, HR, ops, legal, data, design, engineering, PM — invoke with a slash command (e.g. `/marketing:campaign-plan`) or just describe what you need.\n\nYou don't have to install any of this. It's available the moment your invite goes through.\n\n---\n\n## Privacy — private chats vs. shared projects\n\nThe most-asked question on day one: *\"Can the team see what I just typed?\"* **Short answer: only if you put it in a Project that's set to share with the workspace.**\n\n🔒 **Private (default).** When you open a new chat from the Claude home screen, it lives in your account only. No one in the workspace can read it — not Jonathan, not admins. One-off questions, brainstorms, drafts → keep them private. Sensitive HR or 1:1 conversations → private.\n\n🔗 **Shared via Projects.** When you create a Project and set it to \"Share with workspace,\" every chat inside that project is visible to other teammates with access. Files, custom instructions, and chats become team-readable. Use this for cross-functional work, shared SOPs, ongoing initiatives.\n\n> **Practical rule:** If two or more people will benefit from continuity on a topic, make it a shared Project. If it's \"just me thinking out loud,\" keep it in a private chat. When in doubt — start private. You can always move work into a shared Project later.\n\nAnthropic doesn't train on Pappy's data. Default-deny is enforced at the workspace level.\n\n---\n\n## Our data handling tiers — non-negotiable\n\nYou will run into sensitive data. Our policy classifies it into four tiers — **treat the tier as the ceiling**. Don't move data to a less-restricted tier without checking with Jonathan first.\n\n| Tier | What it is | Examples |\n|---|---|---|\n| **1 · NEVER** | Secrets | API keys, passwords, OAuth tokens, signing secrets, payment processor credentials, 2FA recovery codes. **Never paste these into any AI tool, ever.** |\n| **2 · DON'T** | Regulated PII | Customer credit card numbers, CVVs, bank info, SSNs, government IDs, login credentials, age-verification docs. |\n| **3 · APPROVED TOOLS ONLY** | Confidential business data | Wholesale pricing, supplier costs (Cin7), contracts, P&L, payroll, headcount, unreleased product info, customer lists. Company-provided seats only — never personal AI accounts. |\n| **4 · GENERALLY FINE** | Internal but low-risk | Aggregated analytics, public marketing copy, published product info, GA4 reports without PII, draft creative, general SOPs. |\n\n**Hard rules:** Never connect a personal AI account to company data. Never share logins. Never use customer data for AI training. Never paste a Tier 1 secret anywhere. *If in doubt, ask Jonathan before pasting, uploading, or connecting.*\n\n---\n\n## Your first 30 minutes — quick start\n\nRun through this once and you're operational. Most of it is pre-wired — you're really just signing in and trying things.\n\n1. **Most important — download the Mac app** from [claude.ai/download](https://claude.ai/download). Not Chrome.\n2. **Accept your Claude Teams invite** and sign into the Mac app. You'll land in the Pappy & Co workspace automatically.\n3. **Open Cowork mode** in the Mac app, select a working folder (Desktop or a project folder is fine), and try a small ask.\n4. **In your first chat, ask:** *\"What customizers and connectors do I have access to?\"* — Claude will list them.\n5. **Try a real task** from the examples in the PDF. The brand kit will trigger automatically when relevant.\n6. **Decide private vs. shared.** Is this work better as a private chat or a shared Project? Make a Project for anything ongoing.\n7. **Re-read the data tiers above.** Bookmark them. Send Jonathan questions, not pastes.\n8. **Send Jonathan one workflow** you'd love to automate this quarter. We'll wire it up.\n\n---\n\n> 📄 **Read the full Welcome Kit PDF for the complete version** — example asks for every team, the rest of the connectors and skill packs, the full design treatment.\n> **[→ Open the Welcome Kit PDF](./brands/pappy-co/assets/welcome-kit.pdf)**\n\n---\n\n## Questions?\n\nAsk in the AI channel in Google Chat — that's the point of it — or email Jonathan directly.\n\n*Welcome Kit v1.0 · April 2026 · Maintained by Jonathan Nichols*\n"
     },
     {
       "id": "pappy-rules",
       "slug": "ground-rules",
       "category": "governance",
-      "required": true,
+      "required": false,
       "title": "The ground rules for using AI here",
-      "summary": "What's fine to do, what's not, and how oversight works — your team decides, workflow by workflow.",
-      "body_md": "## The short version\nWe're giving the team a shared AI workspace (it's called Claude Teams). Here's how to use it well.\n\n## You can\n- Draft emails, Gorgias replies, reports, product copy, briefs, wholesale outreach — and use them within whatever workflow your team has agreed for that kind of work\n- Ask it questions about how Pappy does things — it can look up our SOPs, brand standards, marketing playbooks and vendor history (\"The Vault\")\n- Use it with the connected tools (Shopify, Cin7, Klaviyo, Attentive, Gorgias, GA4) to pull current info\n\n## Please don't\n- Paste sensitive stuff into it — full customer lists, payment details, anyone's personal records, confidential wholesale account terms\n- Use a personal ChatGPT or other AI account for Pappy work — everything goes through the shared workspace, signed in with your @pappyco.com account\n- Change how automated a workflow is on your own — that's a team decision, not a solo one\n\n## How much oversight?\n**Your team decides, workflow by workflow.** Some work gets a person reviewing everything; some runs more automated once everyone's confident; it changes over time. The Pappy brand kit and voice profiles are the source of truth for how things sound and look — not the model's defaults. When you're not sure where a workflow falls, ask Jonathan — and when in doubt, more oversight, not less.\n\n## Questions?\nAsk your manager, or Jonathan. There's a questions box in the portal too."
+      "summary": "What's fine to do, what's not, and how oversight works — on whichever AI platform you've chosen.",
+      "body_md": "## The short version\nEveryone gets a company AI seat. Which platform that seat is on is up to you — Claude, ChatGPT, Gemini, Grok. Here's how to use it well, whichever one you picked.\n\n## You can\n- Draft emails, Gorgias replies, reports, product copy, briefs, wholesale outreach — and use them within whatever workflow your team has agreed for that kind of work\n- Ask it questions about how Pappy does things — it can look up our SOPs, brand standards, marketing playbooks and vendor history (\"The Vault\")\n- Use it with the connected tools (Shopify, Cin7, Klaviyo, Attentive, Gorgias, GA4) to pull current info\n\n## Please don't\n- Paste sensitive stuff into it — full customer lists, payment details, anyone's personal records, confidential wholesale account terms\n- Use a personal or free AI account for Pappy work — use the company seat you've been given, signed in with your @pappyco.com account. The platform is your choice; using a personal account is not\n- Change how automated a workflow is on your own — that's a team decision, not a solo one\n\n## How much oversight?\n**Your team decides, workflow by workflow.** Some work gets a person reviewing everything; some runs more automated once everyone's confident; it changes over time. The Pappy brand kit and voice profiles are the source of truth for how things sound and look — not the model's defaults. When you're not sure where a workflow falls, ask Jonathan — and when in doubt, more oversight, not less.\n\n## Questions?\nAsk your manager, or Jonathan — or just ask in the AI channel in Google Chat, where everyone benefits from the answer."
     },
     {
       "id": "pappy-data",
       "slug": "your-data",
       "category": "security",
-      "required": true,
+      "required": false,
       "title": "What happens to our data",
-      "summary": "Plain answers: where data goes, what stays out of the AI entirely, the Tier 1–4 sorting, and who can see your \"I've read this\" record.",
-      "body_md": "## The plain version\nPeople worry about this, fairly. Here's where things stand.\n\n## We sort information by how sensitive it is\n- **Tier 1 — never goes near the AI.** Full customer lists, payment data, employee records.\n- **Tier 2 — connected tools only, never pasted into chat.** Revenue figures, wholesale account terms, supplier pricing.\n- **Tier 3 — lives in \"The Vault.\"** SOPs, marketing playbooks, campaign history, brand standards.\n- **Tier 4 — share-with-the-team.** Roadmaps, training guides, this portal.\n\n## How the connections work\nThe links to Shopify, Cin7, Klaviyo, Attentive, Gorgias and GA4 are scoped down to only what a task actually needs, and read-only wherever possible. A connector that returns more than a task needs is a bug — we report it, we don't work around it.\n\n## This portal\nThis page carries Tier 4 only. If Tier 3 data ever needed to live here, we'd add a stronger access gate first. Your \"I've read this\" record is Tier 4 — it shows your manager and Jonathan who's been brought up to speed, and once recorded it can't be quietly changed.\n\n## If you ever spot something that doesn't sit right\nSay so — to your manager or Jonathan. Take it seriously; we will too."
+      "summary": "Plain answers: where data goes, what stays out of the AI entirely, and how the Tier 1–4 sorting works.",
+      "body_md": "## The plain version\nPeople worry about this, fairly. Here's where things stand.\n\n## We sort information by how sensitive it is\n- **Tier 1 — never goes near the AI.** Full customer lists, payment data, employee records.\n- **Tier 2 — connected tools only, never pasted into chat.** Revenue figures, wholesale account terms, supplier pricing.\n- **Tier 3 — lives in \"The Vault.\"** SOPs, marketing playbooks, campaign history, brand standards.\n- **Tier 4 — share-with-the-team.** Roadmaps, training guides, this portal.\n\n## These tiers apply on every platform\nClaude, ChatGPT, Gemini, Grok — it makes no difference. The tiers are about where Pappy's information is allowed to go, not about which vendor you picked.\n\n## How the connections work\nThe links to Shopify, Cin7, Klaviyo, Attentive, Gorgias and GA4 are scoped down to only what a task actually needs, and read-only wherever possible. A connector that returns more than a task needs is a bug — we report it, we don't work around it.\n\n## This page\nThis page carries Tier 4 only. If Tier 3 data ever needed to live here, we'd add a stronger access gate first.\n\n## If you ever spot something that doesn't sit right\nSay so — to your manager or Jonathan. Take it seriously; we will too."
     },
     {
       "id": "pappy-gdrive-claude",
       "slug": "google-drive-and-claude",
       "category": "how-to",
-      "required": true,
-      "title": "How we use Google Drive with Claude (and why it works)",
-      "summary": "Google Drive holds the truth. Claude reads from it. Together they give us context-rich AI without ever leaving the team's normal way of working.",
-      "body_md": "## The short version\n\n**Google Drive is where our documents live. Claude is what reads them, on demand, in the context of a question.** Drive handles storage and version control like it always has — we don't change how the team writes, edits, or shares files. Claude becomes the smart reader on top: ask it about an SOP, and it pulls the current version from Drive, reads it, and answers in plain language using what's actually written down.\n\nYou don't move documents into Claude. You don't copy-paste from Drive into a chat. You point Claude at the Drive file, and Claude reads it when needed.\n\n## Why Google Drive stays in charge\n\nDrive is the **source of truth**. That means:\n- **One copy.** Everyone's looking at the same document, not a fork inside an AI tool.\n- **Version history.** Drive remembers every change anyone has ever made. If the brand voice doc gets a bad edit, we can roll it back in two clicks.\n- **Permissions you already understand.** Sharing rules are Google's — who can view, comment, edit. We don't reinvent it.\n- **Edit anywhere.** Phone, laptop, Docs, Word, third-party tools. Drive doesn't care; the document keeps working.\n- **Search you already know.** ⌘+K in Drive finds things by filename and full text the way it always has.\n\nIf we instead uploaded documents *into* Claude as fixed copies, the moment someone updates the original in Drive, Claude would be reading a stale version. The mismatch becomes invisible — Claude sounds confident, but it's quoting a doc that no longer exists. That's the failure mode we're avoiding.\n\n## Why Claude is the smart reader, not the storage\n\nClaude's job is **inference** — turning a question into an answer that uses the documents it can see. It's <em>great</em> at:\n- Reading several long documents at once and writing a coherent summary\n- Pulling the relevant paragraph out of a 40-page SOP\n- Catching what a doc <em>doesn't</em> say (\"the policy doesn't mention returns\")\n- Writing in the same voice as the source material\n\nWhat Claude is <em>bad</em> at:\n- Being trusted as a vault. Don't make Claude the only place a document exists.\n- Remembering the last conversation forever. Each chat is fresh; what carries over is the project's files and instructions, not the chat history.\n- Quoting fixed numbers from memory. It might *paraphrase* a number wrong. Always have it cite the source.\n\nSo the architecture is:\n> **Drive = persistent memory.**\n> **Claude = the part that thinks.**\n\nThey each do what they're best at.\n\n## How to actually do it\n\n1. **Document lives in Drive** like always. Edit it where you'd normally edit it.\n2. **Attach the Drive link to your Claude project** (Claude Teams projects have a \"Files\" panel — paste the Drive URL or upload). For a one-off question, you can also paste the link inside the chat.\n3. **Ask Claude about it.** \"Read the wholesale onboarding SOP I just added, and draft a follow-up email for an account that hasn't replied in two weeks.\"\n4. **When the Drive doc changes**, Claude picks up the new version next time it reads. You don't have to re-upload — the reference is to the live file.\n5. **Cite your source.** Ask Claude to quote the section it used. If the answer is fuzzy, that usually means the source doc itself is fuzzy — fix it in Drive, and the answer improves everywhere.\n\n## Why this combination works\n\nIt's a **separation of concerns**, which is just engineer-speak for \"two things, each doing what it's best at\":\n\n| Drive does | Claude does |\n|---|---|\n| Stores the file forever | Reads it when asked |\n| Tracks every version | Reasons about the current one |\n| Handles permissions | Stays within whatever Drive allows it to see |\n| Lets people edit collaboratively | Doesn't try to be a document editor |\n| Search by filename and exact text | Search by meaning — finds the relevant section even if the words don't match |\n\nThe combination gives us:\n- **No duplication.** One document, one place. The thing on Drive is the thing.\n- **Privacy by default.** Drive holds the data. Claude reads only what we let it see, when we ask. It doesn't keep a permanent copy.\n- **Updates are free.** No \"sync the AI\" step. Edit in Drive, Claude reads the new version next time.\n- **Version control is built in.** When we change how we do something, the change history is in Drive, not buried in Claude chat logs.\n- **Hybrid search.** Drive's keyword search + Claude's meaning-based search. Use both — they find different things.\n\n## Common gotchas\n\n- **Permission mismatches.** Claude can only read what your account has access to in Drive. If a doc is \"only me,\" Claude can't see it in a shared project. Open access in Drive first.\n- **Stale screenshots.** If you take a screenshot of a Google Doc and paste the image into Claude, you've broken the live link. Just paste the URL.\n- **Whole-folder references.** Claude can read a Drive folder, but the more files in the folder, the slower and fuzzier the answer. Point it at the specific docs that matter.\n- **Don't ask Claude to \"save\" something to Drive yet.** That's a workflow we'd build separately. For now: Claude drafts, you save to Drive.\n\n## What about The Vault?\n\nThe Vault (the RAG library) is the **always-on** version of this same idea — a curated subset of documents that every project automatically has access to, indexed so even very large libraries are fast to search. Project-level Drive references are the **on-demand, project-specific** version.\n\nUse Drive references when:\n- The doc is specific to one project or one person's work\n- The doc changes often and you want the latest version each time\n- The doc is too operational to belong in the core The Vault library\n\nUse The Vault when:\n- It's a foundational SOP, brand standard, or playbook every project should know about\n- You want it indexed for fast semantic search across hundreds of docs\n\nThe two work well together — The Vault is the company's memory, Drive references are the working drafts.\n\n## Questions?\n\nAsk your manager, or Jonathan. The questions box in the portal works too.\n"
+      "required": false,
+      "title": "How we use Google Drive with AI (and why it works)",
+      "summary": "Google Drive holds the truth. The AI reads from it. This is the thinking behind the knowledge base.",
+      "body_md": "> **This doc says \"Claude\" throughout because that's what we started on. It applies identically to ChatGPT, Gemini or Grok — the argument is about Drive being the source of truth, not about which AI reads it.**\n\n## The short version\n\n**Google Drive is where our documents live. The AI is what reads them, on demand, in the context of a question.** Drive handles storage and version control like it always has — we don't change how the team writes, edits, or shares files. Claude becomes the smart reader on top: ask it about an SOP, and it pulls the current version from Drive, reads it, and answers in plain language using what's actually written down.\n\nYou don't move documents into Claude. You don't copy-paste from Drive into a chat. You point Claude at the Drive file, and Claude reads it when needed.\n\n## Why Google Drive stays in charge\n\nDrive is the **source of truth**. That means:\n- **One copy.** Everyone's looking at the same document, not a fork inside an AI tool.\n- **Version history.** Drive remembers every change anyone has ever made. If the brand voice doc gets a bad edit, we can roll it back in two clicks.\n- **Permissions you already understand.** Sharing rules are Google's — who can view, comment, edit. We don't reinvent it.\n- **Edit anywhere.** Phone, laptop, Docs, Word, third-party tools. Drive doesn't care; the document keeps working.\n- **Search you already know.** ⌘+K in Drive finds things by filename and full text the way it always has.\n\nIf we instead uploaded documents *into* Claude as fixed copies, the moment someone updates the original in Drive, Claude would be reading a stale version. The mismatch becomes invisible — Claude sounds confident, but it's quoting a doc that no longer exists. That's the failure mode we're avoiding.\n\n## Why Claude is the smart reader, not the storage\n\nClaude's job is **inference** — turning a question into an answer that uses the documents it can see. It's <em>great</em> at:\n- Reading several long documents at once and writing a coherent summary\n- Pulling the relevant paragraph out of a 40-page SOP\n- Catching what a doc <em>doesn't</em> say (\"the policy doesn't mention returns\")\n- Writing in the same voice as the source material\n\nWhat Claude is <em>bad</em> at:\n- Being trusted as a vault. Don't make Claude the only place a document exists.\n- Remembering the last conversation forever. Each chat is fresh; what carries over is the project's files and instructions, not the chat history.\n- Quoting fixed numbers from memory. It might *paraphrase* a number wrong. Always have it cite the source.\n\nSo the architecture is:\n> **Drive = persistent memory.**\n> **Claude = the part that thinks.**\n\nThey each do what they're best at.\n\n## How to actually do it\n\n1. **Document lives in Drive** like always. Edit it where you'd normally edit it.\n2. **Attach the Drive link to your Claude project** (Claude Teams projects have a \"Files\" panel — paste the Drive URL or upload). For a one-off question, you can also paste the link inside the chat.\n3. **Ask Claude about it.** \"Read the wholesale onboarding SOP I just added, and draft a follow-up email for an account that hasn't replied in two weeks.\"\n4. **When the Drive doc changes**, Claude picks up the new version next time it reads. You don't have to re-upload — the reference is to the live file.\n5. **Cite your source.** Ask Claude to quote the section it used. If the answer is fuzzy, that usually means the source doc itself is fuzzy — fix it in Drive, and the answer improves everywhere.\n\n## Why this combination works\n\nIt's a **separation of concerns**, which is just engineer-speak for \"two things, each doing what it's best at\":\n\n| Drive does | Claude does |\n|---|---|\n| Stores the file forever | Reads it when asked |\n| Tracks every version | Reasons about the current one |\n| Handles permissions | Stays within whatever Drive allows it to see |\n| Lets people edit collaboratively | Doesn't try to be a document editor |\n| Search by filename and exact text | Search by meaning — finds the relevant section even if the words don't match |\n\nThe combination gives us:\n- **No duplication.** One document, one place. The thing on Drive is the thing.\n- **Privacy by default.** Drive holds the data. Claude reads only what we let it see, when we ask. It doesn't keep a permanent copy.\n- **Updates are free.** No \"sync the AI\" step. Edit in Drive, Claude reads the new version next time.\n- **Version control is built in.** When we change how we do something, the change history is in Drive, not buried in Claude chat logs.\n- **Hybrid search.** Drive's keyword search + Claude's meaning-based search. Use both — they find different things.\n\n## Common gotchas\n\n- **Permission mismatches.** Claude can only read what your account has access to in Drive. If a doc is \"only me,\" Claude can't see it in a shared project. Open access in Drive first.\n- **Stale screenshots.** If you take a screenshot of a Google Doc and paste the image into Claude, you've broken the live link. Just paste the URL.\n- **Whole-folder references.** Claude can read a Drive folder, but the more files in the folder, the slower and fuzzier the answer. Point it at the specific docs that matter.\n- **Don't ask Claude to \"save\" something to Drive yet.** That's a workflow we'd build separately. For now: Claude drafts, you save to Drive.\n\n## What about The Vault?\n\nThe Vault (the RAG library) is the **always-on** version of this same idea — a curated subset of documents that every project automatically has access to, indexed so even very large libraries are fast to search. Project-level Drive references are the **on-demand, project-specific** version.\n\nUse Drive references when:\n- The doc is specific to one project or one person's work\n- The doc changes often and you want the latest version each time\n- The doc is too operational to belong in the core The Vault library\n\nUse The Vault when:\n- It's a foundational SOP, brand standard, or playbook every project should know about\n- You want it indexed for fast semantic search across hundreds of docs\n\nThe two work well together — The Vault is the company's memory, Drive references are the working drafts.\n\n## Questions?\n\nAsk your manager, or Jonathan — or raise it in the AI channel in Google Chat.\n"
     },
     {
       "id": "pappy-howto",
@@ -631,8 +137,8 @@
       "category": "how-to",
       "required": false,
       "title": "How to actually use the workspace",
-      "summary": "Day-one orientation: your private space vs. the team space, where the shared instructions and brand kit live, and what to do when you're stuck.",
-      "body_md": "## Your space vs. the team's space\nThe AI workspace (Claude Teams) has two kinds of areas:\n- **Your own private space** — only you see it. Use it for drafts, half-formed ideas, scratch work, anything not ready to share.\n- **The shared team space** — this holds the approved reusable instructions, the brand kit and the project know-how everyone draws from. Changes here affect the whole team, so treat it like the shared drive: don't reorganize it on a whim.\n\nA simple rule: **if you wouldn't put it in the company Google Drive, keep it in your private space.**\n\n## The shared instructions (\"skills\")\nFor common tasks — wholesale bundles, Cerity reports, Gorgias macros, Klaviyo flows, product copy — there are pre-written instructions you can call up by name, so you don't start from a blank box every time. If one needs changing, tell whoever owns it (see Team & Ownership) rather than editing it yourself.\n\n## Cost\nThe workspace is paid for centrally. There's no per-person charge — use it for Pappy work as much as you like.\n\n## When you're stuck\nUse the questions box in this portal, or ask in the team channel. Answered questions get collected here so the next person doesn't have to ask twice."
+      "summary": "Day-one orientation: your private space vs. the team space, where shared instructions and the brand kit live, and what to do when you're stuck.",
+      "body_md": "## Your space vs. the team's space\nEvery company AI platform works this way — Claude Teams, ChatGPT Business, and the rest. There are two kinds of areas:\n- **Your own private space** — only you see it. Use it for drafts, half-formed ideas, scratch work, anything not ready to share.\n- **The shared team space** — this holds the approved reusable instructions, the brand kit and the project know-how everyone draws from. Changes here affect the whole team, so treat it like the shared drive: don't reorganize it on a whim.\n\nA simple rule: **if you wouldn't put it in the company Google Drive, keep it in your private space.**\n\n## The shared instructions (\"skills\")\nFor common tasks — wholesale bundles, Cerity reports, Gorgias macros, Klaviyo flows, product copy — there are pre-written instructions you can call up by name, so you don't start from a blank box every time. If one needs changing, tell whoever owns it (see Team & Ownership) rather than editing it yourself.\n\n## Cost\nThe workspace is paid for centrally. There's no per-person charge — use it for Pappy work as much as you like.\n\n## When you're stuck\nAsk in the AI channel in Google Chat. Answering it there means the next person doesn't have to ask twice — that's the whole idea."
     }
   ],
   "yourData": {
@@ -642,175 +148,31 @@
     "will": [
       "Connect the AI to your work tools (Shopify, Cin7, Klaviyo, Attentive, Gorgias, GA4, Workspace) — scoped to the minimum a task needs, read-only wherever we can",
       "Load Pappy's own know-how — SOPs, playbooks, vendor history, brand standards, product specs — into \"The Vault\" for the AI to answer from",
-      "Keep a record of who's read which onboarding doc, and when, so there's one clear picture of where the team's at",
-      "Keep this portal to the Tier-4 (share-with-the-team) kind of information only",
+      "Curate the knowledge base — approving what goes in, retiring what's gone stale, and resolving documents that contradict each other, so answers come from current material",
+      "Keep this page to the Tier-4 (share-with-the-team) kind of information only",
       "Tell you, plainly, anytime that changes"
     ],
     "wont": [
-      "Put full customer lists, payment details, employee records or confidential wholesale terms anywhere near the AI or this portal",
+      "Put full customer lists, payment details, employee records or confidential wholesale terms anywhere near the AI or this page",
       "Turn on automation for a workflow without the team agreeing the level of oversight first",
       "Use Pappy's data to train some outside company's AI model",
       "Connect a tool with broader access than the work actually requires"
     ],
     "note": "If anything here ever stops being true, you'll hear it from us first — not discover it later. And if a connection or a setting ever looks off to you, flag it; \"reconnect it with more access to make it work\" is never the answer."
   },
-  "creativeSection": {
-    "eyebrow": "A NOTE ON IMAGES & DESIGN",
-    "title": "HOW WE'LL HANDLE IMAGES.",
-    "deck": "Marketing and product development need on-brand, fast-turnaround creative without the \"AI slop\" look. Three layers, each with a job."
-  },
-  "creativeStack": [
-    {
-      "accent": "4",
-      "title": "ADOBE BUSINESS",
-      "tagline": "Three seats. Pro tools. The fundamentals.",
-      "bodyHtml": "An Adobe Business Account with Photoshop, Illustrator and full Firefly Pro access for the creative team. Seats: Brittany, Kelcie, Kaitlyn.",
-      "bullets": [
-        "Commercially safe outputs, full editing precision",
-        "Integrates with the rest of the creative stack",
-        "Photoshop + Illustrator stay the workhorses; Firefly is the AI layer for fast generation and edits"
-      ]
-    },
-    {
-      "accent": "1",
-      "title": "FIREFLY × ZAPIER",
-      "tagline": "The bridge between our image library and our store.",
-      "bodyHtml": "Firefly Pro connected via Zapier to pull, edit and push images across the stack — no manual download/upload cycle.",
-      "bullets": [
-        "Pull source images from Google Drive or the Shopify product library",
-        "Inside Firefly: toggle between ChatGPT Image 2 or a preferred image model",
-        "Edit, prompt and regenerate in one workspace",
-        "Push the refined image back to Drive and/or a Shopify product variant",
-        "Brand-aware presets so output matches the Pappy palette out of the gate"
-      ]
-    },
-    {
-      "accent": "3",
-      "title": "CLAUDE DESIGN",
-      "tagline": "The new layer — early concepting & product dev.",
-      "bodyHtml": "Claude's Design feature gives us a concepting tool inside the same environment we already use for everything else. Good for early-stage product, packaging and marketing exploration before committing to Adobe production.",
-      "bullets": [
-        "Rapid concepting for packaging & product dev (Brittany lead)",
-        "Marketing layout exploration before Adobe production",
-        "Brand-kit-aware via the Pappy Co brand kit instructions",
-        "Stays inside the rules — no extra tool sprawl"
-      ]
-    },
-    {
-      "accent": "2",
-      "title": "WHY THIS COMBO",
-      "tagline": "Answering \"ChatGPT makes images, Claude doesn't.\"",
-      "bodyHtml": "The honest answer: native image generation isn't where Claude competes — and we don't need it to. Firefly does generative images better than ChatGPT for commercial work (rights-clear, brand-tunable) and plugs straight into the Adobe stack. Claude's job is reasoning, drafting and Design for concepting. Each tool does what it does best — no \"AI slop,\" no rights ambiguity, no workflow rework.",
-      "bullets": []
-    }
-  ],
-  "teamSection": {
-    "eyebrow": "WHO OWNS WHAT",
-    "title": "WHO TO GO TO.",
-    "deck": "Each person below can answer for their part of the rollout — and can approve changes to how the AI behaves in that area. When in doubt, start with whoever's closest to your work."
-  },
-  "team": [
-    {
-      "name": "LOUISE",
-      "role": "Co-Owner — brand & final say",
-      "items": [
-        "Approves brand & voice standards",
-        "Signs off on the plan",
-        "Final say on heritage-anchored work"
-      ]
-    },
-    {
-      "name": "CARRIE",
-      "role": "Co-Owner — brand & voice",
-      "items": [
-        "Brand approval & voice standards",
-        "Plan sign-off",
-        "Strategic direction"
-      ]
-    },
-    {
-      "name": "JONATHAN",
-      "role": "The builder",
-      "items": [
-        "Builds and connects everything",
-        "The tool connections (MCP)",
-        "Runs the quality checks",
-        "Cross-team integration"
-      ]
-    },
-    {
-      "name": "CHRISTY",
-      "role": "VP of Marketing",
-      "items": [
-        "Owns the brand kit & voice profiles",
-        "Claude Design",
-        "Klaviyo & Attentive",
-        "Adobe & Firefly production",
-        "Canva",
-        "Runs the team training"
-      ]
-    },
-    {
-      "name": "KELCIE",
-      "role": "Director of Marketing",
-      "items": [
-        "Adobe production",
-        "Firefly imagery",
-        "Canva workflows"
-      ]
-    },
-    {
-      "name": "KAITLYN",
-      "role": "Digital Marketing Specialist",
-      "items": [
-        "Google, Meta, TikTok data & workflows",
-        "GA4",
-        "Claude Design",
-        "Adobe Business Account admin",
-        "Firefly workflow ownership",
-        "Canva"
-      ]
-    },
-    {
-      "name": "BRITTANY",
-      "role": "Product / Ops",
-      "items": [
-        "Adobe Business Account admin",
-        "Firefly workflow ownership",
-        "Creative partner",
-        "Shopify & Cin7 connections",
-        "Canva"
-      ]
-    },
-    {
-      "name": "WILLY",
-      "role": "Director of Wholesale",
-      "items": [
-        "Wholesale workflow partner",
-        "Sell-sheet & pipeline validation",
-        "Apollo CRM",
-        "LinkedIn"
-      ]
-    }
-  ],
-  "questions": {
-    "label": "GOT A QUESTION?",
-    "title": "There's no dumb question here.",
-    "bodyHtml": "If anything on this page didn't land, or you're nervous about something, or you just want to know more — ask. Talk to your manager, or message Jonathan directly. Soon there'll be a questions box right in this portal, and answered questions get posted here so everyone benefits. The worst outcome is someone quietly worrying about this for two months — don't be that person."
-  },
   "underTheHood": {
     "eyebrow": "UNDER THE HOOD",
     "title": "The technical version — for whoever wants it",
     "hint": "Click to expand. None of this is required reading — it's here for the curious, and for anyone who likes to know exactly what's being plugged in.",
-    "deck": "Same rollout, described the way an AI person would describe it. If you skipped everything above and came straight here, welcome — the rest of the page is the plain-English version of all this.",
+    "deck": "The same three areas, described the way an AI person would describe them. None of this is required reading — it's here for the curious, and for anyone who likes to know exactly what's plugged into what.",
     "blocks": [
       {
-        "title": "Claude Teams — the model layer",
-        "bodyHtml": "The \"shared AI workspace\" is <strong>Claude Teams</strong> from Anthropic — Claude (Sonnet/Opus) across the operating team, with SSO, a shared skills library and centralized billing. Anthropic-first because Claude is strong at the structured, voice-sensitive, multi-step work Pappy needs — but everything we build is portable (see below)."
+        "title": "The model layer — your choice of platform",
+        "bodyHtml": "Company seats on <strong>Claude Teams</strong> (Anthropic), <strong>ChatGPT Business</strong> (OpenAI), or Gemini / Grok — one seat per person, chosen by the person. All are frontier-class and broadly interchangeable for our work. What's enforced is the plan tier, not the vendor: company plans mean no training on our data, admin control, and SSO. The differentiator we actually invest in is the knowledge layer below, which is deliberately vendor-neutral."
       },
       {
-        "title": "The Vault — knowledge layer + RAG",
-        "bodyHtml": "The \"place it looks things up\" is a retrieval-augmented generation (RAG) layer indexed over SOPs, marketing playbooks, vendor history, brand standards, product specs and historical campaign data. Built on open formats."
+        "title": "The knowledge base — retrieval layer",
+        "bodyHtml": "A retrieval-augmented generation (RAG) layer indexed over our own material: SOPs, processes, tribal knowledge, vendor and financial contracts, brand standards, campaign history. Chunked and tagged with structured metadata (type, vendor, effective date, owner) so retrieval is precise rather than fuzzy. Built on open formats and portable across platforms by design — the ingest path is a Google Chat submission, with weekly human approval before anything is indexed."
       },
       {
         "title": "MCP connectors — the data layer",
@@ -822,7 +184,7 @@
       },
       {
         "title": "Voice profiles + skills",
-        "bodyHtml": "Pappy's voice as per-channel tone profiles (retail email, wholesale, customer service, internal ops), plus a skills library authored as <strong>markdown</strong> — portable plain text, not a proprietary format."
+        "bodyHtml": "Pappy's voice as per-channel tone profiles (retail email, wholesale, customer service, internal ops), plus a prompt and skills library authored as <strong>markdown</strong> — portable plain text rather than a proprietary format, so it moves between platforms as people switch."
       },
       {
         "title": "Evals — the quality layer",
@@ -830,78 +192,6 @@
       }
     ]
   },
-  "phaseTwo": {
-    "title": "A workforce of agents.",
-    "bannerHtml": "<strong>This is the maybe-later, advanced piece — not part of the 60 days, and not required for the rollout to be a success.</strong> The main goal is the \"included\" pieces above (the workspace, The Vault, the connectors, the image stack, the voice). Agents only get layered on after that's working and clearly paying off, and only the ones the team actually wants. Teams can opt into the agents that fit them and skip the rest.",
-    "deck": "If Pappy wants to go further: specialized agents wired into the workflows, built on the Claude Agent SDK or Claude's managed agents (Skills, subagents, Cowork) — decision made at build time based on operational preference.",
-    "headStaffTitle": "Head-of-staff agent",
-    "trigger": "Suggested trigger: Phase 1 ROI clears the bar — e.g. 200+ hours/quarter saved across the team.",
-    "headStaffHtml": "A head-of-staff agent routes tasks across the workforce, manages context, and hands off between specialists — with agent-level logging and oversight (who did what, when, on which order, customer or flow).<br><br>ROI dashboard per agent function: hours saved, revenue influenced, error rate, escalations."
-  },
-  "agents": [
-    {
-      "name": "WHOLESALE",
-      "role": "Outreach drafts, account research, follow-ups, sell-sheet generation",
-      "systems": "Shopify Wholesale, Cin7, Google Workspace, Klaviyo"
-    },
-    {
-      "name": "CX",
-      "role": "Gorgias triage, draft replies in the Pappy voice, escalation routing",
-      "systems": "Gorgias, Shopify"
-    },
-    {
-      "name": "RETENTION",
-      "role": "Klaviyo + Attentive flow drafts, segment ideation, post-purchase journeys",
-      "systems": "Klaviyo, Attentive, Shopify"
-    },
-    {
-      "name": "OPS",
-      "role": "Cin7 stock health, PO drafting, warehouse coordination, Cerity reporting",
-      "systems": "Cin7 Core, Shopify, Gmail"
-    },
-    {
-      "name": "CREATIVE",
-      "role": "Brief generation, copy variants, Firefly imagery prompts, asset routing",
-      "systems": "Adobe CC + Firefly, Google Drive, Shopify"
-    }
-  ],
-  "portability": {
-    "eyebrow": "VENDOR-PORTABLE BY DESIGN",
-    "headlineHtml": "Anthropic-first.<br>Never Anthropic-locked.",
-    "bodyHtml": "Claude (Sonnet/Opus) is the best model for the structured, agentic work Pappy needs — voice-sensitive copy, multi-step ops, customer-service triage, wholesale relationship drafting. But every artifact we build is portable:",
-    "bullets": [
-      "Skills as markdown",
-      "Prompts as plain text",
-      "MCP for data — model-agnostic",
-      "Agnostic auth — SSO, not vendor-bound identity",
-      "RAG indices built on open formats"
-    ],
-    "footnote": "If Pappy ever needs to move to Gemini or OpenAI, the intelligence layer comes with you. Your investment is in your intelligence — not someone else's API."
-  },
-  "stackSection": {
-    "eyebrow": "THE FOUNDATION",
-    "title": "Tech stack.",
-    "deck": "Every piece we build assumes this stack. No replacements — we wrap and extend the tools you already run."
-  },
-  "techStack": [
-    "SHOPIFY PLUS",
-    "KLAVIYO",
-    "ATTENTIVE",
-    "CIN7 CORE",
-    "GORGIAS",
-    "GA4",
-    "SHOPIFY FLOW",
-    "LIQUID",
-    "GOOGLE WORKSPACE",
-    "CLAUDE TEAMS",
-    "CLAUDE CODE",
-    "COWORK",
-    "MCP",
-    "CLAUDE AGENT SDK",
-    "ZAPIER",
-    "ADOBE CC",
-    "FIREFLY"
-  ],
   "glossarySection": {
     "eyebrow": "PLAIN ENGLISH",
     "title": "WHAT WE MEAN WHEN WE SAY…",
@@ -914,7 +204,7 @@
     },
     {
       "term": "Claude",
-      "plainHtml": "The specific AI we're using, made by a company called Anthropic. \"Claude Teams\" is the shared, secure version for a whole company."
+      "plainHtml": "One of the AI platforms available here, made by a company called Anthropic. \"Claude Teams\" is the shared, secure company version — the same idea as a company ChatGPT plan, just a different vendor."
     },
     {
       "term": "Claude Design",
@@ -926,7 +216,7 @@
     },
     {
       "term": "The Vault / RAG",
-      "plainHtml": "\"RAG\" stands for \"retrieval-augmented generation.\" Plainly: \"The Vault\" is a library of <em>our</em> documents — SOPs, playbooks, vendor history, brand standards — that the AI looks things up in before it answers, so it replies from how Pappy does things, not the open internet."
+      "plainHtml": "\"RAG\" stands for \"retrieval-augmented generation.\" Plainly: <strong>this is the knowledge base</strong> — a library of <em>our</em> documents (SOPs, playbooks, vendor history, contracts, brand standards) that the AI looks things up in before it answers, so it replies from how Pappy does things rather than the open internet. We've called it \"The Vault\"; it's the same thing."
     },
     {
       "term": "MCP / connector",
@@ -938,7 +228,7 @@
     },
     {
       "term": "Agent",
-      "plainHtml": "An AI set up to handle a particular job mostly on its own — like \"draft the wholesale follow-up emails\" — within rules a person set. That's the maybe-later, opt-in piece; it's not part of the 60 days."
+      "plainHtml": "An AI set up to handle a particular job mostly on its own — like \"draft the wholesale follow-up emails\" — within rules a person set. Increasingly this is what people mean by using AI well: you hand off a task and it works while you do something else."
     },
     {
       "term": "Skill",
@@ -954,7 +244,7 @@
     },
     {
       "term": "Tier 1–4",
-      "plainHtml": "Our way of sorting information by how sensitive it is — from \"share with the team\" (Tier 4, this portal) up to \"never goes near the AI\" (Tier 1: full customer lists, payment data, personnel records)."
+      "plainHtml": "Our way of sorting information by how sensitive it is — from \"share with the team\" (Tier 4, this page) up to \"never goes near the AI\" (Tier 1: full customer lists, payment data, personnel records)."
     },
     {
       "term": "Anthropic",
@@ -962,15 +252,15 @@
     },
     {
       "term": "OpenAI / ChatGPT",
-      "plainHtml": "Different AI company, different chatbot. ChatGPT is what most people have tried at home. <em>We don't use ChatGPT for Pappy work</em> — everything goes through our company Claude Teams account so it stays inside the company and never trains anyone else's model."
+      "plainHtml": "Different AI company, different assistant — and one of the platforms you can pick here. ChatGPT is what most people have tried at home. If it's the tool you're comfortable in, use it: ask Jonathan for a company seat and the desktop setup. What matters isn't the brand — it's that you're on a <em>company</em> seat rather than a personal free account, so Pappy's information stays inside Pappy."
     },
     {
       "term": "Gemini",
-      "plainHtml": "Google's AI, baked into Google Workspace (Gmail, Docs, Drive). You might see it pop up in the corner of your Google apps. We don't drive Pappy work through Gemini — same reason: everything stays in Claude Teams."
+      "plainHtml": "Google's AI, built into Google Workspace (Gmail, Docs, Drive). You'll see it pop up in the corner of your Google apps. It's a legitimate choice for your seat too — one seat per person, whichever platform you prefer. Same rule as everywhere else: a company seat, not a personal account."
     },
     {
       "term": "Copilot",
-      "plainHtml": "Microsoft's AI assistant (and GitHub's coding assistant — same name, different products). You'll hear it a lot in business press. Not what we use; just useful to know what people mean."
+      "plainHtml": "Microsoft's AI assistant (and GitHub's coding assistant — same name, different products). You'll hear it a lot in the business press. Not one of the platforms we've set up, but useful to know what people mean."
     },
     {
       "term": "Opus / Sonnet / Haiku",
@@ -994,7 +284,7 @@
     },
     {
       "term": "Training data",
-      "plainHtml": "The text the AI was taught on. Claude learned from a big chunk of the public internet plus licensed books and code. Importantly: <em>your conversations with Claude Teams are NOT used to train future Claude</em> — that's a key part of why we picked Teams over the consumer version."
+      "plainHtml": "The text an AI model was taught on — a big chunk of the public internet plus licensed books and code. Importantly: <em>your conversations on a company seat are not used to train future models</em>. That's a key reason we use company plans rather than consumer ones, on every platform."
     },
     {
       "term": "Fine-tuning",
@@ -1081,50 +371,111 @@
       "plainHtml": "<em>Artificial General Intelligence</em> — a hypothetical AI as broadly capable as a human across every domain. We don't have it. When you see \"AGI\" in the news, it's usually speculative. What we have today (LLMs like Claude) is narrower — very good at text, not capable of reasoning about the physical world the way a person is."
     }
   ],
-  "comingSoon": {
-    "eyebrow": "ALSO COMING TO THE HUB",
-    "title": "MORE TOOLS, SOON.",
-    "deck": "The document sign-offs above are live now. These land next.",
-    "items": [
-      {
-        "status": "NEXT",
-        "title": "Standalone Google Chat agents",
-        "bodyHtml": "The direction we're heading. Agents that live in Google Chat — where we already work — that you hand a job to, that go out and <em>do the thing</em>, and come back with the finished work. No flipping over to Claude for everything: you ask in chat, you get the work back in chat."
-      },
-      {
-        "status": "NEXT",
-        "title": "AI in the channel you're already in",
-        "bodyHtml": "Tagging the AI directly in a thread — it answers, drafts and builds in that same window, and everyone in the window shares the context and the result. Live on Slack and Teams now; Google Chat is why the standalone agents above matter for us."
-      },
-      {
-        "status": "NEXT",
-        "title": "Watch-how-you-work sessions",
-        "bodyHtml": "The replacement for the intake forms. Record a normal working week — on your terms — and Claude comes back with the seven or eight places it noticed it could help. You pick what's worth deploying; nothing gets automated without you saying so."
-      },
-      {
-        "status": "SOON",
-        "title": "Org-level skills library",
-        "bodyHtml": "The skills and plugins being built now become available to everyone at the organization level by default — and the hub will list what exists, what it does, and how to run it yourself."
-      },
-      {
-        "status": "SOON",
-        "title": "Team Q&A",
-        "bodyHtml": "Ask a question right in the hub; the project lead answers in the hub; the answer becomes the FAQ for the whole team. Every question answered is one fewer thing the next person has to ask."
-      }
-    ]
-  },
   "footer": {
     "quote": "We make fine bourbon, at a profit if we can, at a loss if we must, but always fine bourbon.",
     "attribution": "— Julian P. \"Pappy\" Van Winkle, Sr.",
     "builtByHtml": "Pappy &amp; Company AI Integration Project",
-    "meta": "PAPPY & COMPANY · LOUISVILLE, KY · 2026 AI ROLLOUT"
+    "meta": "PAPPY & COMPANY · LOUISVILLE, KY · AI AT PAPPY"
   },
-  "intakeSection": {
-    "eyebrow": "RETIRED · JULY 14, 2026",
-    "title": "THE INTAKE FORMS ARE RETIRED.",
-    "deck": "Seven forms used to live here. You don't have to fill them out. Here's the honest reason why.",
-    "retiredHtml": "<p>The premise was that you'd describe your own processes and pain points in a form, and I'd turn that into workflows. Having lived with it, I think that was an unfair thing to ask.</p><p><strong>Most people don't know what AI is capable of — so they can't be expected to describe what to automate.</strong> You'd have to already know what's possible in order to tell me which parts of your day are worth handing over. That's backwards, and it put the work and the time on you.</p><p>So we're flipping it. Instead of asking you to explain how you work, we'll <em>watch</em> how you work — with screen recording, on your terms and with your say-so — and bring <em>you</em> the list: <em>here are seven or eight places I noticed I could help.</em> Then you pick the ones worth deploying.</p><p>Nothing you already filled in is lost — any answers you saved are still recorded, and I'll use them. But there's nothing left outstanding here. The full reasoning is in the note at the top of this page.</p>",
-    "ctaLabel": "Read the full note →",
-    "ctaHref": "#letter"
-  }
+  "areasSection": {
+    "eyebrow": "THE WHOLE THING",
+    "title": "THREE THINGS THAT MATTER.",
+    "deck": "That's it. No plan to track, nothing to fill in."
+  },
+  "areas": [
+    {
+      "anchor": "tools",
+      "num": "01",
+      "eyebrow": "AREA ONE · YOUR TOOL",
+      "title": "USE THE TOOL YOU'LL ACTUALLY USE.",
+      "deck": "Every major model is excellent now. The one that makes you productive is the one you're comfortable in — so pick that one, and the company will pay for it.",
+      "points": [
+        {
+          "title": "If you like ChatGPT, use ChatGPT.",
+          "bodyHtml": "Have fun with it. If you're comfortable in that UX, you've built up context and information in there, and you're using it daily — keep doing exactly that. I'm happy to set up ChatGPT on your desktop, which includes Codex alongside it. It functions essentially the same as Claude, and it does the same data connectors: Shopify, Google Workspace, Meta Ads, Klaviyo."
+        },
+        {
+          "title": "Gemini and Grok count too.",
+          "bodyHtml": "Same deal. We keep the same amount of AI either way — <strong>one seat per person</strong>, whichever platform that seat is on. It's basically the same cost per month, so if you'd feel more comfortable somewhere else, we're happy to switch your seat from one platform to the other. Just ask."
+        },
+        {
+          "title": "For super users: switch whenever you like.",
+          "bodyHtml": "At least between OpenAI and Anthropic, all the models are extremely good and extremely powerful right now. It genuinely doesn't matter which one you're on — what matters is that you're comfortable enough in it to try ambitious things."
+        },
+        {
+          "title": "Where I've landed, for what it's worth.",
+          "bodyHtml": "I'm using ChatGPT about 85% of the time now and Claude about 15% — and that 15% is a few hyper-specific things I'm doing. OpenAI is also more efficient and cheaper at the moment. That may well not be true in three months; these things change by the month. Don't overthink it, and don't feel you have to follow me."
+        },
+        {
+          "title": "The company covers it.",
+          "bodyHtml": "Pick the platform you're comfortable doing cool stuff in, and Pappy &amp; Company will cover the subscription for the leadership team. The small monthly fee is not the thing worth optimizing — your comfort with the tool is."
+        }
+      ],
+      "noteHtml": "<strong>Two things stay the same whichever platform you pick.</strong> Use the seat the company provides rather than a personal free account, and the data tiers in the docs below apply identically everywhere. Those rules were never really about Claude — they're about where Pappy's information is allowed to go."
+    },
+    {
+      "anchor": "knowledge",
+      "num": "02",
+      "eyebrow": "AREA TWO · THE KNOWLEDGE BASE",
+      "title": "THE KNOWLEDGE BASE IS THE ASSET.",
+      "deck": "The models will keep changing, month to month. What compounds is what we know. It's the most important thing we have as a company, and maintaining it is the most important thing we can do.",
+      "points": [
+        {
+          "title": "What it is — and what it isn't.",
+          "bodyHtml": "This has nothing to do with the data already sitting in our platforms. Shopify, Cin7, Klaviyo, Attentive, GA4 — those are connected, and any of the tools can query them directly. The knowledge base is <em>ours</em>: our internal processes and structures, tribal knowledge, the things we've learned the hard way, financial contracts, vendor contracts. Today it's scattered across the Google Shared Drive, buried in email threads, and held in people's heads."
+        },
+        {
+          "title": "The hard part is maintenance, not collection.",
+          "bodyHtml": "Getting documents in is easy. Keeping them trustworthy is the actual work — stale data, overlapping data, duplicates, and documents that flatly contradict each other. One confidently wrong answer costs more trust than ten right ones earn, so the controls matter more than the volume."
+        },
+        {
+          "title": "Getting something in should take five seconds.",
+          "bodyHtml": "In Google Chat, <strong>@</strong> the assistant and say &ldquo;add this document.&rdquo; That's the whole process. No form, no folder to remember, no meeting. Zero friction is the point — the moment it takes effort, it stops happening."
+        },
+        {
+          "title": "Everyone submits. Leadership approves.",
+          "bodyHtml": "Anyone on the leadership team and frontline managers — Candice, Kaitlyn, whoever is closest to the actual work — can submit. At the end of the week, one or two people on leadership approve or decline the new additions, and the approved ones get fed in."
+        },
+        {
+          "title": "Structure on the way in is what makes it work.",
+          "bodyHtml": "Every document gets parsed into clean metadata: what it is, which vendor it relates to, what it covers, how current it is — organized consistently so any AI tool or agent can reference and pull the right thing quickly and accurately. It's invisible when it's done right and worthless when it isn't."
+        },
+        {
+          "title": "This is the part that's actually ours.",
+          "bodyHtml": "Platforms change. The knowledge base doesn't — it moves with us to whatever tool we're on next. Of everything on this page, it's the one piece that compounds."
+        }
+      ],
+      "noteHtml": ""
+    },
+    {
+      "anchor": "open",
+      "num": "03",
+      "eyebrow": "AREA THREE · IN THE OPEN",
+      "title": "DO IT IN THE OPEN.",
+      "deck": "There is real skill, nuance and artistry in this — especially as we move from simple chat to agentic tasks. Nobody learns that siloed.",
+      "points": [
+        {
+          "title": "A channel for it, open to everyone.",
+          "bodyHtml": "A separate Google Chat channel where anyone at Pappy &amp; Company can share the cool thing they did with AI, how they did it, how something broke, what they learned from it, and the tips, tricks and skills they've picked up."
+        },
+        {
+          "title": "Post the failures too. Especially those.",
+          "bodyHtml": "Watching somebody work through a strange edge case teaches far more than a polished result does. There's real communication and perseverance involved in getting these things to work — that part is invisible unless we show it."
+        },
+        {
+          "title": "You can't learn this alone.",
+          "bodyHtml": "It's extremely hard for anyone non-technical to get good at this in isolation. YouTube covers the generic case; it will never cover a Pappy wholesale bundle, a Cerity report, or how our vendor history is organized. That nuance only exists here, and it only spreads if we show it to each other."
+        },
+        {
+          "title": "Non-judgmental, on purpose.",
+          "bodyHtml": "Celebrating successes and failures both, watching each other work, nobody made to feel behind. That is the only way all of us get more skilled at this."
+        },
+        {
+          "title": "It's where the industry has gone.",
+          "bodyHtml": "Whether it's Slack or Microsoft Teams, this is how it's being used at Shopify, at Anthropic, and at the digital ad agencies. AI lives in the communication channels now — out in the open, collaboratively shared, referenced and pulled together. An open transaction log everyone can watch and learn from."
+        }
+      ],
+      "noteHtml": "This is the next phase of bringing AI into our Google Chat space. Culture and skill spread bottom-up and organically — not from a training deck."
+    }
+  ]
 }

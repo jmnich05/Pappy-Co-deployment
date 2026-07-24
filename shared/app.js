@@ -296,6 +296,10 @@
     var grid = document.getElementById('reading-grid');
     var note = document.getElementById('reading-connect-note');
     var seed = content.requiredReading || [];
+    // The docs are a reference library by default: open and read, nothing tracked.
+    // A brand can opt back into "I have read this" sign-off with
+    // readingSection.signOff = true, which restores the ack UI and admin roster.
+    var showAck = !!(content.readingSection && content.readingSection.signOff);
 
     function paintCard(doc, ackedAt) {
       var card = document.createElement('div');
@@ -312,13 +316,14 @@
         var d = when ? new Date(when) : new Date();
         slot.innerHTML = '<span class="ack-state done"><span class="check">✓</span> Read ' + d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) + '</span>';
       }
-      if (ackedAt) { setAcked(ackedAt); }
+      if (!showAck) { /* reference library — no sign-off button */ }
+      else if (ackedAt) { setAcked(ackedAt); }
       else {
         var b = document.createElement('button'); b.className = 'ack-btn'; b.textContent = 'I have read this';
         b.addEventListener('click', function () { doAck(doc, function () { setAcked(); }); });
         slot.appendChild(b);
       }
-      card.querySelector('.doc-open').addEventListener('click', function () { openDoc(doc, !!ackedAt, function () { setAcked(); }); });
+      card.querySelector('.doc-open').addEventListener('click', function () { openDoc(doc, !showAck || !!ackedAt, function () { setAcked(); }); });
       grid.appendChild(card);
     }
 
@@ -386,14 +391,17 @@
         } else {
           // Authenticated but no docs in the tenant's documents table yet — fall
           // back to the bundled seed so the page still works; keep acks local.
-          if (note) {
+          if (note && showAck) {
             note.style.display = '';
             note.textContent = 'No documents seeded yet in Supabase — showing the bundled set. Your "I have read this" saves to this browser until the docs are seeded.';
           }
           paintSeed();
         }
         var adminLink = document.getElementById('reading-admin-link');
-        if (adminLink && res.isAdmin) adminLink.style.display = '';
+        if (adminLink && showAck && res.isAdmin) {
+          adminLink.textContent = 'See who has / hasn’t signed off →';
+          adminLink.style.display = '';
+        }
       }).catch(function (e) {
         var msg = (e && e.message) || String(e);
         // "not authenticated" just means nobody's signed in (always true on the
@@ -405,7 +413,10 @@
         paintSeed();
       });
     } else {
-      if (note) note.style.display = '';
+      if (note && showAck) {
+        note.style.display = '';
+        note.textContent = 'Your "I have read this" is being recorded in this browser only right now.';
+      }
       paintSeed();
     }
   }
@@ -502,7 +513,7 @@
         applyMeta(CONTENT);
         render(document.body, CONTENT);
         initAuth(CONTENT);
-        initTracker(CONTENT);
+        if (CONTENT.tracker) initTracker(CONTENT);
         initReading(CONTENT);
         initRail();
         initSwitcher();

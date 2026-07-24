@@ -107,6 +107,7 @@
   <main>
   <!-- ============== HERO ============== -->
   <section class="hero">
+    <div class="hero-eyebrow" data-bind="hero.eyebrow"></div>
     <h1 data-html="hero.headlineHtml">THE AI <span class="gold">DEPLOYMENT HUB</span></h1>
     <div class="hero-cobrand">
       <img class="hero-brand-logo" data-attr="src:brand._logoPath; alt:brand.name" alt="" />
@@ -117,242 +118,55 @@
     </div>
   </section>
 
-  <!-- ════════════════════ ZONE 0 — THE NOTE / WHAT CHANGED ════════════════════ -->
-  <div class="zone-divider" data-show-if="letter">
-    <span class="zone-label">WHAT CHANGED</span>
-    <span class="zone-sub">Read this first. It explains why the project list below looks different than it did.</span>
-  </div>
-
-  <!-- ============== THE LETTER — THREE THINGS ============== -->
-  <section class="block alt letter-block" id="letter" data-show-if="letter">
-    <div class="inner">
-      <div class="section-eyebrow" data-bind="letter.eyebrow"></div>
-      <h2 class="section-head" data-bind="letter.title"></h2>
-      <p class="section-deck" data-bind="letter.deck"></p>
-
-      <a class="letter-pdf" data-attr="href:letter.pdfHref" target="_blank" rel="noopener">
-        <span data-bind="letter.pdfLabel">Download the letter (PDF)</span>
-      </a>
-
-      <p class="letter-lede" data-html="letter.ledeHtml"></p>
-      <div class="letter-intro" data-html="letter.introHtml"></div>
-
-      <hr class="letter-rule" />
-
-      <div data-list="letter.things">
-        <template>
-          <article class="thing">
-            <div class="thing-head">
-              <div class="thing-num" data-bind="num"></div>
-              <h3 class="thing-title" data-bind="title"></h3>
-            </div>
-            <div class="thing-body">
-              <div data-html="bodyHtml"></div>
-              <div class="then-now">
-                <div class="tn-row">
-                  <span class="tn-label then" data-bind="thenLabel"></span>
-                  <span class="tn-text" data-bind="thenText"></span>
-                </div>
-                <div class="tn-row">
-                  <span class="tn-label now" data-bind="nowLabel"></span>
-                  <span class="tn-text" data-bind="nowText"></span>
-                </div>
-              </div>
-              <div data-html="bodyHtml2"></div>
-              <blockquote class="letter-pull" data-bind="pull" data-show-if="pull"></blockquote>
-              <div data-html="bodyHtml3"></div>
-            </div>
-          </article>
-        </template>
-      </div>
-
-      <div class="letter-changes">
-        <h3 data-bind="letter.changesTitle"></h3>
-        <p class="lc-sub" data-bind="letter.changesSub"></p>
-        <ol data-list="letter.changes">
-          <template>
-            <li><strong data-bind="title"></strong> <span data-bind="body"></span></li>
-          </template>
-        </ol>
-      </div>
-
-      <div class="letter-closing">
-        <h3 data-bind="letter.closingTitle"></h3>
-        <div data-html="letter.closingHtml"></div>
-        <div class="letter-sig" data-bind="letter.sig"></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ════════════════════ ZONE 1 — PROJECT UPDATE & WHAT'S DUE ════════════════════ -->
-  <div class="zone-divider" id="status">
-    <span class="zone-label">PROJECT UPDATE</span>
-    <span class="zone-sub">Where the rollout stands today — and what's due, by anyone. This is the part to check back on.</span>
-  </div>
-
-  <!-- ============== STATUS DASHBOARD ============== -->
-  <section class="status-dashboard">
-    <div class="dashboard-header">
-      <div>
-        <div class="section-eyebrow">PROJECT UPDATE · LIVE</div>
-        <h2 class="dashboard-title" data-bind="dashboard.title">WHERE WE ARE RIGHT NOW.</h2>
-      </div>
-      <p class="last-updated">Last updated: <span id="last-updated-date">—</span></p>
-    </div>
-    <div class="dashboard-stats">
-      <div class="stat total"><div class="stat-num" id="stat-total">0</div><div class="stat-label">TOTAL</div></div>
-      <div class="stat done"><div class="stat-num" id="stat-done">0</div><div class="stat-label">DONE</div></div>
-      <div class="stat in-progress"><div class="stat-num" id="stat-in-progress">0</div><div class="stat-label">IN PROGRESS</div></div>
-      <div class="stat blocked"><div class="stat-num" id="stat-blocked">0</div><div class="stat-label">WAITING</div></div>
-      <div class="stat not-started"><div class="stat-num" id="stat-todo">0</div><div class="stat-label">NOT STARTED</div></div>
-      <div class="stat pct"><div class="stat-num" id="stat-pct">0%</div><div class="stat-label">COMPLETE</div></div>
-    </div>
-    <div class="dashboard-now">
-      <div class="now-section in-progress"><div class="now-label">HAPPENING NOW</div><ul id="now-list"></ul></div>
-      <div class="now-section outstanding"><div class="now-label">STILL TO DO · WHO OWNS IT</div><ul id="todo-list"></ul></div>
-      <div class="now-section recently-done"><div class="now-label">RECENTLY DONE</div><ul id="done-list"></ul></div>
-    </div>
-    <a href="#tracker" class="jump-link">Open the full plan →</a>
-  </section>
-
-  <!-- ============== THE FULL PLAN / TRACKER ============== -->
-  <section class="block alt" id="tracker">
-    <div class="inner">
-      <div class="section-eyebrow">THE FULL PLAN</div>
-      <h2 class="section-head">EVERYTHING ON THE LIST.</h2>
-      <p class="section-deck">Every task, who owns it, and where it stands. Click a status to cycle it — your view saves to this browser. (When everyone's signed in, the project lead's updates show here for the whole team.)</p>
-      <div class="overall-progress">
-        <div class="label">HOW FAR ALONG WE ARE</div>
-        <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
-        <div class="progress-text" id="progress-text">0%</div>
-      </div>
-      <div class="tracker-toolbar">
-        <div class="legend">
-          <span><span class="dot" style="background:var(--color-status-todo)"></span>Not Started</span>
-          <span><span class="dot" style="background:var(--color-status-progress)"></span>In Progress</span>
-          <span><span class="dot" style="background:var(--color-status-blocked)"></span>Waiting on Something</span>
-          <span><span class="dot" style="background:var(--color-status-done)"></span>Done</span>
-        </div>
-        <button class="reset" onclick="aopResetTracker()">Reset</button>
-      </div>
-      <table class="tracker">
-        <thead><tr><th>Wk</th><th>Task</th><th>What it is</th><th>Owner</th><th>Status</th></tr></thead>
-        <tbody data-list="tracker.tasks">
-          <template>
-            <tr>
-              <td class="task-week" data-bind="week"></td>
-              <td class="task-name" data-bind="name"></td>
-              <td class="task-desc" data-bind="desc"></td>
-              <td class="task-owner" data-bind="owner"></td>
-              <td class="task-status"><button class="status-pill status-not-started" data-attr="data-id:id">NOT STARTED</button></td>
-            </tr>
-          </template>
-        </tbody>
-      </table>
-    </div>
-  </section>
-
-  <!-- ============== REQUIRED READING — DOCUMENT SIGN-OFFS ============== -->
-  <section class="block" id="reading">
-    <div class="section-eyebrow" data-bind="readingSection.eyebrow">DUE NOW · DOCUMENT SIGN-OFFS</div>
-    <h2 class="section-head" data-bind="readingSection.title">READ &amp; SIGN OFF.</h2>
-    <p class="section-deck" data-bind="readingSection.deck">Short, plain docs every team member reviews. Open each one, then mark it read — that's the sign-off, and it gives the project lead one clear record of who's up to speed.</p>
-    <div class="reading-grid" id="reading-grid"></div>
-    <div class="reading-connect-note" id="reading-connect-note" style="display:none">
-      Your "I've read this" is being recorded in this browser only right now. Once everyone's signed in, it's recorded against your name so we have one clear record.
-    </div>
-    <a class="reading-admin-link" id="reading-admin-link" href="#" style="display:none">See who has / hasn't signed off →</a>
-  </section>
-
-  <!-- ============== INTAKE FORMS — RETIRED July 2026 (see #letter) ============== -->
-  <!-- The seven intake forms were removed deliberately: asking people to describe
-       workflows they don't know an AI could do put the work on them. Replaced by
-       observed-work sessions. intake.js no-ops when #intake-root is absent. -->
-  <section class="block alt" id="intake">
-    <div class="inner">
-      <div class="section-eyebrow retired" data-bind="intakeSection.eyebrow">RETIRED</div>
-      <h2 class="section-head" data-bind="intakeSection.title">THE INTAKE FORMS ARE RETIRED.</h2>
-      <p class="section-deck" data-bind="intakeSection.deck"></p>
-      <div class="retired-note">
-        <div data-html="intakeSection.retiredHtml"></div>
-        <a class="retired-cta" data-attr="href:intakeSection.ctaHref" data-bind="intakeSection.ctaLabel"></a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ════════════════════ ZONE 2 — EDUCATION & INFO ════════════════════ -->
+  <!-- ════════════════════ THE THREE THINGS ════════════════════ -->
   <div class="zone-divider">
-    <span class="zone-label">EDUCATION &amp; INFO</span>
-    <span class="zone-sub">What this is, what it means for you, and — for whoever wants it — how it actually works.</span>
+    <span class="zone-label" data-bind="areasSection.title">THREE THINGS THAT MATTER.</span>
+    <span class="zone-sub" data-bind="areasSection.deck"></span>
   </div>
 
-  <!-- ============== WHAT THIS MEANS FOR YOU ============== -->
-  <section class="block" id="for-you">
-    <div class="section-eyebrow" data-bind="forYou.eyebrow">FOR YOU</div>
-    <h2 class="section-head" data-bind="forYou.title">WHAT THIS MEANS FOR YOU.</h2>
-    <p class="section-deck" data-bind="forYou.deck">The short version: this is about taking the dull, repetitive parts off your plate — not replacing you.</p>
-    <div class="point-grid" data-list="forYou.points">
+  <!-- ============== THE THREE AREAS ============== -->
+  <section class="block areas-block" data-show-if="areas">
+    <div class="inner" data-list="areas">
       <template>
-        <div class="point-card">
-          <div class="point-title" data-bind="title"></div>
-          <p data-bind="body"></p>
-        </div>
-      </template>
-    </div>
-  </section>
-
-  <!-- ============== WHAT WE'RE SETTING UP ============== -->
-  <section class="block alt" id="layer">
-    <div class="inner">
-      <div class="section-eyebrow" data-bind="layerSection.eyebrow">WHAT WE'RE SETTING UP</div>
-      <h2 class="section-head" data-bind="layerSection.title">THE PIECES WE'RE PUTTING IN PLACE.</h2>
-      <p class="section-deck" data-bind="layerSection.deck">A handful of things, in plain terms. Each one has a job.</p>
-      <table class="layer-table">
-        <thead><tr><th>The piece</th><th data-bind="layerSection.colHead">What it does</th></tr></thead>
-        <tbody data-list="layers">
-          <template>
-            <tr>
-              <td class="layer-name"><span data-bind="badgeLabel" data-attr="class:badgeClass"></span> <span data-bind="name"></span></td>
-              <td data-html="bodyHtml"></td>
-            </tr>
-          </template>
-        </tbody>
-      </table>
-      <details class="disclosure" data-show-if="layerSection.techNoteHtml">
-        <summary>The technical names for these, if you're curious</summary>
-        <div class="disclosure-body" data-html="layerSection.techNoteHtml"></div>
-      </details>
-    </div>
-  </section>
-
-  <!-- ============== THE PLAN — four steps ============== -->
-  <section class="block" id="plan">
-    <div class="section-eyebrow" data-bind="planSection.eyebrow">THE PLAN</div>
-    <h2 class="section-head" data-bind="planSection.title">FOUR STEPS OVER ABOUT 60 DAYS.</h2>
-    <p class="section-deck" data-bind="planSection.deck">Predictable, not a black box. Here's the shape of it.</p>
-    <div class="phase-grid" data-list="phases">
-      <template>
-        <div class="phase-card" data-attr="data-accent:accent">
-          <div class="phase-label" data-bind="label"></div>
-          <h3 data-bind="title"></h3>
-          <div class="days" data-bind="days"></div>
-          <p data-bind="intro"></p>
-          <ul data-list="bullets"><template><li data-html="value"></li></template></ul>
-        </div>
-      </template>
-    </div>
-    <details class="disclosure" data-show-if="cadence">
-      <summary>Week-by-week, if you want the detail</summary>
-      <div class="cadence-stripe" data-list="cadence">
-        <template>
-          <div class="cadence-week">
-            <div class="wk-num" data-bind="num"></div>
-            <div class="wk-title" data-bind="title"></div>
-            <div class="wk-desc" data-bind="desc"></div>
+        <article class="area" data-attr="id:anchor">
+          <div class="area-head">
+            <div class="area-num" data-bind="num"></div>
+            <div class="area-headings">
+              <div class="section-eyebrow" data-bind="eyebrow"></div>
+              <h2 class="area-title" data-bind="title"></h2>
+            </div>
           </div>
-        </template>
-      </div>
-    </details>
+          <p class="area-deck" data-bind="deck"></p>
+          <div class="area-points" data-list="points">
+            <template>
+              <div class="area-point">
+                <h3 data-bind="title"></h3>
+                <p data-html="bodyHtml"></p>
+              </div>
+            </template>
+          </div>
+          <div class="area-note" data-html="noteHtml" data-show-if="noteHtml"></div>
+        </article>
+      </template>
+    </div>
+  </section>
+
+  <!-- ════════════════════ REFERENCE ════════════════════ -->
+  <div class="zone-divider">
+    <span class="zone-label">REFERENCE</span>
+    <span class="zone-sub">The terms, how we handle data, and — for whoever wants it — how the technology actually works.</span>
+  </div>
+
+  <!-- ============== THE DOCS — reference library (no sign-off) ============== -->
+  <section class="block" id="reading">
+    <div class="inner">
+      <div class="section-eyebrow" data-bind="readingSection.eyebrow">REFERENCE</div>
+      <h2 class="section-head" data-bind="readingSection.title">THE DOCS.</h2>
+      <p class="section-deck" data-bind="readingSection.deck"></p>
+      <div class="reading-grid" id="reading-grid"></div>
+      <div class="reading-connect-note" id="reading-connect-note" style="display:none"></div>
+      <a class="reading-admin-link" id="reading-admin-link" href="#" style="display:none"></a>
+    </div>
   </section>
 
   <!-- ============== YOUR DATA — WHAT WE WILL & WON'T DO ============== -->
@@ -372,41 +186,6 @@
         </div>
       </div>
       <p class="data-note" data-bind="yourData.note" data-show-if="yourData.note"></p>
-    </div>
-  </section>
-
-  <!-- ============== HOW WE'LL HANDLE IMAGES (optional) ============== -->
-  <section class="block alt" id="creative" data-show-if="creativeStack">
-    <div class="inner">
-      <div class="section-eyebrow" data-bind="creativeSection.eyebrow">A NOTE ON IMAGES & DESIGN</div>
-      <h2 class="section-head" data-bind="creativeSection.title">HOW WE'LL HANDLE IMAGES.</h2>
-      <p class="section-deck" data-bind="creativeSection.deck"></p>
-      <div class="creative-grid" data-list="creativeStack">
-        <template>
-          <div class="creative-card" data-attr="data-accent:accent">
-            <h4 data-bind="title"></h4>
-            <div class="tagline" data-bind="tagline"></div>
-            <p data-html="bodyHtml"></p>
-            <ul data-list="bullets"><template><li data-html="value"></li></template></ul>
-          </div>
-        </template>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============== TEAM & OWNERSHIP ============== -->
-  <section class="block" id="team">
-    <div class="section-eyebrow" data-bind="teamSection.eyebrow">WHO OWNS WHAT</div>
-    <h2 class="section-head" data-bind="teamSection.title">WHO OWNS WHAT.</h2>
-    <p class="section-deck" data-bind="teamSection.deck">So you know who to go to. Each person below can answer for their part.</p>
-    <div class="team-grid" data-list="team">
-      <template>
-        <div class="team-card">
-          <div class="name" data-bind="name"></div>
-          <div class="role" data-bind="role"></div>
-          <ul data-list="items"><template><li data-bind="value"></li></template></ul>
-        </div>
-      </template>
     </div>
   </section>
 
@@ -431,50 +210,6 @@
             </template>
           </div>
 
-          <div class="uth-sub" data-show-if="agents">
-            <div class="optional-banner">
-              <div class="label">ADVANCED LAYER — SCOPED TO FIT YOU</div>
-              <p data-html="phaseTwo.bannerHtml"></p>
-            </div>
-            <h3 class="uth-h3" data-bind="phaseTwo.title">A workforce of agents.</h3>
-            <p class="section-deck" data-bind="phaseTwo.deck"></p>
-            <table class="agents-table">
-              <thead><tr><th>Agent</th><th>Primary Role</th><th>Connected Systems</th></tr></thead>
-              <tbody data-list="agents">
-                <template>
-                  <tr>
-                    <td class="agent-name" data-bind="name"></td>
-                    <td data-bind="role"></td>
-                    <td class="agent-systems" data-bind="systems"></td>
-                  </tr>
-                </template>
-              </tbody>
-            </table>
-            <div class="phase-two-banner">
-              <h3><span class="optional-badge">ADVANCED</span><span data-bind="phaseTwo.headStaffTitle">Head-of-staff agent</span></h3>
-              <div class="trigger" data-bind="phaseTwo.trigger"></div>
-              <p data-html="phaseTwo.headStaffHtml"></p>
-            </div>
-          </div>
-
-          <div class="uth-sub" data-show-if="portability">
-            <div class="portability">
-              <div class="eyebrow" data-bind="portability.eyebrow">VENDOR-PORTABLE BY DESIGN</div>
-              <h2 data-html="portability.headlineHtml">Anthropic-first.<br>Never Anthropic-locked.</h2>
-              <p data-html="portability.bodyHtml"></p>
-              <ul data-list="portability.bullets"><template><li data-bind="value"></li></template></ul>
-              <div class="footnote" data-bind="portability.footnote"></div>
-            </div>
-          </div>
-
-          <div class="uth-sub" data-show-if="techStack">
-            <div class="section-eyebrow" data-bind="stackSection.eyebrow">THE FOUNDATION</div>
-            <h3 class="uth-h3" data-bind="stackSection.title">Tech stack.</h3>
-            <p class="section-deck" data-bind="stackSection.deck"></p>
-            <div class="stack-row" data-list="techStack">
-              <template><span class="stack-pill" data-bind="value"></span></template>
-            </div>
-          </div>
         </div>
       </details>
     </div>
@@ -495,36 +230,6 @@
     </dl>
   </section>
 
-  <!-- ════════════════════ ZONE 3 — TOOLS FOR ACTION & DEPLOY ════════════════════ -->
-  <div class="zone-divider">
-    <span class="zone-label">TOOLS FOR ACTION &amp; DEPLOY</span>
-    <span class="zone-sub">What we'll do here together. The hub grows as the deployment does.</span>
-  </div>
-
-  <!-- ============== MORE TOOLS COMING ============== -->
-  <section class="block alt" id="coming-soon" data-show-if="comingSoon">
-    <div class="section-eyebrow" data-bind="comingSoon.eyebrow">COMING TO THE HUB</div>
-    <h2 class="section-head" data-bind="comingSoon.title">MORE ONBOARDING TOOLS, SOON.</h2>
-    <p class="section-deck" data-bind="comingSoon.deck">The document sign-offs above are live now. These are landing next.</p>
-    <div class="coming-grid" data-list="comingSoon.items">
-      <template>
-        <div class="coming-card">
-          <div class="coming-status" data-bind="status"></div>
-          <div class="coming-title" data-bind="title"></div>
-          <p data-html="bodyHtml"></p>
-        </div>
-      </template>
-    </div>
-  </section>
-
-  <!-- ============== QUESTIONS / CTA ============== -->
-  <section class="block" id="questions" data-show-if="questions">
-    <div class="cta-box">
-      <div class="cta-label" data-bind="questions.label">GOT A QUESTION?</div>
-      <h2 data-bind="questions.title">There's no dumb question here.</h2>
-      <p data-html="questions.bodyHtml"></p>
-    </div>
-  </section>
   </main>
 
   <!-- ============== FOOTER ============== -->

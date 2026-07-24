@@ -1216,125 +1216,59 @@ details.disclosure.big .disclosure-body { padding: 8px 28px 32px; }
 }
 
 /* ============================================================
-   THE LETTER — "Three things I wish I knew" (#letter)
-   Added July 2026. Long-form editorial block; reads as a note,
-   not a dashboard. Content lives in brand content.json → letter.
+   THE THREE AREAS  (#tools / #knowledge / #open)
+   Added July 2026 with the restructure. Long-form editorial blocks;
+   content lives in brand content.json -> areas[].
    ============================================================ */
-.letter-block .section-deck { margin-bottom: 22px; }
-
-.letter-pdf {
-  display: inline-block; margin: 0 0 34px;
-  font-family: var(--font-display); font-size: 11px; letter-spacing: 0.22em;
-  color: var(--color-bg-dark); background: var(--color-accent);
-  text-decoration: none; padding: 11px 20px; border-radius: 2px;
-  transition: background .15s ease, transform .15s ease;
+.hero-eyebrow {
+  font-family: var(--font-display); color: var(--color-accent);
+  letter-spacing: 0.28em; font-size: 11px; margin-bottom: 18px;
 }
-.letter-pdf:hover { background: var(--color-cream); transform: translateY(-1px); }
+.areas-block { padding-top: 56px; padding-bottom: 56px; }
 
-.letter-lede {
-  font-family: var(--font-serif-head); font-size: clamp(20px, 2.4vw, 26px);
-  line-height: 1.45; color: var(--color-cream); max-width: 860px; margin: 0 0 18px;
-}
-.letter-lede em { color: var(--color-accent); font-style: italic; }
-.letter-intro { max-width: 860px; color: var(--color-muted); }
-.letter-intro p { margin: 0 0 12px; }
-.letter-intro strong { color: var(--color-cream); }
+.area { max-width: 880px; margin: 0 auto 76px; scroll-margin-top: 90px; }
+.area:last-child { margin-bottom: 8px; }
 
-.letter-rule { border: 0; height: 2px; width: 64px; background: var(--color-accent); margin: 34px 0 40px; }
-
-/* --- the three numbered things --- */
-.thing { max-width: 900px; margin: 0 0 52px; }
-.thing-head { display: flex; align-items: flex-start; gap: 20px; margin-bottom: 18px; }
-.thing-num {
-  font-family: var(--font-display); font-size: clamp(34px, 4.5vw, 52px);
-  line-height: .9; color: var(--color-accent); flex: 0 0 auto; min-width: 64px;
+.area-head { display: flex; align-items: flex-start; gap: 22px; margin-bottom: 16px; }
+.area-num {
+  font-family: var(--font-display); font-size: clamp(40px, 5.5vw, 64px);
+  line-height: .86; color: var(--color-accent); flex: 0 0 auto; min-width: 78px;
 }
-.thing-title {
-  font-family: var(--font-display); font-size: clamp(20px, 2.5vw, 28px);
-  line-height: 1.18; letter-spacing: 0.03em; color: var(--color-cream);
-  text-transform: uppercase; margin: 4px 0 0;
+.area-headings { flex: 1; padding-top: 4px; }
+.area-headings .section-eyebrow { margin-bottom: 8px; }
+.area-title {
+  font-family: var(--font-display); font-size: clamp(24px, 3.2vw, 38px);
+  line-height: 1.08; letter-spacing: 0.035em; color: var(--color-cream);
+  text-transform: uppercase; margin: 0;
 }
-.thing-body { padding-left: 84px; color: var(--color-muted); }
-.thing-body p { margin: 0 0 14px; }
-.thing-body em { color: var(--color-cream); font-style: italic; }
-.thing-body strong { color: var(--color-cream); }
-
-/* then / now contrast card */
-.then-now {
-  background: rgba(0,0,0,0.22);
-  border-left: 3px solid var(--color-muted);
-  border-radius: 2px; padding: 18px 22px; margin: 22px 0;
-}
-.tn-row + .tn-row { margin-top: 14px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,0.08); }
-.tn-label {
-  display: block; font-family: var(--font-display); font-size: 10px;
-  letter-spacing: 0.22em; margin-bottom: 5px;
-}
-.tn-label.then { color: var(--color-accent-3); }
-.tn-label.now  { color: var(--color-accent); }
-.tn-text { display: block; font-size: 17px; line-height: 1.5; color: var(--color-cream); }
-
-.letter-pull {
+.area-deck {
   font-family: var(--font-serif-head); font-style: italic;
-  font-size: clamp(19px, 2.1vw, 23px); line-height: 1.45;
-  color: var(--color-cream); border-left: 3px solid var(--color-accent);
-  padding: 4px 0 4px 22px; margin: 24px 0;
+  font-size: clamp(18px, 2vw, 22px); line-height: 1.45;
+  color: var(--color-muted); margin: 0 0 30px; padding-left: 100px;
 }
 
-/* --- what this changes --- */
-.letter-changes { max-width: 900px; margin: 8px 0 44px; }
-.letter-changes h3 {
-  font-family: var(--font-display); font-size: clamp(18px, 2vw, 24px);
-  letter-spacing: 0.06em; color: var(--color-cream); margin: 0 0 6px;
+.area-points { padding-left: 100px; }
+.area-point { margin-bottom: 24px; }
+.area-point h3 {
+  font-family: var(--font-display); font-size: 15px; letter-spacing: 0.05em;
+  color: var(--color-accent); text-transform: uppercase;
+  margin: 0 0 7px; line-height: 1.3;
 }
-.letter-changes .lc-sub {
-  font-family: var(--font-serif-head); font-style: italic;
-  color: var(--color-muted); margin: 0 0 18px;
-}
-.letter-changes ol { margin: 0; padding-left: 22px; color: var(--color-muted); }
-.letter-changes li { margin: 0 0 12px; line-height: 1.55; }
-.letter-changes li strong { color: var(--color-accent); }
+.area-point p { margin: 0; color: var(--color-muted); line-height: 1.62; }
+.area-point strong { color: var(--color-cream); }
+.area-point em { color: var(--color-cream); font-style: italic; }
 
-/* --- closing --- */
-.letter-closing {
-  max-width: 900px; background: var(--color-bg-dark);
-  border: 1px solid rgba(230,177,14,0.28); border-radius: 2px;
-  padding: 30px 32px; color: var(--color-muted);
+.area-note {
+  margin: 30px 0 0 100px; padding: 20px 24px;
+  background: rgba(0,0,0,0.22); border-left: 3px solid var(--color-accent);
+  border-radius: 2px; color: var(--color-muted); line-height: 1.6;
 }
-.letter-closing h3 {
-  font-family: var(--font-display); font-size: 15px; letter-spacing: 0.2em;
-  color: var(--color-accent); margin: 0 0 14px;
-}
-.letter-closing p { margin: 0 0 12px; }
-.letter-closing em { color: var(--color-cream); font-style: italic; }
-.letter-sig {
-  font-family: var(--font-serif-head); font-style: italic; font-size: 19px;
-  color: var(--color-muted); margin-top: 18px; padding-top: 16px;
-  border-top: 1px solid rgba(255,255,255,0.1);
-}
+.area-note strong { color: var(--color-cream); }
 
-/* ============== RETIRED INTAKE NOTE (#intake) ============== */
-.section-eyebrow.retired { color: var(--color-accent-2); }
-.retired-note {
-  max-width: 860px; background: rgba(0,0,0,0.2);
-  border-left: 3px solid var(--color-accent-2);
-  border-radius: 2px; padding: 26px 28px; color: var(--color-muted);
-}
-.retired-note p { margin: 0 0 13px; }
-.retired-note p:last-of-type { margin-bottom: 0; }
-.retired-note strong { color: var(--color-cream); }
-.retired-note em { color: var(--color-cream); font-style: italic; }
-.retired-cta {
-  display: inline-block; margin-top: 20px;
-  font-family: var(--font-display); font-size: 11px; letter-spacing: 0.22em;
-  color: var(--color-accent); text-decoration: none;
-  border-bottom: 1px solid var(--color-accent); padding-bottom: 2px;
-}
-.retired-cta:hover { color: var(--color-cream); border-color: var(--color-cream); }
-
-@media (max-width: 640px) {
-  .thing-head { gap: 14px; }
-  .thing-num { min-width: 46px; }
-  .thing-body { padding-left: 0; }
-  .letter-closing, .retired-note { padding: 22px 20px; }
+@media (max-width: 720px) {
+  .area-head { gap: 14px; }
+  .area-num { min-width: 50px; }
+  .area-deck, .area-points { padding-left: 0; }
+  .area-note { margin-left: 0; padding: 18px 20px; }
+  .area { margin-bottom: 56px; }
 }
